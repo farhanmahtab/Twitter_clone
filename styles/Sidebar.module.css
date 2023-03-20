@@ -1,0 +1,130 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  padding: 0.5rem;
+  flex-direction: column;
+  height: 100%;
+  align-items: flex-start;
+
+  @media (min-width: 1280px) {
+    margin-left: 6rem;
+    align-items: flex-start;
+  }
+}
+/* .logo:hover {
+  border-radius: 50%;
+  padding: 5px;
+  background:  #8faed3;
+} */
+.icon {
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+  padding: 5px;
+}
+.icon:hover {
+  background-color: #e5e7eb;
+  border-radius: 35%;
+}
+.sidebarHover {
+  display: flex;
+  transition-property: background-color, border-color, color, fill, stroke,
+    opacity, box-shadow, transform;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  border-radius: 9999px;
+  cursor: pointer;
+  margin-left: 0.75rem;
+  margin-left: 0.875rem;
+  color: #374151;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 1280px) {
+    justify-content: flex-start;
+  }
+}
+.sidebarHover:hover {
+  /* background-color: #e5e7eb; */
+  transform: scale(1.2);
+}
+.hoverEffect {
+  display: flex;
+  transition-property: background-color, border-color, color, fill, stroke,
+    opacity, box-shadow, transform;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  border-radius: 9999px;
+  cursor: pointer;
+  /* width: 52px;
+  height: 52px; */
+
+  @media (min-width: 1280px) {
+    padding: 0.75rem;
+    width: auto;
+    height: auto;
+  }
+}
+.hoverEffect,
+.profileHover:hover {
+  /* background-color: #e5e7eb; */
+  transform: scale(1.2);
+}
+.sideBarButton {
+  background-color: #60a5fa;
+  margin: 7px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  width: 10rem;
+  height: 3rem;
+  border-radius: 9999px;
+  transition-duration: 500ms;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  align-self: center;
+
+  @media (min-width: 1280px) {
+    display: inline;
+  }
+}
+.sideBarButton:hover {
+  background-color: #2951c0;
+  transform: scale(1.1);
+}
+.image {
+  border-radius: 50%;
+  margin: 25px 10px;
+}
+.profile {
+  display: flex;
+  cursor: pointer;
+  color: #374151;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 7%;
+
+  @media (min-width: 1280px) {
+    justify-content: flex-start;
+  }
+}
+.profileHover {
+  display: flex;
+  transition-property: background-color, border-color, color, fill, stroke,
+    opacity, box-shadow, transform;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  border-radius: 15%;
+  cursor: pointer;
+  @media (min-width: 1280px) {
+    padding: 0.75rem;
+    width: auto;
+    height: auto;
+  }
+}
