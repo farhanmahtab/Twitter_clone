@@ -1,0 +1,63 @@
+.PostBoxMain {
+  display: flex;
+}
+.image {
+  border-radius: 50%;
+  padding: 15px 15px;
+  cursor: pointer;
+}
+.postBoxtextArea {
+  display: flex;
+  flex-direction: column;
+  align-self: right;
+}
+.textArea {
+  color: #374151;
+  border: none;
+  overflow: hidden;
+  outline: none;
+  resize: none;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  letter-spacing: 0.005em;
+  color: #374151;
+  width: 585px;
+  border-style: none;
+}
+
+.iconbar {
+    display: flex;
+    border-top: solid 1px gray;
+    justify-content: space-between;
+}
+.icon {
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+  padding: 5px;
+  color: rgb(29, 155, 240);
+}
+.icon:hover {
+  background-color: #e5e7eb;
+  border-radius: 35%;
+}
+.postBoxButton {
+  background-color: #60a5fa;
+  margin: 7px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.75rem;
+  font-weight: 300;
+  width: 6rem;
+  height: 2rem;
+  border-radius: 9999px;
+  border: none;
+  transition-duration: 500ms;
+  border: none;
+  align-self: center;
+}
+.postBoxButton:hover {
+  background-color: rgb(29, 155, 240);
+  transform: scale(1.01);
+}

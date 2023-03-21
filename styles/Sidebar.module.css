@@ -2,21 +2,23 @@
   display: flex;
   flex-direction: column;
   position: fixed;
-  padding: 0.5rem;
+  padding-left: 3rem;
   height: 100%;
+  width: 230px;
   align-items: flex-start;
+  border-right: 1px solid black;
 
   @media (min-width: 1280px) {
     margin-left: 6rem;
     align-items: flex-start;
   }
 }
-.logo{
+.logo {
   padding: 8px;
 }
 .logo:hover {
   border-radius: 50%;
-  background: #b4cee0;;
+  background: #b4cee0;
 }
 .icon {
   height: 24px;
@@ -39,7 +41,7 @@
   margin-left: 0.75rem;
   margin-left: 0.875rem;
   color: #374151;
-  padding-top: 2px;
+  padding: 10px 7px;
   font-size: 1.5rem;
   line-height: 1.75rem;
   justify-content: center;
@@ -50,8 +52,8 @@
   }
 }
 .sidebarHover:hover {
-  /* background-color: #e5e7eb; */
-  transform: scale(1.2);
+  background-color: #e5e7eb;
+  transform: scale(1.05);
 }
 .hoverEffect {
   display: flex;
@@ -73,7 +75,7 @@
 .hoverEffect,
 .profileHover:hover {
   /* background-color: #e5e7eb; */
-  transform: scale(1.2);
+  transform: scale(1.05);
 }
 .sideBarButton {
   background-color: #60a5fa;
@@ -83,21 +85,21 @@
   font-size: 1.125rem;
   line-height: 1.75rem;
   font-weight: 700;
-  width: 10rem;
-  height: 3rem;
+  width: 12rem;
+  height: 3.25rem;
   border-radius: 9999px;
   transition-duration: 500ms;
   box-shadow: 0 4px 6px -1px rgba(53, 94, 141, 0.1),
     0 2px 4px -1px rgba(82, 132, 165, 0.06);
   align-self: center;
+  border: none;
 
   @media (min-width: 1280px) {
     display: inline;
   }
 }
 .sideBarButton:hover {
-  background-color: #2951c0;
-  transform: scale(1.1);
+  background-color: rgb(29, 155, 240);
 }
 .image {
   border-radius: 50%;
@@ -110,16 +112,15 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: 7%;
+  bottom: 1%;
+  width: 200px;
+}
+.profile :hover {
+  background-color: #e5e7eb;
 
-  @media (min-width: 1280px) {
-    justify-content: flex-start;
-  }
 }
 .profileHover {
   display: flex;
-  transition-property: background-color, border-color, color, fill, stroke,
-    opacity, box-shadow, transform;
   transition-duration: 500ms;
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
   border-radius: 15%;
