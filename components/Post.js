@@ -17,6 +17,7 @@ function Post({ post }) {
         width="50"
         height="50"
         className={styles.profileImage}
+        alt="user image"
       />
       <div className={styles.RightDiv}>
         {/* Username and Handle */}
@@ -33,7 +34,7 @@ function Post({ post }) {
 
         {/* post Image */}
         <p>{post.text}</p>
-        {post.img && <img src={post.img} className={styles.postImage} />}
+        {post.img && <img src={post.img} alt="post Image" className={styles.postImage} />}
 
         {/* Icons */}
         <div className={styles.iconsBottom}>
