@@ -1,9 +1,13 @@
 .PostBoxMain {
+  margin-top: 30px;
   display: flex;
+  border-bottom: 1px solid gainsboro;
+}
+.imageDiv {
+  padding: 5px 10px;
 }
 .image {
   border-radius: 50%;
-  padding: 15px 15px;
   cursor: pointer;
 }
 .postBoxtextArea {
@@ -26,13 +30,14 @@
 }
 
 .iconbar {
-    display: flex;
-    border-top: solid 1px gray;
-    justify-content: space-between;
+  display: flex;
+  border-top: solid 1px gray;
+  justify-content: space-between;
 }
 .icon {
-  height: 24px;
-  width: 24px;
+  height: 35px;
+  width: 35px;
+  margin-top: 4px;
   cursor: pointer;
   padding: 5px;
   color: rgb(29, 155, 240);
@@ -50,7 +55,7 @@
   line-height: 1.75rem;
   font-weight: 300;
   width: 6rem;
-  height: 2rem;
+  height: 2.25rem;
   border-radius: 9999px;
   border: none;
   transition-duration: 500ms;

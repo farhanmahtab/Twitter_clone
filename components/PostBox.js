@@ -12,7 +12,7 @@ import {
 function PostBox() {
   return (
     <div className={styles.PostBoxMain}>
-      <div className="">
+      <div className={styles.imageDiv}>
         <Image
           src={profilePicture}
           className={styles.image}

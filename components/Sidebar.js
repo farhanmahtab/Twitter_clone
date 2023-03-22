@@ -1,14 +1,16 @@
 import React from "react";
 import Image from "next/image";
 import profilePicture from "../public/Resource/pp.jpeg";
-import {  DotsCircleHorizontalIcon, HomeIcon, InboxIcon } from "@heroicons/react/solid";
 import {
+  InboxIcon,
+  HomeIcon,
   BellIcon,
   BookmarkAltIcon,
   ClipboardCheckIcon,
   DotsHorizontalIcon,
   HashtagIcon,
   UserIcon,
+  DotsCircleHorizontalIcon,
 } from "@heroicons/react/outline";
 import SideBarMenuItems from "./SideBarMenuItems";
 import styles from "../styles/Sidebar.module.css";
@@ -32,9 +34,8 @@ function Sidebar() {
       <SideBarMenuItems text="More" Icon={DotsCircleHorizontalIcon} />
 
       {/* button */}
-      
-        <button className={styles.sideBarButton}>Tweet</button>
-     
+
+      <button className={styles.sideBarButton}>Tweet</button>
 
       {/* profile */}
       <div className={styles.profile}>
@@ -42,19 +43,17 @@ function Sidebar() {
           <Image
             src={profilePicture}
             className={styles.image}
-            height="50"
-            width="50"
+            height="45"
+            width="45"
             alt="user-image"
           ></Image>
-          <div>
+          <div className={styles.profileUsn}>
             <h4>Farhan Mahi</h4>
             <p>@ironblood</p>
           </div>
         </div>
         <DotsHorizontalIcon className={styles.icon} />
       </div>
-
-    
     </div>
   );
 }
