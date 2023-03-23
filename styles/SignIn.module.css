@@ -1,0 +1,52 @@
+.main {
+  padding: 1rem 1.5rem;
+  height: fit-content;
+}
+
+.SignInBox {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px;
+  color: rgb(86, 94, 94);
+  margin-left: 0.25rem;
+  border: 1px solid gainsboro;
+  border-radius: 5%;
+  cursor: pointer;
+}
+.SignInBox h3 {
+  color: black;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-bottom: 10px;
+  padding-left: 3px;
+}
+.SignInBox p {
+  font-size: 0.9rem;
+  padding-bottom: 10px;
+}
+.buttonDiv {
+  display: flex;
+  flex-direction: column;
+  color: #000;
+  text-decoration: none;
+}
+.buttonDiv link {
+  text-decoration: none;
+}
+.button {
+  width: 300px;
+  height: 40px;
+  margin: 10px;
+  padding: 10px;
+  align-self: center;
+  justify-self: center;
+  border: 1px solid gainsboro;
+  border-radius: 999px;
+}
+.button :hover {
+  color: rgb(29, 155, 240);
+}
+.extra {
+  color: rgb(83, 100, 113);
+  margin-top: 1rem;
+}
