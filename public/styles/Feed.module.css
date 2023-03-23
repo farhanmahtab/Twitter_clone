@@ -1,0 +1,66 @@
+.main {
+  display: grid;
+  border-right-width: 1px;
+  border-left-width: 1px;
+  border: 0.5px solid gainsboro;
+  margin-left: 27%;
+  height: auto;
+  width: 660px;
+  margin-top: -10px;
+
+  /* @media screen and (min-width: 640px) {
+    margin-left: 73px;
+  }
+
+  @media screen and (min-width: 1280px)  {
+    margin-left: 370px;
+  } */
+}
+.homeBar {
+  display: flex;
+  position: sticky;
+  top: 0;
+  height: 70px;
+  /* -webkit-backdrop-filter: blur(5px); */
+  backdrop-filter: blur(25px);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid gainsboro;
+  justify-content: space-between;
+  margin-top: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-bottom-width: 1px;
+  border-color: #e5e7eb;
+  z-index: 2;
+}
+.homeBar h2 {
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+  margin-top: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #374151;
+  cursor: pointer;
+}
+.homeBarIcon {
+  position: absolute;
+  left: 600px;
+  top: 10px;
+  height: 40px;
+  width: 40px;
+  padding: 10px 10px;
+  justify-self: end;
+  color: #374151;
+  transition-property: background-color, border-color, color, fill, stroke,
+    opacity, box-shadow, transform;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  border-radius: 9999px;
+  cursor: pointer;
+}
+.homeBarIcon:hover {
+  background-color: #e5e7eb;
+  border-radius: 45%;
+}

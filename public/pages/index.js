@@ -4,7 +4,7 @@ import Widget from "@/components/Widget";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
-export default function Home({ newsResults, randomUsersResults }) {
+export default function Home({newsResults}) {
   return (
     <>
       <Head>
@@ -17,10 +17,7 @@ export default function Home({ newsResults, randomUsersResults }) {
         {/* feed */}
         <Feed />
         {/* widget */}
-        <Widget
-          newsResults={newsResults?.articles}
-          randomUsersResults={randomUsersResults?.results || null}
-        />
+        <Widget newsResults={newsResults?.articles}/>
         {/* modal */}
       </main>
     </>
@@ -28,6 +25,7 @@ export default function Home({ newsResults, randomUsersResults }) {
 }
 // randomUsersResults={randomUsersResults?.results || null}
 export async function getServerSideProps() {
+
   // random news
   const newsResults = await fetch(
     "https://saurav.tech/NewsAPI/top-headlines/category/business/us.json"

@@ -1,0 +1,67 @@
+.widgetMain {
+  margin-left: 20px;
+}
+.searchBarDiv {
+  position: sticky;
+  top: 0;
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+  background-color: #ffffff;
+  width: 300px;
+}
+.searchBar {
+  display: flex;
+  position: relative;
+  padding: 0.75rem;
+  align-items: center;
+  border-radius: 9999px;
+}
+.searchBarDiv :hover {
+  background-color: #e5e7eb;
+}
+.searchArea {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-left: 2.75rem;
+  background-color: #f3f4f6;
+  color: #374151;
+  border-radius: 9999px;
+  border-style: none;
+}
+.searchArea :focus {
+  background-color: #f3f4f6;
+  border-color: #1b4eb6;
+}
+.icon {
+  z-index: 2;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  padding: 5px;
+  color: gray;
+}
+.news {
+  padding-top: 0.5rem;
+  margin-top: 0.75rem;
+  margin-top: 0.875rem;
+  background-color: #f3f4f6;
+  color: #374151;
+  border-radius: 0.75rem;
+}
+.news h4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+}
+.newsButton {
+  padding-bottom: 0.75rem;
+  padding-left: 1rem;
+  color: #93c5fd;
+  border-style: none;
+}

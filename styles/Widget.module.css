@@ -1,5 +1,6 @@
 .widgetMain {
   margin-left: 20px;
+  width: 350px;
 }
 .searchBarDiv {
   position: sticky;
@@ -7,7 +8,7 @@
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
   background-color: #ffffff;
-  width: 300px;
+  width: 350px;
 }
 .searchBar {
   display: flex;
@@ -52,6 +53,7 @@
   color: #374151;
   border-radius: 0.75rem;
 }
+
 .news h4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -60,8 +62,73 @@
   font-weight: 700;
 }
 .newsButton {
-  padding-bottom: 0.75rem;
-  padding-left: 1rem;
+  cursor: pointer;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding: 1.5rem;
+  margin-left: 0.5rem;
   color: #93c5fd;
   border-style: none;
+  background: #f3f4f6;
+  font-size: 1rem;
+  border-radius: 9999px;
+}
+.newsButton :hover {
+  background: #9fa1a5;
+}
+.follow {
+  padding-top: 0.5rem;
+  margin-top: 0.75rem;
+  margin-top: 0.875rem;
+  background-color: #f3f4f6;
+  color: #374151;
+  border-radius: 0.75rem;
+}
+.follow {
+  cursor: pointer;
+  position: sticky;
+  top: 65px;
+}
+.follow h4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+}
+
+.followBox {
+  display: flex;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.follow :hover {
+  background: #9fa1a5;
+}
+
+.followImg {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+.followNameBox {
+  padding: 0;
+}
+.followNameBox h4 {
+  font-size: 1.25rem;
+}
+.followNameBox p {
+  margin-left: 20px;
+}
+.followButton {
+  padding: 0.5rem 0.875rem;
+  margin-left: auto;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 1rem;
+  height: 2.5rem;
+  font-weight: 700;
+  border-radius: 9999px;
 }

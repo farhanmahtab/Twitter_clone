@@ -1,0 +1,36 @@
+.main {
+  display: flex;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: 0.25rem;
+  transition-property: background-color, border-color, color, fill, stroke,
+    opacity, box-shadow, transform;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  justify-content: space-between;
+  align-items: center;
+}
+.newsContainer {
+  margin-top: 0.125rem;
+}
+.newsContainer h6 {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+}
+.newsContainer p {
+  color: #6b7280;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+}
+.img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+.anchor {
+    text-decoration: none;
+}

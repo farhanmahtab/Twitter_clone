@@ -31,7 +31,7 @@
 
 .iconbar {
   display: flex;
-  border-top: solid 1px gainsboro;
+  border-top: solid 1px gray;
   justify-content: space-between;
 }
 .icon {
@@ -44,7 +44,7 @@
 }
 .icon:hover {
   background-color: #e5e7eb;
-  border-radius: 50%;
+  border-radius: 35%;
 }
 .postBoxButton {
   background-color: #60a5fa;

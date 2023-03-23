@@ -1,36 +1,36 @@
 .main {
   display: flex;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 0.5rem 1rem;
   margin-left: 0.25rem;
-  transition-property: background-color, border-color, color, fill, stroke,
-    opacity, box-shadow, transform;
   transition-duration: 500ms;
-  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
   justify-content: space-between;
   align-items: center;
 }
 .newsContainer {
   margin-top: 0.125rem;
+  width: 220px;
 }
 .newsContainer h6 {
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1.25rem;
-  font-weight: 700;
+  font-weight: 800;
+  color: rgb(87, 84, 84);
 }
 .newsContainer p {
   color: #6b7280;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   line-height: 1rem;
   font-weight: 500;
+  color: gray;
 }
 .img {
   height: 50px;
-  width: 50px;
-  border-radius: 50%;
+  width: 75px;
+  border-radius: 25%;
 }
 .anchor {
-    text-decoration: none;
+  text-decoration: none;
+}
+.main :hover {
+  background: #9fa1a5;
 }
