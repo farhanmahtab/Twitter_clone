@@ -1,6 +1,9 @@
 import mongoose, { models, Schema } from "mongoose";
 
-const userSchema = new Schema({
+const usersSchema = new Schema({
+  userID: {
+    type: String,
+  },
   name: {
     type: "string",
     required: true,
@@ -19,5 +22,5 @@ const userSchema = new Schema({
   },
 });
 
-const User = mongoose.models.User || mongoose.model("user", userSchema);
-export default userSchema;
+const Users = models.Users || mongoose.model("users", usersSchema);
+export default Users;

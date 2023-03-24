@@ -66,3 +66,6 @@
   background-color: rgb(29, 155, 240);
   transform: scale(1.01);
 }
+.postBoxButton:disabled {
+  background-color: rgb(96, 177, 231)
+}

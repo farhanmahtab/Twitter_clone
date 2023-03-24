@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import profilePicture from "../public/Resource/pp.jpeg";
 import styles from "../styles/PostBox.module.css";
 import {
   CalendarIcon,
@@ -8,13 +7,18 @@ import {
   MapIcon,
   PhotographIcon,
 } from "@heroicons/react/outline";
+import { useSession } from "next-auth/react";
 
 function PostBox() {
+  const { data: session } = useSession();
+  const [input,setInput] = useState("");
+  console.log(session?.user);
+ const img = session?.user.image;
   return (
     <div className={styles.PostBoxMain}>
       <div className={styles.imageDiv}>
         <Image
-          src={profilePicture}
+          src={img}
           className={styles.image}
           height="50"
           width="50"
@@ -23,8 +27,15 @@ function PostBox() {
       </div>
 
       <div className={styles.postBoxtextArea}>
-        <div >
-          <textarea className={styles.textArea} rows="2" col="15"placeholder="What's Happening?" />
+        <div>
+          <textarea
+            className={styles.textArea}
+            rows="2"
+            col="15"
+            placeholder="What's Happening?"
+            value={input}
+            onChange={e => setInput(e.target.value)}
+          />
         </div>
         <div className={styles.iconbar}>
           <div>
@@ -33,7 +44,7 @@ function PostBox() {
             <MapIcon className={styles.icon} />
             <CalendarIcon className={styles.icon} />
           </div>
-          <button className={styles.postBoxButton}>Tweet</button>
+          <button disabled={!input?.trim()} className={styles.postBoxButton}>Tweet</button>
         </div>
       </div>
     </div>
