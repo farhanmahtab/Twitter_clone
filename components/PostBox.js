@@ -12,7 +12,7 @@ import { useSession } from "next-auth/react";
 function PostBox() {
   const { data: session } = useSession();
   const [input,setInput] = useState("");
-  console.log(session?.user);
+  // console.log(session?.user);
  const img = session?.user.image;
   return (
     <div className={styles.PostBoxMain}>

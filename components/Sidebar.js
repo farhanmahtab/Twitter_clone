@@ -14,8 +14,13 @@ import {
 } from "@heroicons/react/outline";
 import SideBarMenuItems from "./SideBarMenuItems";
 import styles from "../styles/Sidebar.module.css";
+import { useSession ,signOut } from "next-auth/react";
+
 
 function Sidebar() {
+
+  const {data:session} = useSession()
+  //console.log(session?.user)
   return (
     <div className={styles.main}>
       {/* logo */}
@@ -52,7 +57,7 @@ function Sidebar() {
             <p>@ironblood</p>
           </div>
         </div>
-        <DotsHorizontalIcon className={styles.icon} />
+        <DotsHorizontalIcon className={styles.icon} onClick={() => signOut()}/>
       </div>
     </div>
   );

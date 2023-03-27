@@ -1,17 +1,57 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/modal.module.css";
 
 function SignUp() {
-  const router = useRouter()
+  const router = useRouter();
+  const [userData, setUserData] = useState({
+    name: "",
+    username: "",
+    email: "",
+    password: "",
+    profilePicture: "",
+    coverPhoto: "",
+    bio: "",
+    followers: [],
+    following: [],
+  });
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(userData);
+    try {
+      const response = await fetch("/api/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+      const data = await response.json();
+      console.log(data);
+      alert(`Welcome to Twitter ${data.name}.`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleInputChange = (event) => {
+    // console.log(event.target.value)
+    userData[event.target.name] = event.target.value;
+    setUserData(() => ({
+      ...userData,
+    }));
+  };
+
   return (
-    <div className={styles.form}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       <h2>Create Your Account</h2>
       <input
         type="text"
         id="name"
         name="name"
         placeholder="Name"
+        value={userData.name}
+        onChange={(event) => handleInputChange(event)}
         className={styles.inputs}
       />
       <input
@@ -19,6 +59,8 @@ function SignUp() {
         id="username"
         name="username"
         placeholder="Username"
+        value={userData.username}
+        onChange={(event) => handleInputChange(event)}
         className={styles.inputs}
       />
       <input
@@ -26,6 +68,8 @@ function SignUp() {
         id="email"
         name="email"
         placeholder="Email"
+        value={userData.email}
+        onChange={(event) => handleInputChange(event)}
         className={styles.inputs}
       />
       <input
@@ -33,19 +77,27 @@ function SignUp() {
         id="password"
         name="password"
         placeholder="Password"
+        value={userData.password}
+        onChange={(event) => handleInputChange(event)}
         className={styles.inputs}
       />
-      <button className={styles.submitButton}>Submit</button>
-      <p>
-        Have an account already? <h4 className={styles.link} onClick={() => {
-             router.replace("/?modal=login");
-          }}>
-        Log in</h4> using
-        your account
-      </p>
-    </div>
+      <button className={styles.submitButton} onClick={() => {
+            router.replace("/");
+          }}>Submit</button>
+      <h4>
+        Have an account already?{" "}
+        <p
+          className={styles.link}
+          onClick={() => {
+            router.replace("/?modal=login");
+          }}
+        >
+          Log in
+        </p>{" "}
+        using your account
+      </h4>
+    </form>
   );
 }
 
 export default SignUp;
-{/* <div className={styles.link}></div>  */}

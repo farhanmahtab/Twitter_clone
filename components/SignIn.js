@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import styles from "../styles/SignIn.module.css";
 
 export default function SignIn() {
+  const router = useRouter()
   return (
     <div className={styles.main}>
       <div className={styles.SignInBox}>
@@ -18,6 +20,7 @@ export default function SignIn() {
             </Link>
           </div>
           <div className={styles.button}>
+            {/* <button onClick={() => router.replace('?modal=signup')}>Button</button> */}
             <Link href="?modal=signup">Create account</Link>
           </div>
         </div>

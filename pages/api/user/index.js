@@ -1,4 +1,5 @@
 import connectMongo from "@/Utils/db";
+import bcrypt from "bcrypt";
 import Users from "../../../models/User";
 
 const getAllUsers = async (req, res) => {
@@ -11,27 +12,48 @@ const getAllUsers = async (req, res) => {
 };
 
 const postUsers = async (req, res) => {
+  const {
+    name,
+    username,
+    email,
+    password,
+    profilePicture,
+    coverPhoto,
+    bio,
+    followers,
+    following,
+  } = req.body;
+  if (!username || !password) {
+    return res
+      .status(400)
+      .json({ message: "Username and password are required" });
+  }
   try {
+    // Generate a salt for the password hash
+    const salt = await bcrypt.genSalt(10);
+    // Hash the password using the salt
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const user = new Users({
-      userId: Date.now(),
       name,
       username,
       email,
-      password,
-      profilePicture
+      password:hashedPassword,
+      profilePicture,
+      coverPhoto,
+      bio,
+      followers,
+      following,
     });
     await user.save();
-    res.status(200).json({ success: true, data: user });
+    res.status(200).json({ status: true, data: user });
   } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
+    res.status(400).json({ status: false, error: error.message });
   }
 };
 
 export default async function handler(req, res) {
-  const { userId, name, username, email, password } = req.body;
   await connectMongo();
-
-  //res.json({ name: name, username: username, email: email });
   if (req.method === "GET") {
     await getAllUsers(req, res);
   } else if (req.method === "POST") {
