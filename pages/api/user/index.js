@@ -12,13 +12,13 @@ const getAllUsers = async (req, res) => {
 
 const postUsers = async (req, res) => {
   try {
-    // Create a new User document
     const user = new Users({
       userId: Date.now(),
       name,
       username,
       email,
       password,
+      profilePicture
     });
     await user.save();
     res.status(200).json({ success: true, data: user });

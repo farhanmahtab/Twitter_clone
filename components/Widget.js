@@ -9,7 +9,7 @@ const Widget = ({ newsResults, randomUsersResults }) => {
   // console.log(newsResults);
   const [articleNum, setArticleNum] = useState(3);
   const [followNum, setFollowNum] = useState(3);
-  const [user, setUSer] = useState(false);
+  const [user, setUSer] = useState(true);
   return (
     <>
       {user ? (

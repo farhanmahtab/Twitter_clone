@@ -10,7 +10,7 @@ export default function SignIn() {
         <p>Sign up now to get your own personalized timeline!</p>
         <div className={styles.buttonDiv}>
           <div className={styles.button}>
-            <Link href="#">Sign In</Link>
+            <Link href="?modal=login">Sign In</Link>
           </div>
           <div className={styles.button}>
             <Link href="http://localhost:3000/api/auth/signin">
@@ -18,7 +18,7 @@ export default function SignIn() {
             </Link>
           </div>
           <div className={styles.button}>
-            <Link href="#">Create account</Link>
+            <Link href="?modal=signup">Create account</Link>
           </div>
         </div>
         <p>

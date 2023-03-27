@@ -2,7 +2,7 @@ import mongoose, { models, Schema } from "mongoose";
 
 const usersSchema = new Schema({
   userID: {
-    type: String,
+    type: "string",
   },
   name: {
     type: "string",
@@ -20,6 +20,9 @@ const usersSchema = new Schema({
     type: "string",
     required: true,
   },
+  profilePicture:{
+    type:"string",
+  }
 });
 
 const Users = models.Users || mongoose.model("users", usersSchema);

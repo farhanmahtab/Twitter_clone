@@ -1,18 +1,31 @@
 import Feed from "@/components/Feed";
+import Modal from "@/components/Modal";
 import Sidebar from "@/components/Sidebar";
+import SignUp from "@/components/SignUp";
+import LogIn from "@/components/LogIn";
 import Widget from "@/components/Widget";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-
+import { useRouter } from "next/router";
 
 export default function Home({ newsResults, randomUsersResults }) {
-
+  let router = useRouter();
   return (
     <>
       <Head>
         <title>twitter</title>
         <link rel="icon" href="/Twitter-logo.ico" type="image/icon type"></link>
       </Head>
+      {router.query.modal == "signup" && (
+        <Modal>
+          <SignUp />
+        </Modal>
+      )}
+      {router.query.modal == "login" && (
+        <Modal>
+          <LogIn />
+        </Modal>
+      )}
       <main className={styles.main}>
         {/* sidebar */}
         <Sidebar />
