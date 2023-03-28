@@ -38,14 +38,14 @@ const postUsers = async (req, res) => {
       name,
       username,
       email,
-      password:hashedPassword,
+      password: hashedPassword,
       profilePicture,
       coverPhoto,
       bio,
       followers,
       following,
     });
-    await user.save().then(()=> (console.log('User Saved')));
+    await user.save().then(() => console.log("User Created"));
     res.status(200).json({ status: true, data: user });
   } catch (error) {
     res.status(400).json({ status: false, error: error.message });

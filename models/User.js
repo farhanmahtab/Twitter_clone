@@ -11,9 +11,17 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
+    validate: {
+      validator: function (v) {
+        return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(v);
+      },
+      message: "Please enter a valid email address",
+    },
   },
   password: {
     type: String,
+    minLength: 4,
     required: true,
   },
   profilePicture: {

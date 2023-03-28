@@ -29,7 +29,7 @@ export default function Feed() {
       id: "2",
       name: "Maruf Pulok",
       username: "@noakhailla",
-      userImage: "/Resource/maruf.jpeg",
+      userImage: "",
       img: "/Resource/post_image2.jpeg",
       text: "Awesome",
       timestamp: "2hr Ago",

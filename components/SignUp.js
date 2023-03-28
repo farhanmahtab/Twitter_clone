@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import styles from "../styles/modal.module.css";
+import { signIn } from "next-auth/react";
 
 function SignUp() {
   const router = useRouter();
@@ -32,6 +33,12 @@ function SignUp() {
     } catch (err) {
       console.log(err);
     }
+    await signIn("credentials", {
+      email: userData.email,
+      password: userData.password,
+      redirect: true,
+      callbackUrl: `${window.location.origin}/`,
+    });
   };
   const handleInputChange = (event) => {
     // console.log(event.target.value)
@@ -80,9 +87,14 @@ function SignUp() {
         onChange={(event) => handleInputChange(event)}
         className={styles.inputs}
       />
-      <button className={styles.submitButton} onClick={() => {
-            router.replace("/");
-          }}>Submit</button>
+      <button
+        className={styles.submitButton}
+        onClick={() => {
+          router.replace("/");
+        }}
+      >
+        Submit
+      </button>
       <h4>
         Have an account already?{" "}
         <p

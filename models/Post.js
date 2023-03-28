@@ -3,6 +3,7 @@ const { Schema, models, model } = require("mongoose");
 const postSchema = new Schema({
   userId: {
     type: "string",
+    required: true,
   },
   name: {
     type: "string",
@@ -11,26 +12,41 @@ const postSchema = new Schema({
   userName: {
     type: "string",
   },
-  text: {
+  body: {
     type: "string",
   },
-  img: {
+  PostImage: {
     type: "string",
   },
-  createdAt: Date,
-  updatedAt: Date,
-  reacts: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ],
-  comments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ],
+  createdAt: {
+    type: Date,
+    immutable: true,
+    default: () => Date.now(),
+  },
+  updatedAt: {
+    type: Date,
+    default: () => Date.now(),
+  },
+  NumberOfReact: {
+    type: "number",
+    default: 0,
+  },
+  // reacts: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: "User",
+  //   },
+  // ],
+  // comments: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: "User",
+  //   },
+  // ],
+  NumberOfComment: {
+    type: "number",
+    default: 0,
+  }
 });
 
 const Posts = models.Posts || model("Posts", postSchema);
