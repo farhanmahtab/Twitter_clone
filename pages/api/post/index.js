@@ -7,7 +7,7 @@ const getAllposts = async (req, res) => {
   try {
     const posts = await Posts.find({})
       .populate("createdBy", "name username email profilePicture")
-      .sort({ postCreatedAt: -1 });
+      .sort({ createdAt: -1 });
     res.status(200).json({ message: "Posts fetched", posts });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });

@@ -7,7 +7,7 @@ import { useSession  } from "next-auth/react";
 function LogIn() {
   const router = useRouter();
   const {data : session } = useSession();
-  console.log(session?.user)
+  //console.log(session?.user)
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -18,6 +18,14 @@ function LogIn() {
     await signIn("credentials", {
       email: userData.email,
       password: userData.password,
+      redirect: true,
+      callbackUrl: `${window.location.origin}/`
+    });
+  };
+  const handleGithubLogIn =async (event) => {
+    event.preventDefault();
+    console.log(userData);
+    await signIn('github', {
       redirect: true,
       callbackUrl: `${window.location.origin}/`
     });
@@ -52,6 +60,9 @@ function LogIn() {
       />
       <button className={styles.submitButton}>
         Submit
+      </button>
+      <button className={styles.submitButton} onClick={handleGithubLogIn}>
+        Github Submit
       </button>
       <h4>
         Dont't have an account ?

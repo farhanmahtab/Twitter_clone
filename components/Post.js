@@ -6,16 +6,19 @@ import {
   ShareIcon,
   TrashIcon,
 } from "@heroicons/react/outline";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import styles from "../styles/Post.module.css";
 import { useSession } from "next-auth/react";
 import { formatDistanceToNow } from "date-fns";
+// import ReactTimeago from "react-timeago";
 
 function Post({ post }) {
   const { data: session } = useSession();
   //console.log(post.createdBy.profilePicture);
   //console.log(session?.user.image);
+  // const [formatTime,setFormatTime] = useState()
+  // setFormatTime(()=>formatDistanceToNow(new Date(post.createdAt)))
   const formatTime = formatDistanceToNow(new Date(post.createdAt));
   return (
     <div className={styles.postMain}>
@@ -34,6 +37,7 @@ function Post({ post }) {
             <span>{post.createdBy.username}</span>
             <div className={styles.dot}></div>
             <span>{formatTime}</span>
+            {/* <span><ReactTimeago date={post?.created_at} /></span> */}
           </div>
           {/* dot icon */}
           <DotsHorizontalIcon className={styles.icon} />
@@ -53,14 +57,14 @@ function Post({ post }) {
         <div className={styles.iconsBottom}>
           <div className={styles.iconDiv}>
             <ChatIcon className={styles.icon} />
-            <h4>20</h4>
+            <h4>{post.NumberOfComment}</h4>
           </div>
           <div className={styles.iconDiv}>
             <TrashIcon className={styles.icon} />
           </div>
           <div className={styles.iconDiv}>
             <HeartIcon className={styles.icon} />
-            <h4>50</h4>
+            <h4>{post.NumberOfReact}</h4>
           </div>
           <div className={styles.iconDiv}>
             <ShareIcon className={styles.icon} />
@@ -77,3 +81,4 @@ function Post({ post }) {
 }
 
 export default Post;
+//<ReactTimeago date={post?.created_at} />

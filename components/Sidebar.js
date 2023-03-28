@@ -26,7 +26,7 @@ function Sidebar() {
     <div className={styles.main}>
       {/* logo */}
       <div className={styles.logo}>
-        <Image width="30" height="30" src="/Resource/Twitter-logo.ico"></Image>
+        <Image width="30" height="30" src="/Resource/Twitter-logo.ico" alt="twitter-logo"></Image>
       </div>
 
       {/* menu */}
