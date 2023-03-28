@@ -14,13 +14,12 @@ import {
 } from "@heroicons/react/outline";
 import SideBarMenuItems from "./SideBarMenuItems";
 import styles from "../styles/Sidebar.module.css";
-import { useSession ,signOut } from "next-auth/react";
-
+import { useSession, signOut } from "next-auth/react";
 
 function Sidebar() {
-
-  const {data:session} = useSession()
-  //console.log(session?.user)
+  const { data: session } = useSession();
+  const image = session?.user.image;
+  console.log(session?.user.image);
   return (
     <div className={styles.main}>
       {/* logo */}
@@ -31,34 +30,47 @@ function Sidebar() {
       {/* menu */}
       <SideBarMenuItems text="Home" Icon={HomeIcon} />
       <SideBarMenuItems text="Explore" Icon={HashtagIcon} />
-      <SideBarMenuItems text="Notification" Icon={BellIcon} />
-      <SideBarMenuItems text="Messages" Icon={InboxIcon} />
-      <SideBarMenuItems text="Bookmarks" Icon={BookmarkAltIcon} />
-      <SideBarMenuItems text="Lists" Icon={ClipboardCheckIcon} />
-      <SideBarMenuItems text="Profile" Icon={UserIcon} />
-      <SideBarMenuItems text="More" Icon={DotsCircleHorizontalIcon} />
+      {session && (
+        <>
+          <SideBarMenuItems text="Notification" Icon={BellIcon} />
+          <SideBarMenuItems text="Messages" Icon={InboxIcon} />
+          <SideBarMenuItems text="Bookmarks" Icon={BookmarkAltIcon} />
+          <SideBarMenuItems text="Lists" Icon={ClipboardCheckIcon} />
+          <SideBarMenuItems text="Profile" Icon={UserIcon} />
+          <SideBarMenuItems text="More" Icon={DotsCircleHorizontalIcon} />
 
-      {/* button */}
+          {/* button */}
 
-      <button className={styles.sideBarButton}>Tweet</button>
+          <button className={styles.sideBarButton}>Tweet</button>
+        </>
+      )}
 
       {/* profile */}
-      <div className={styles.profile}>
-        <div className={styles.profileHover}>
-          <Image
-            src={profilePicture}
-            className={styles.image}
-            height="45"
-            width="45"
-            alt="user-image"
-          ></Image>
-          <div className={styles.profileUsn}>
-            <h4>Farhan Mahi</h4>
-            <p>@ironblood</p>
+      {session && (
+        <div className={styles.profile}>
+          <div className={styles.profileHover}>
+            <Image
+              src={image}
+              className={styles.image}
+              height="45"
+              width="45"
+              alt="user-image"
+            ></Image>
+            <div className={styles.profileUsn}>
+              {!session ? <h4>User</h4> : <h4>{session.user.name}</h4>}
+              {!session.user.username ? (
+                <p>@username</p>
+              ) : (
+                <p>@{session.user.username}</p>
+              )}
+            </div>
           </div>
+          <DotsHorizontalIcon
+            className={styles.icon}
+            onClick={() => signOut()}
+          />
         </div>
-        <DotsHorizontalIcon className={styles.icon} onClick={() => signOut()}/>
-      </div>
+      )}
     </div>
   );
 }

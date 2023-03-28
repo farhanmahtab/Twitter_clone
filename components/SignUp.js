@@ -29,7 +29,6 @@ function SignUp() {
       });
       const data = await response.json();
       console.log(data);
-      alert(`Welcome to Twitter ${data.name}.`);
     } catch (err) {
       console.log(err);
     }

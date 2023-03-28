@@ -2,19 +2,24 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import styles from "../styles/modal.module.css";
 import { signIn } from "next-auth/react";
+import { useSession  } from "next-auth/react";
 
 function LogIn() {
   const router = useRouter();
+  const {data : session } = useSession();
+  console.log(session?.user)
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
-  const handleLogIn = (event) => {
+  const handleLogIn =async (event) => {
     event.preventDefault();
     console.log(userData);
-    signIn("credentials", {
+    await signIn("credentials", {
       email: userData.email,
       password: userData.password,
+      redirect: true,
+      callbackUrl: `${window.location.origin}/`
     });
   };
   const handleChange = (event) => {
@@ -45,12 +50,7 @@ function LogIn() {
         onChange={handleChange}
         className={styles.inputs}
       />
-      <button
-        className={styles.submitButton}
-        onClick={() => {
-          router.replace("/");
-        }}
-      >
+      <button className={styles.submitButton}>
         Submit
       </button>
       <h4>

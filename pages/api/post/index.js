@@ -1,5 +1,6 @@
-// import connectMongo from "@/Utils/db";
-// import Posts from "../../../models/Post";
+import connectMongo from "@/Utils/db";
+import Posts from "../../../models/Post";
+
 
 // //get all post
 // const getAllPost = async (req, res) => {

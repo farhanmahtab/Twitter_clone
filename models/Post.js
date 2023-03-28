@@ -4,9 +4,12 @@ const postSchema = new Schema({
   userId: {
     type: "string",
   },
-  userName: {
+  name: {
     type: "string",
     required: true,
+  },
+  userName: {
+    type: "string",
   },
   text: {
     type: "string",
@@ -14,7 +17,21 @@ const postSchema = new Schema({
   img: {
     type: "string",
   },
+  createdAt: Date,
+  updatedAt: Date,
+  reacts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
-const Posts = models.Posts || model("posts",postSchema);
+const Posts = models.Posts || model("Posts", postSchema);
 export default Posts;

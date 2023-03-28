@@ -45,7 +45,7 @@ const postUsers = async (req, res) => {
       followers,
       following,
     });
-    await user.save();
+    await user.save().then(()=> (console.log('User Saved')));
     res.status(200).json({ status: true, data: user });
   } catch (error) {
     res.status(400).json({ status: false, error: error.message });

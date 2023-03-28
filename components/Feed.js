@@ -1,10 +1,12 @@
 import { CogIcon } from "@heroicons/react/outline";
+import { useSession } from "next-auth/react";
 import React from "react";
 import styles from "../styles/Feed.module.css";
 import Post from "./Post";
 import PostBox from "./PostBox";
 
 export default function Feed() {
+  const { data: session } = useSession();
   const post = [
     {
       id: "1",
@@ -46,9 +48,10 @@ export default function Feed() {
     <div className={styles.main}>
       <div className={styles.homeBar}>
         <h2>Home</h2>
-        <CogIcon className={styles.homeBarIcon} />
+        {/* <CogIcon className={styles.homeBarIcon} /> */}
       </div>
-      <PostBox />
+      {session && <PostBox />}
+
       {post.map((post) => (
         <Post key={post.id} post={post} />
       ))}
