@@ -11,6 +11,7 @@
   "dependencies": {
     "@heroicons/react": "^1.0.6",
     "bcrypt": "^5.1.0",
+    "date-fns": "^2.29.3",
     "mongodb": "^5.1.0",
     "mongoose": "^7.0.2",
     "next": "13.2.4",

@@ -10,13 +10,17 @@ import React from "react";
 import Image from "next/image";
 import styles from "../styles/Post.module.css";
 import { useSession } from "next-auth/react";
+import { formatDistanceToNow } from "date-fns";
+
 function Post({ post }) {
   const { data: session } = useSession();
-  console.log(session?.user.image);
+  //console.log(post.createdBy.profilePicture);
+  //console.log(session?.user.image);
+  const formatTime = formatDistanceToNow(new Date(post.createdAt));
   return (
     <div className={styles.postMain}>
       <Image
-        src={post.userImage}
+        src={post.createdBy.profilePicture}
         width="50"
         height="50"
         className={styles.profileImage}
@@ -26,10 +30,10 @@ function Post({ post }) {
         {/* Username and Handle */}
         <div className={styles.rightBar}>
           <div className={styles.nameBar}>
-            <h4>{post.name}</h4>
-            <span>{post.username}</span>
+            <h4>{post.createdBy.name}</h4>
+            <span>{post.createdBy.username}</span>
             <div className={styles.dot}></div>
-            <span>{post.timestamp}</span>
+            <span>{formatTime}</span>
           </div>
           {/* dot icon */}
           <DotsHorizontalIcon className={styles.icon} />
@@ -38,7 +42,11 @@ function Post({ post }) {
         {/* post Image */}
         <p>{post.body}</p>
         {post.img && (
-          <img src={post.PostImage} alt="post Image" className={styles.postImage} />
+          <img
+            src={post.PostImage}
+            alt="post Image"
+            className={styles.postImage}
+          />
         )}
 
         {/* Icons */}
