@@ -1,5 +1,6 @@
 import connectMongo from "@/Utils/db";
 import Posts from "../../../models/Post";
+import User from "../../../models/User";
 
 //Get all post
 const getAllposts = async (req, res) => {
@@ -13,24 +14,24 @@ const getAllposts = async (req, res) => {
 
 // create a new post
 const postTweet = async (req, res) => {
-  const { userId, name, userName, body, PostImage } = req.body;
-  if (!body || !PostImage) {
+  const { body, PostImage } = req.body;
+  if (!body && !PostImage) {
     return res.status(400).json({ message: "Add something to post" });
   }
   try {
-    const post = new Posts({
-      userId,
-      name,
-      userName,
-      body,
-      PostImage,
+    const author = await User.findOne({ email: req.body.email });
+    //console.log(author._id);
+
+    const post = await Posts.create({
+      createdBy: author._id,
+      body: req.body.body,
     });
-    // save the new post document to the database
     await post.save().then(() => console.log("post Created"));
     res.status(200).json({ status: true, data: post });
+    //console.log(post);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({ message: " Server Error" });
   }
 };
 

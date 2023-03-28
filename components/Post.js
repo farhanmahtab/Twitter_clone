@@ -9,7 +9,10 @@ import {
 import React from "react";
 import Image from "next/image";
 import styles from "../styles/Post.module.css";
+import { useSession } from "next-auth/react";
 function Post({ post }) {
+  const { data: session } = useSession();
+  console.log(session?.user.image);
   return (
     <div className={styles.postMain}>
       <Image
@@ -33,8 +36,10 @@ function Post({ post }) {
         </div>
 
         {/* post Image */}
-        <p>{post.text}</p>
-        {post.img && <img src={post.img} alt="post Image" className={styles.postImage} />}
+        <p>{post.body}</p>
+        {post.img && (
+          <img src={post.PostImage} alt="post Image" className={styles.postImage} />
+        )}
 
         {/* Icons */}
         <div className={styles.iconsBottom}>

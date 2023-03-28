@@ -1,12 +1,21 @@
 import { CogIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/Feed.module.css";
 import Post from "./Post";
 import PostBox from "./PostBox";
 
 export default function Feed() {
   const { data: session } = useSession();
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await fetch("/api/post");
+      const data = await res.json();
+      setPosts(data.posts);
+    };
+    fetchPosts();
+  }, []);
   const post = [
     {
       id: "1",
@@ -51,10 +60,27 @@ export default function Feed() {
         {/* <CogIcon className={styles.homeBarIcon} /> */}
       </div>
       {session && <PostBox />}
-
-      {post.map((post) => (
+      {/* {postResult.posts.map((post) => (
+        <Post key={post.id} post={postResult} />
+      ))} */}
+        {posts.map((post) => {
+        return <Post key={post._id} post={post} />
+      })}
+      {/* {post.map((post) => (
         <Post key={post.id} post={post} />
-      ))}
+      ))} */}
     </div>
   );
 }
+
+// export async function getServerSideProps() {
+//   // Get posts
+//   const postResult = await fetch("http://localhost:3000/api/post").then(
+//     (res) => res.json()
+//   )
+//   return {
+//     props: {
+//       postResult
+//     },
+//   };
+// }

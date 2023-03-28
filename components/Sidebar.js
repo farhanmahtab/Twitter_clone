@@ -7,19 +7,21 @@ import {
   BellIcon,
   BookmarkAltIcon,
   ClipboardCheckIcon,
-  DotsHorizontalIcon,
   HashtagIcon,
   UserIcon,
   DotsCircleHorizontalIcon,
+  ChevronRightIcon,
 } from "@heroicons/react/outline";
 import SideBarMenuItems from "./SideBarMenuItems";
 import styles from "../styles/Sidebar.module.css";
 import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 
 function Sidebar() {
+  const router = useRouter();
   const { data: session } = useSession();
   const image = session?.user.image;
-  console.log(session?.user.image);
+  //console.log(session?.user.image);
   return (
     <div className={styles.main}>
       {/* logo */}
@@ -28,7 +30,11 @@ function Sidebar() {
       </div>
 
       {/* menu */}
-      <SideBarMenuItems text="Home" Icon={HomeIcon} />
+      <SideBarMenuItems
+        text="Home"
+        Icon={HomeIcon}
+        onClick={() => router.replace("/")}
+      />
       <SideBarMenuItems text="Explore" Icon={HashtagIcon} />
       {session && (
         <>
@@ -65,10 +71,7 @@ function Sidebar() {
               )}
             </div>
           </div>
-          <DotsHorizontalIcon
-            className={styles.icon}
-            onClick={() => signOut()}
-          />
+          <ChevronRightIcon className={styles.icon} onClick={() => signOut()} />
         </div>
       )}
     </div>
