@@ -2,6 +2,7 @@ import connectMongo from "@/Utils/db";
 import { getServerSession } from "next-auth";
 import Posts from "../../../models/Post";
 import User from "../../../models/User";
+import Comment from "@/components/Comment";
 import { authOptions } from "../auth/[...nextauth]";
 
 //Get all post

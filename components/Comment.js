@@ -8,14 +8,13 @@ import styles from "../styles/modal.module.css";
 const Comment = () => {
   const router = useRouter();
   const { postId } = router.query;
-
   const { data: session } = useSession();
   //   console.log(session?.user.id);
   const [comment, setComment] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(comment, "postID : ", postId, "UserId : ", session?.user.email);
+    // console.log(comment, "\npostID : ", postId, "\nUserId : ", session?.user.email);
     try {
       const response = await fetch("/api/post/comment", {
         method: "POST",
@@ -29,11 +28,12 @@ const Comment = () => {
         }),
       });
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       setComment("");
     } catch (error) {
       console.error(error);
     }
+    router.push("/");
   };
 
   return (

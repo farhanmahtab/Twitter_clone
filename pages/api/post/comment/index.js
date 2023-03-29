@@ -20,10 +20,10 @@ const getComments = async (req, res) => {
 const postComments = async (req, res) => {
   try {
     const author = await Users.findOne({ email: req.body.email });
-    const post = await Posts.findOne({ post: req.body.id });
+    const post = await Posts.findOne({ _id: req.body.post });
     const { body } = req.body;
-    console.log(author._id);
-    console.log(post._id);
+    // console.log("authorid: "+author._id);
+    // console.log("post ID"+post._id+"\npost body "+post.body);
     const comment = await Comment.create({
       author: author._id,
       post: post._id,
