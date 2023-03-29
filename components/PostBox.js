@@ -37,7 +37,6 @@ function PostBox() {
       setInput("");
     } catch (error) {
       console.error(error);
-      // handle error response here
     }
   };
   return (
@@ -72,7 +71,7 @@ function PostBox() {
               <CalendarIcon className={styles.icon} />
             </div>
             <button
-              disabled={!input}
+              disabled={!input.trim()}
               className={styles.postBoxButton}
               onClick={handleSubmit}
             >

@@ -36,10 +36,11 @@
   }
   
   .close {
-    align-self: flex-start;
+    align-self: flex-end;
     padding: 0.1rem 0.4rem;
     margin: 5px;
     border-radius: 50%;
+    font-size: 2rem;
   }
   
   .close:hover {
@@ -56,62 +57,6 @@
   
   .inputs:focus-within {
     outline-color: #1d9bf0;
-  }
-  
-  .datePickerContainer {
-    display: flex;
-    gap: 0.8rem;
-  }
-  
-  .datePickerContainer .inputs {
-    width: 5rem;
-    padding: 0.2rem;
-    border: none;
-    outline: none;
-  }
-  
-  .datePickerContainer .inputs:focus {
-    color: #1d9bf0;
-  }
-  
-  .datePickerContainer .inputs:focus option {
-    color: black;
-  }
-  
-  .monthPicker {
-    width: 11rem;
-    padding: 0.2rem;
-    border: none;
-    outline: none;
-  }
-  
-  .monthPicker:focus {
-    color: #1d9bf0;
-  }
-  
-  .monthPicker:focus option {
-    color: black;
-  }
-  
-  .datePickerBox {
-    display: flex;
-    flex-direction: column;
-    padding: 0.2rem 0.4rem;
-    border: 1px solid rgb(72, 71, 71);
-    border-radius: 0.2rem;
-  }
-  
-  .datePickerBox select:hover {
-    cursor: pointer;
-  }
-  
-  .datePickerBox:focus-within {
-    color: #1d9bf0;
-    border-color: #1d9bf0;
-  }
-  
-  .dateLabel {
-    margin-left: 0.4rem;
   }
   
   .submitButton {

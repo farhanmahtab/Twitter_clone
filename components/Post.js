@@ -1,3 +1,4 @@
+
 import {
   ChartSquareBarIcon,
   ChatIcon,
@@ -11,10 +12,11 @@ import Image from "next/image";
 import styles from "../styles/Post.module.css";
 import { useSession } from "next-auth/react";
 import { formatDistanceToNow } from "date-fns";
-// import ReactTimeago from "react-timeago";
+import { useRouter } from "next/router";
 
 function Post({ post }) {
   const { data: session } = useSession();
+  const router = useRouter();
   //console.log(post.createdBy.profilePicture);
   //console.log(session?.user.image);
   const formatTime = formatDistanceToNow(new Date(post.createdAt));
@@ -35,13 +37,10 @@ function Post({ post }) {
             <span>{post.createdBy.username}</span>
             <div className={styles.dot}></div>
             <span>{formatTime}</span>
-            {/* <span><ReactTimeago date={post?.created_at} /></span> */}
           </div>
           {/* dot icon */}
           <DotsHorizontalIcon className={styles.icon} />
         </div>
-
-        {/* post Image */}
         <p>{post.body}</p>
         {post.img && (
           <img
@@ -54,7 +53,9 @@ function Post({ post }) {
         {/* Icons */}
         <div className={styles.iconsBottom}>
           <div className={styles.iconDiv}>
-            <ChatIcon className={styles.icon} />
+            <ChatIcon className={styles.icon}      onClick={() => {
+            router.replace(`?modal=comment&postId=${post._id}`);
+          }}/>
             <h4>{post.NumberOfComment}</h4>
           </div>
           <div className={styles.iconDiv}>

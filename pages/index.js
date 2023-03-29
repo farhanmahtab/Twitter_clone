@@ -3,6 +3,7 @@ import Modal from "@/components/Modal";
 import Sidebar from "@/components/Sidebar";
 import SignUp from "@/components/SignUp";
 import LogIn from "@/components/LogIn";
+import Comment from "@/components/Comment";
 import Widget from "@/components/Widget";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
@@ -24,6 +25,11 @@ export default function Home({ newsResults, randomUsersResults }) {
       {router.query.modal == "login" && (
         <Modal>
           <LogIn />
+        </Modal>
+      )}
+      {router.query.modal == "comment" && (
+        <Modal>
+          <Comment/>
         </Modal>
       )}
       <main className={styles.main}>
