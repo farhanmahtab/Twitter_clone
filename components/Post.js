@@ -17,8 +17,6 @@ function Post({ post }) {
   const { data: session } = useSession();
   //console.log(post.createdBy.profilePicture);
   //console.log(session?.user.image);
-  // const [formatTime,setFormatTime] = useState()
-  // setFormatTime(()=>formatDistanceToNow(new Date(post.createdAt)))
   const formatTime = formatDistanceToNow(new Date(post.createdAt));
   return (
     <div className={styles.postMain}>
