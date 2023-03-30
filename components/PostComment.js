@@ -10,14 +10,13 @@ import {
   TrashIcon,
 } from "@heroicons/react/outline";
 export default function PostComment({ comment }) {
-  console.log(comment);
   const formatTime = formatDistanceToNow(new Date(comment.createdAt));
   return (
     <div className={styles.commentMain}>
       <div className={styles.RightDiv}>
         <div className={styles.nameBar}>
-          <h4>{comment.createdBy?.name}</h4>
-          <span>{comment.createdBy?.username}</span>
+          <h4>{comment.author.name}</h4>
+          <span>{comment.author.username}</span>
           <div className={styles.dot}></div>
           <span>{formatTime}</span>
         </div>

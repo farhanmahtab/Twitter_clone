@@ -16,7 +16,14 @@ const getPostById = async (req, res) => {
         path: "createdBy",
         select: "name username email profilePicture",
       })
-      .populate("Comment" ,"id body author reply createdAt")
+      .populate({
+        path:"Comment",
+        select: "body createdAt",
+        populate:{
+          path:"author",
+          select:"name username email profilePicture"
+        }
+      })
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
