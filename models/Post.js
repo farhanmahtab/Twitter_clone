@@ -1,4 +1,5 @@
 const { Schema, models, model } = require("mongoose");
+import Comment from "./Comment";
 const postSchema = new Schema(
   {
     createdBy: {
@@ -30,7 +31,7 @@ const postSchema = new Schema(
       type: "number",
       default: 0,
     },
-    comment: [
+    Comment: [
       {
         type: Schema.Types.ObjectId,
         ref: "Comment",

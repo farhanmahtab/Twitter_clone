@@ -42,7 +42,6 @@ export default function Home({ newsResults, randomUsersResults }) {
           newsResults={newsResults?.articles}
           randomUsersResults={randomUsersResults?.results || null}
         />
-        {/* modal */}
       </main>
     </>
   );

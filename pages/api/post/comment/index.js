@@ -29,8 +29,14 @@ const postComments = async (req, res) => {
       post: post._id,
       body: body,
     });
-    await comment.save().then(() => console.log("comment saved"));
-    res.status(200).json({ message: "Comment created",status: true, data: comment });
+    // const savedComment = await comment
+    //   .save()
+    //   .then(() => console.log("comment saved"));
+    await post.Comment.push(comment._id);
+    await post.save();
+    return res
+      .status(200)
+      .json({ message: "Comment created", status: true, data: comment });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
   }

@@ -10,7 +10,7 @@ import {
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
-function PostBox() {
+function PostBox({ setPosts }) {
   const router = useRouter();
   const { data: session } = useSession();
   //console.log(session?.user);
@@ -34,6 +34,11 @@ function PostBox() {
       });
       const data = await response.json();
       console.log(data);
+
+      const res1 = await fetch("/api/post");
+      const data1 = await res1.json();
+      setPosts(data1.posts);
+
       setInput("");
     } catch (error) {
       console.error(error);

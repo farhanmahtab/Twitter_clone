@@ -1,6 +1,6 @@
 const { Schema, models, model } = require("mongoose");
 
-const commentScheama = new Schema({
+const commentSchema = new Schema({
   body: {
     type: String,
     require: true,
@@ -29,5 +29,6 @@ const commentScheama = new Schema({
     default: () => Date.now(),
   },
 });
-const Comment = models.Comment || model("Comment", commentScheama);
+// const Comment = model('Comment', commentSchema);
+const Comment = models.Comment || model("Comment", commentSchema);
 export default Comment;

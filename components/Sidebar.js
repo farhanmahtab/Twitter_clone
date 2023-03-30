@@ -16,6 +16,7 @@ import SideBarMenuItems from "./SideBarMenuItems";
 import styles from "../styles/Sidebar.module.css";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 function Sidebar() {
   const router = useRouter();
@@ -26,10 +27,21 @@ function Sidebar() {
     <div className={styles.main}>
       {/* logo */}
       <div className={styles.logo}>
-        <Image width="30" height="30" src="/Resource/Twitter-logo.ico" alt="twitter-logo"></Image>
+        <Image
+          width="30"
+          height="30"
+          src="/Resource/Twitter-logo.ico"
+          alt="twitter-logo"
+        ></Image>
       </div>
 
       {/* menu */}
+      <Link href={'/'}><SideBarMenuItems
+        text="Home"
+        Icon={HomeIcon}
+        onClick={() => router.replace("/")}
+      />
+      </Link>
       <SideBarMenuItems
         text="Home"
         Icon={HomeIcon}
