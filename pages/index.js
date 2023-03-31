@@ -9,8 +9,9 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 
-export default function Home({ newsResults, randomUsersResults }) {
+export default function Home({ newsResults, randomUsersResults,comments }) {
   let router = useRouter();
+  //console.log(comments.data);;
   return (
     <>
       <Head>
@@ -29,7 +30,7 @@ export default function Home({ newsResults, randomUsersResults }) {
       )}
       {router.query.modal == "comment" && (
         <Modal>
-          <Comment/>
+          <Comment comments={comments.data}/>
         </Modal>
       )}
       <main className={styles.main}>
@@ -53,10 +54,17 @@ export async function getServerSideProps() {
     "https://saurav.tech/NewsAPI/top-headlines/category/business/us.json"
   ).then((res) => res.json());
 
+  //Comments
+  let comments = [];
+  try {
+    const res = await fetch("http://localhost:3000/api/post/comment");
+    comments = await res.json();
+  } catch (e) {
+    comments = [];
+  }
+
   // follow Section
-
   let randomUsersResults = [];
-
   try {
     const res = await fetch(
       "https://randomuser.me/api/?results=30&inc=name,login,picture"
@@ -71,6 +79,7 @@ export async function getServerSideProps() {
     props: {
       newsResults,
       randomUsersResults,
+      comments
     },
   };
 }

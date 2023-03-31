@@ -1,5 +1,6 @@
 import { ChatIcon, HeartIcon, TrashIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Styles from "../styles/comment.module.css";
@@ -10,7 +11,7 @@ const Comment = () => {
   const { postId } = router.query;
   const { data: session } = useSession();
   const [comment, setComment] = useState("");
-
+  // console.log(session.user.image);
   const handleSubmit = async (event) => {
     event.preventDefault();
     // console.log(comment, "\npostID : ", postId, "\nUserId : ", session?.user.email);
@@ -32,45 +33,52 @@ const Comment = () => {
     } catch (error) {
       console.error(error);
     }
-    router.push("/");
+    router.push(`post/${postId}`);
   };
 
   return (
-    <form class={styles.form}>
-      {/* <img class="comment-avatar" src={session?.user} alt="User Avatar"> */}
-      <div class={Styles.comment_content}>
-        <div class={Styles.comment_Header}>
-          <span class={Styles.comment_author}>John Doe</span>
-          <span class={Styles.comment_date}>2 hours ago</span>
+    <form className={styles.form}>
+      {/* <img className="comment-avatar" src={session?.user} alt="User Avatar"> */}
+      <div className={Styles.comment_content}>
+        <div className={Styles.commentTop}>
+          <Image
+            src={session?.user.image}
+            width="50"
+            height="50"
+            className={Styles.comment_avatar}
+            alt="user image"
+          />
+          <div className={Styles.comment_Header}>
+            <span className={Styles.comment_author}>{session?.user.name}</span>
+            <span className={Styles.comment_date}>2 hours ago</span>
+          </div>
         </div>
-        <div class={Styles.comment_body}>
-          This is the comment body text. Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit. Sed ac dolor vel ipsum euismod malesuada a sit amet
-          sapien. Sed porttitor, elit a hendrerit dictum, elit elit ullamcorper
-          libero, et tempus nisi purus ut est.
-        </div>
-        <textarea
-          className={Styles.textarea}
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-        />
-        <div class={Styles.iconsBottom}>
-          <span class={Styles.iconsBottom}>
-            <ChatIcon className={Styles.icon} />
-          </span>
-          <span class={Styles.iconsBottom}>
-            <HeartIcon className={Styles.icon} />
-          </span>
-          <span class={Styles.iconsBottom}>
-            <TrashIcon className={Styles.icon} />
-          </span>
-          <button
-            disabled={!comment.trim()}
-            className={Styles.commentButton}
-            onClick={handleSubmit}
-          >
-            reply
-          </button>
+        <div>
+          {/* <div className={Styles.comment_body}>Leave a comment</div> */}
+          <textarea
+            className={Styles.textarea}
+            value={comment}
+            placeholder="Leave Comment"
+            onChange={(e) => setComment(e.target.value)}
+          />
+          <div className={Styles.iconsBottom}>
+            <span className={Styles.iconsBottom}>
+              <ChatIcon className={Styles.icon} />
+            </span>
+            <span className={Styles.iconsBottom}>
+              <HeartIcon className={Styles.icon} />
+            </span>
+            <span className={Styles.iconsBottom}>
+              <TrashIcon className={Styles.icon} />
+            </span>
+            <button
+              disabled={!comment.trim()}
+              className={Styles.commentButton}
+              onClick={handleSubmit}
+            >
+              reply
+            </button>
+          </div>
         </div>
       </div>
     </form>

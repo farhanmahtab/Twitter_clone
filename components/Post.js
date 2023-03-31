@@ -17,7 +17,7 @@ import { useRouter } from "next/router";
 function Post({ post }) {
   const { data: session } = useSession();
   const router = useRouter();
-  //console.log(session?.user.id ," ",post.createdBy._id);
+  console.log(session?.user);
   const formatTime = formatDistanceToNow(new Date(post.createdAt));
 
   const handleDelete = async () => {
