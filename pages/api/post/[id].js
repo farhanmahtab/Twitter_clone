@@ -1,8 +1,7 @@
 import connectMongo from "@/Utils/db";
-import { getServerSession } from "next-auth";
 import Posts from "../../../models/Post";
-import { authOptions } from "../auth/[...nextauth]";
 
+await connectMongo();
 //get post by id
 const getPostById = async (req, res) => {
   const {
@@ -50,12 +49,10 @@ const deleteTweet = async (req, res) => {
 };
 
 export default async function handler(req, res) {
-  const session = getServerSession(req, res, authOptions);
-  await connectMongo();
   if (req.method === "GET") {
     await getPostById(req, res);
   } else if (req.method === "DELETE") {
-    await deleteTweet(req, res, session);
+    await deleteTweet(req, res);
   } else {
     res.status(405).json({ message: "Method Not Allowed" });
   }

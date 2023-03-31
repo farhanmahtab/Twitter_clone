@@ -6,8 +6,8 @@ import Following from "./Following";
 import SignIn from "./SignIn";
 import WidgetNews from "./WidgetNews";
 
-const Widget = ({ newsResults, randomUsersResults }) => {
-  // console.log(newsResults);
+const Widget = ({ newsResults, users }) => {
+  //console.log(users);
   const [articleNum, setArticleNum] = useState(3);
   const [followNum, setFollowNum] = useState(3);
   const { data: session } = useSession();
@@ -42,8 +42,8 @@ const Widget = ({ newsResults, randomUsersResults }) => {
             </div>
             <div className={styles.follow}>
               <h4>Who to follow</h4>
-              {randomUsersResults?.slice(0, followNum).map((user) => (
-                <Following key={user.login.username} user={user} />
+              {users?.slice(0, followNum).map((user) => (
+                <Following key={user._id} user={user} />
               ))}
               <button
                 className={styles.newsButton}

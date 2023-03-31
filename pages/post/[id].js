@@ -17,7 +17,7 @@ import {
 import Image from "next/image";
 import PostComment from "@/components/PostComment";
 
-function postPage({ newsResults, randomUsersResults }) {
+function postPage({ newsResults, usersResults }) {
   const router = useRouter();
   const postId = router.query.id;
   //console.log(postId);
@@ -104,7 +104,7 @@ function postPage({ newsResults, randomUsersResults }) {
         </div>
         <Widget
           newsResults={newsResults?.articles}
-          randomUsersResults={randomUsersResults?.results || null}
+          users={usersResults?.users || null}
         />
       </main>
     </div>
@@ -121,23 +121,20 @@ export async function getServerSideProps() {
   ).then((res) => res.json());
 
   // follow Section
-
-  let randomUsersResults = [];
-
+  let usersResults = [];
   try {
-    const res = await fetch(
-      "https://randomuser.me/api/?results=30&inc=name,login,picture"
-    );
+    const res = await fetch("http://localhost:3000/api/user");
 
-    randomUsersResults = await res.json();
+    usersResults = await res.json();
   } catch (e) {
-    randomUsersResults = [];
+    usersResults = [];
   }
+
 
   return {
     props: {
       newsResults,
-      randomUsersResults,
+      usersResults,
     },
   };
 }

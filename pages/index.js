@@ -9,9 +9,9 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 
-export default function Home({ newsResults, randomUsersResults,comments }) {
+export default function Home({ newsResults, comments, usersResults }) {
   let router = useRouter();
-  //console.log(comments.data);;
+  //console.log(usersResults.users);
   return (
     <>
       <Head>
@@ -30,7 +30,7 @@ export default function Home({ newsResults, randomUsersResults,comments }) {
       )}
       {router.query.modal == "comment" && (
         <Modal>
-          <Comment comments={comments.data}/>
+          <Comment comments={comments.data} />
         </Modal>
       )}
       <main className={styles.main}>
@@ -41,14 +41,14 @@ export default function Home({ newsResults, randomUsersResults,comments }) {
         {/* widget */}
         <Widget
           newsResults={newsResults?.articles}
-          randomUsersResults={randomUsersResults?.results || null}
+          users={usersResults?.users || null}
         />
       </main>
     </>
   );
 }
 // randomUsersResults={randomUsersResults?.results || null}
-export async function getServerSideProps() {
+export async function getServerSideProps({ context }) {
   // random news
   const newsResults = await fetch(
     "https://saurav.tech/NewsAPI/top-headlines/category/business/us.json"
@@ -64,22 +64,20 @@ export async function getServerSideProps() {
   }
 
   // follow Section
-  let randomUsersResults = [];
+  let usersResults = [];
   try {
-    const res = await fetch(
-      "https://randomuser.me/api/?results=30&inc=name,login,picture"
-    );
+    const res = await fetch("http://localhost:3000/api/user");
 
-    randomUsersResults = await res.json();
+    usersResults = await res.json();
   } catch (e) {
-    randomUsersResults = [];
+    usersResults = [];
   }
 
   return {
     props: {
       newsResults,
-      randomUsersResults,
-      comments
+      comments,
+      usersResults,
     },
   };
 }

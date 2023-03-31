@@ -7,7 +7,7 @@ import StyleTop from "../../styles/Feed.module.css";
 import { useSession } from "next-auth/react";
 import { ArrowLeftIcon } from "@heroicons/react/outline";
 
-const profile = ({ newsResults, randomUsersResults }) => {
+const profile = ({ newsResults, usersResults }) => {
   const { data: session } = useSession();
   const router = useRouter();
   const postId = router.query.id;
@@ -27,7 +27,7 @@ const profile = ({ newsResults, randomUsersResults }) => {
 
         <Widget
           newsResults={newsResults?.articles}
-          randomUsersResults={randomUsersResults?.results || null}
+          users={usersResults?.users || null}
         />
       </main>
     </div>
@@ -43,24 +43,20 @@ export async function getServerSideProps() {
     "https://saurav.tech/NewsAPI/top-headlines/category/business/us.json"
   ).then((res) => res.json());
 
-  // follow Section
-
-  let randomUsersResults = [];
-
-  try {
-    const res = await fetch(
-      "https://randomuser.me/api/?results=30&inc=name,login,picture"
-    );
-
-    randomUsersResults = await res.json();
-  } catch (e) {
-    randomUsersResults = [];
-  }
+   // follow Section
+   let usersResults = [];
+   try {
+     const res = await fetch("http://localhost:3000/api/user");
+ 
+     usersResults = await res.json();
+   } catch (e) {
+     usersResults = [];
+   }
 
   return {
     props: {
       newsResults,
-      randomUsersResults,
+      usersResults,
     },
   };
 }
