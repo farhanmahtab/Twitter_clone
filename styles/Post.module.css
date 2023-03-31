@@ -2,6 +2,7 @@
   display: flex;
   border-top: 1px solid gainsboro;
   height: auto;
+  width: 660px;
 }
 .commentMain {
   margin-right: 0;
@@ -9,6 +10,8 @@
   border-top: 1px solid gainsboro;
   height: auto;
   overflow: hidden;
+  border-left: 1px solid gainsboro;
+  border-bottom: 1px solid gainsboro;
   
 }
 .postMain p {
@@ -86,7 +89,4 @@
 .commentIconDiv {
   display: flex;
   align-items: center;
-}
-.commentIconDiv :hover {
-
 }

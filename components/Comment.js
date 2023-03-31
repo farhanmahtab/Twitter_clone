@@ -9,7 +9,6 @@ const Comment = () => {
   const router = useRouter();
   const { postId } = router.query;
   const { data: session } = useSession();
-  //   console.log(session?.user.id);
   const [comment, setComment] = useState("");
 
   const handleSubmit = async (event) => {

@@ -12,14 +12,37 @@ import styles from "../styles/Post.module.css";
 import { useSession } from "next-auth/react";
 import { formatDistanceToNow } from "date-fns";
 import { useRouter } from "next/router";
-import Link from "next/link";
+
 
 function Post({ post }) {
   const { data: session } = useSession();
   const router = useRouter();
-  //console.log(post.createdBy.profilePicture);
-  //console.log(session?.user.image);
+  //console.log(session?.user.id ," ",post.createdBy._id);
   const formatTime = formatDistanceToNow(new Date(post.createdAt));
+
+  const handleDelete = async () => {
+    console.log(post._id)
+    try {
+      const response = await fetch(`/api/post/${post._id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        // Call the onDelete function passed as a prop to remove the post from the parent component's state
+        console.log(post._id," is Deleted")
+      }
+       else {
+        console.error(`Failed to delete post with ID ${post._id}`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    router.replace('/');
+  }
   return (
     <div className={styles.postMain}>
       <Image
@@ -41,9 +64,11 @@ function Post({ post }) {
           {/* dot icon */}
           <DotsHorizontalIcon className={styles.icon} />
         </div>
-        <Link href={`/post/${post._id}`}>
+        {/* <Link href={`/post/${post._id}`}> */}
+        <div onClick={() => router.push(`/post/${post._id}`)}>
           <p>{post.body}</p>
-        </Link>
+        </div>
+
         {post.img && (
           <img
             src={post.PostImage}
@@ -64,12 +89,17 @@ function Post({ post }) {
             <h4>{post?.Comment?.length}</h4>
           </div>
           <div className={styles.iconDiv}>
-            <TrashIcon className={styles.icon} />
-          </div>
-          <div className={styles.iconDiv}>
             <HeartIcon className={styles.icon} />
             <h4>{post.NumberOfReact}</h4>
           </div>
+          {session &&
+            session?.user.id ===
+              post?.createdBy._id && (
+                <div className={styles.iconDiv}>
+                  <TrashIcon className={styles.icon} onClick={()=> handleDelete()}/>
+                </div>
+              )}
+
           <div className={styles.iconDiv}>
             <ShareIcon className={styles.icon} />
             <h4>20</h4>

@@ -9,7 +9,7 @@ const getPostById = async (req, res) => {
     query: { id },
     method,
   } = req;
-  console.log(id);
+  //console.log(id);
   try {
     const post = await Posts.findById(id)
       .populate({
@@ -17,44 +17,37 @@ const getPostById = async (req, res) => {
         select: "name username email profilePicture",
       })
       .populate({
-        path:"Comment",
+        path: "Comment",
         select: "body createdAt",
-        populate:{
-          path:"author",
-          select:"name username email profilePicture"
-        }
-      })
+        populate: {
+          path: "author",
+          select: "name username email profilePicture",
+        },
+      });
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
-    console.log(post.Comment)
+    //console.log(post.Comment)
     res.status(200).json({ message: "Post fetched", post });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
   }
 };
-//delete a post
-// const deleteTweet = async (req, res, user) => {
-//   const { id } = req.query;
-//   console.log(user);
-//   try {
-//     const post = await Posts.findById(id);
-//     if (session.user.id === post.createdBy) {
-//       await post.deleteOne();
-//       res.status(200).json({
-//         success: true,
-//         message: "Post deleted",
-//       });
-//     } else {
-//       res.status(401).json({
-//         success: false,
-//         message: "You are not authorized to delete this post",
-//       });
-//     }
-//   } catch (error) {
-//     res.status(400).json({ success: false, error: error.message });
-//   }
-// };
+// delete a post
+const deleteTweet = async (req, res) => {
+  const { id } = req.query;
+  try {
+    const post = await Posts.findById(id);
+    const postId = req.query.id;
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+    await Posts.findByIdAndDelete(postId);
+    return res.status(200).json({ message: "Post deleted" });
+  } catch (error) {
+    res.status(400).json({ success: false, error: error.message });
+  }
+};
 
 export default async function handler(req, res) {
   const session = getServerSession(req, res, authOptions);
