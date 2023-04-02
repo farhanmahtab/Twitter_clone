@@ -1,7 +1,6 @@
 import connectMongo from "@/Utils/db";
 import Posts from "../../../models/Post";
 
-await connectMongo();
 //get post by id
 const getPostById = async (req, res) => {
   const {
@@ -49,6 +48,7 @@ const deleteTweet = async (req, res) => {
 };
 
 export default async function handler(req, res) {
+  await connectMongo();
   if (req.method === "GET") {
     await getPostById(req, res);
   } else if (req.method === "DELETE") {

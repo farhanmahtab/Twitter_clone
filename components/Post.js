@@ -13,15 +13,14 @@ import { useSession } from "next-auth/react";
 import { formatDistanceToNow } from "date-fns";
 import { useRouter } from "next/router";
 
-
 function Post({ post }) {
   const { data: session } = useSession();
   const router = useRouter();
   //console.log(session?.user);
   const formatTime = formatDistanceToNow(new Date(post.createdAt));
-
+  //console.log(post.createdBy._id);
   const handleDelete = async () => {
-    console.log(post._id)
+    console.log(post._id);
     try {
       const response = await fetch(`/api/post/${post._id}`, {
         method: "DELETE",
@@ -33,16 +32,15 @@ function Post({ post }) {
 
       if (response.ok) {
         // Call the onDelete function passed as a prop to remove the post from the parent component's state
-        console.log(post._id," is Deleted")
-      }
-       else {
+        console.log(post._id, " is Deleted");
+      } else {
         console.error(`Failed to delete post with ID ${post._id}`);
       }
     } catch (error) {
       console.error(error);
     }
-    router.replace('/');
-  }
+    router.replace("/");
+  };
   return (
     <div className={styles.postMain}>
       <Image
@@ -56,7 +54,9 @@ function Post({ post }) {
         {/* Username and Handle */}
         <div className={styles.rightBar}>
           <div className={styles.nameBar}>
-            <h4>{post.createdBy.name}</h4>
+            <h4 onClick={() => router.push(`/profile/${post.createdBy._id}`)}>
+              {post.createdBy.name}
+            </h4>
             <span>{post.createdBy.username}</span>
             <div className={styles.dot}></div>
             <span>{formatTime}</span>
@@ -92,13 +92,14 @@ function Post({ post }) {
             <HeartIcon className={styles.icon} />
             <h4>{post.NumberOfReact}</h4>
           </div>
-          {session &&
-            session?.user.id ===
-              post?.createdBy._id && (
-                <div className={styles.iconDiv}>
-                  <TrashIcon className={styles.icon} onClick={()=> handleDelete()}/>
-                </div>
-              )}
+          {session && session?.user.id === post?.createdBy._id && (
+            <div className={styles.iconDiv}>
+              <TrashIcon
+                className={styles.icon}
+                onClick={() => handleDelete()}
+              />
+            </div>
+          )}
 
           <div className={styles.iconDiv}>
             <ShareIcon className={styles.icon} />

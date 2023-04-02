@@ -9,9 +9,9 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 
-export default function Home({ newsResults, comments, usersResults }) {
+export default function Home({ newsResults, comments, usersResults,posts }) {
   let router = useRouter();
-  //console.log(usersResults.users);
+  //console.log(posts.posts);
   return (
     <>
       <Head>
@@ -37,7 +37,7 @@ export default function Home({ newsResults, comments, usersResults }) {
         {/* sidebar */}
         <Sidebar />
         {/* feed */}
-        <Feed />
+        <Feed post={posts?.posts || null}/>
         {/* widget */}
         <Widget
           newsResults={newsResults?.articles}
@@ -62,7 +62,14 @@ export async function getServerSideProps({ context }) {
   } catch (e) {
     comments = [];
   }
-
+  //posts
+  let posts = [];
+  try {
+    const res = await fetch("http://localhost:3000/api/post");
+    posts = await res.json();
+  } catch (e) {
+    posts = [];
+  }
   // follow Section
   let usersResults = [];
   try {
@@ -78,6 +85,7 @@ export async function getServerSideProps({ context }) {
       newsResults,
       comments,
       usersResults,
+      posts,
     },
   };
 }
