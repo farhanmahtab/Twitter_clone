@@ -2,6 +2,7 @@ import connectMongo from "@/Utils/db";
 import bcrypt from "bcrypt";
 import Users from "../../../models/User";
 
+//get all user
 const getAllUsers = async (req, res) => {
   try {
     const users = await Users.find({});
@@ -10,7 +11,7 @@ const getAllUsers = async (req, res) => {
     res.status(400).json({ success: false, error: error.message });
   }
 };
-
+//create a user
 const postUsers = async (req, res) => {
   const {
     name,
