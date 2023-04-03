@@ -65,7 +65,7 @@ function Post({ post }) {
           <DotsHorizontalIcon className={styles.icon} />
         </div>
         {/* <Link href={`/post/${post._id}`}> */}
-        <div onClick={() => router.push(`/post/${post._id}`)}>
+        <div className={styles.textBody} onClick={() => router.push(`/post/${post._id}`)}>
           <p>{post.body}</p>
         </div>
 

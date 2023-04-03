@@ -7,11 +7,15 @@ import StyleTop from "../../styles/Feed.module.css";
 import { useSession } from "next-auth/react";
 import { ArrowLeftIcon } from "@heroicons/react/outline";
 import Image from "next/image";
+import Edit from "./EditProfile";
+import Modal from "@/components/Modal";
 
 const profile = ({ newsResults, usersResults }) => {
   const { data: session } = useSession();
   const [user, setUser] = useState();
+  const [modalState, setModalState] = useState(true);
   const router = useRouter();
+  const pathCur = router.asPath;
   const userId = router.query.id;
   //console.log(userId);
   useEffect(() => {
@@ -25,6 +29,11 @@ const profile = ({ newsResults, usersResults }) => {
   //console.log(user);
   return (
     <div>
+      {router.query.modal == "edit" && (
+        <Modal>
+          <Edit user={user} />
+        </Modal>
+      )}
       <main className={Style.profileMain}>
         <Sidebar />
         <div className={Style.feed}>
@@ -59,7 +68,17 @@ const profile = ({ newsResults, usersResults }) => {
               <h3>{user?.name}</h3>
               <h5>@{user?.username}</h5>
               {session && session.user.id === userId && (
-                <button className={Style.profileEditButton}>
+                <button
+                  className={Style.profileEditButton}
+                  onClick={() =>
+                    router.push({
+                      pathname: pathCur,
+                      query: {
+                        modal: "edit",
+                      },
+                    })
+                  }
+                >
                   Edit Profile
                 </button>
               )}

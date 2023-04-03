@@ -9,6 +9,11 @@
 .postMain:hover {
   background-color: #e5e7eb;
 }
+.textBody p {
+  height: auto;
+  max-width: 600px;
+  overflow-wrap: break-word;
+}
 .profileImage {
   margin: 10px 15px;
   border-radius: 50%;
