@@ -21,7 +21,7 @@ const profile = ({ newsResults, usersResults }) => {
       setUser(data.user);
     };
     fetchUser();
-  }, []);
+  });
   //console.log(user);
   return (
     <div>
@@ -58,7 +58,11 @@ const profile = ({ newsResults, usersResults }) => {
             <div className={Style.profileInfo}>
               <h3>{user?.name}</h3>
               <h5>@{user?.username}</h5>
-              <button className={Style.profileEditButton}>Edit Profile</button>
+              {session && session.user.id === userId && (
+                <button className={Style.profileEditButton}>
+                  Edit Profile
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -80,7 +84,9 @@ export async function getServerSideProps() {
   const newsResults = await fetch(
     "https://saurav.tech/NewsAPI/top-headlines/category/business/us.json"
   ).then((res) => res.json());
+  //fetch post by user id
 
+  // const userPosts = await fetch(`http://localhost:3000/api/user/${userId}`)
   // follow Section
   let usersResults = [];
   try {

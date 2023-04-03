@@ -1,16 +1,33 @@
 import connectMongo from "@/Utils/db";
 import bcrypt from "bcrypt";
 import Users from "../../../models/User";
+import { useSession } from "next-auth/react";
 
 //get all user
 const getAllUsers = async (req, res) => {
   try {
+    const currentUserId = req.query.id;
     const users = await Users.find({});
-    res.status(200).json({ success: true, users: users });
+    const updatedUsers = users.map((user) => {
+      const isFollowed = user.followers.includes(currentUserId);
+      return { ...user.toObject(), isFollowed };
+    });
+    //console.log(updatedUsers);
+    res.status(200).json({ success: true, users: updatedUsers });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
   }
 };
+
+// const getAllUsers = async (req, res) => {
+//   try {
+//     const users = await Users.find({});
+//     res.status(200).json({ success: true, users: users });
+//   } catch (error) {
+//     res.status(400).json({ success: false, error: error.message });
+//   }
+// };
+
 //create a user
 const postUsers = async (req, res) => {
   const {
