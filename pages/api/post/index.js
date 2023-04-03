@@ -1,8 +1,6 @@
 import connectMongo from "@/Utils/db";
-import { getServerSession } from "next-auth";
 import Posts from "../../../models/Post";
 import User from "../../../models/User";
-import { authOptions } from "../auth/[...nextauth]";
 
 //Get all post
 const getAllposts = async (req, res) => {
@@ -28,6 +26,7 @@ const postTweet = async (req, res) => {
     const post = await Posts.create({
       createdBy: author._id,
       body: req.body.body,
+      PostImage:req.body.PostImage
     });
     await post.save().then(() => console.log("post Created"));
     res.status(200).json({ status: true, data: post });
@@ -38,7 +37,6 @@ const postTweet = async (req, res) => {
   }
 };
 export default async function handler(req, res) {
-  const session = getServerSession(req, res, authOptions);
   await connectMongo();
   if (req.method === "GET") {
     await getAllposts(req, res);

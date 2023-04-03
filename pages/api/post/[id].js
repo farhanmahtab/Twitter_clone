@@ -31,6 +31,44 @@ const getPostById = async (req, res) => {
     res.status(400).json({ success: false, error: error.message });
   }
 };
+//Update post
+const updatePostById = async (req, res) => {
+  try {
+    const {
+      query: { id },
+      body: { body, PostImage },
+      method,
+    } = req;
+
+    const updatedPost = {};
+    if (body) updatedPost.body = body;
+    if (PostImage) updatedPost.PostImage = PostImage;
+
+    const post = await Posts.findByIdAndUpdate(id, updatedPost, {
+      new: true,
+      runValidators: true,
+    })
+      .populate({
+        path: "createdBy",
+        select: "name username email profilePicture",
+      })
+      .populate({
+        path: "Comment",
+        select: "body createdAt",
+        populate: {
+          path: "author",
+          select: "name username email profilePicture",
+        },
+      });
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+    res.status(200).json({ message: "Post updated", post });
+  } catch (error) {
+    res.status(400).json({ success: false, error: error.message });
+  }
+};
+
 // delete a post
 const deleteTweet = async (req, res) => {
   const { id } = req.query;
@@ -53,6 +91,8 @@ export default async function handler(req, res) {
     await getPostById(req, res);
   } else if (req.method === "DELETE") {
     await deleteTweet(req, res);
+  } else if (req.method == "PATCH") {
+    await updatePostById(req, res);
   } else {
     res.status(405).json({ message: "Method Not Allowed" });
   }
