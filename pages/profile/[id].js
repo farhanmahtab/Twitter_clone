@@ -3,7 +3,6 @@ import Widget from "@/components/Widget";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Style from "../../styles/Profile.module.css";
-import StyleTop from "../../styles/Feed.module.css";
 import { useSession } from "next-auth/react";
 import { ArrowLeftIcon } from "@heroicons/react/outline";
 import Image from "next/image";
@@ -13,7 +12,6 @@ import Modal from "@/components/Modal";
 const profile = ({ newsResults, usersResults }) => {
   const { data: session } = useSession();
   const [user, setUser] = useState();
-  const [modalState, setModalState] = useState(true);
   const router = useRouter();
   const pathCur = router.asPath;
   const userId = router.query.id;

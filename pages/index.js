@@ -8,8 +8,9 @@ import Widget from "@/components/Widget";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
+import EditPost from "./post/EditPost";
 
-export default function Home({ newsResults, comments, usersResults,posts }) {
+export default function Home({ newsResults, comments, usersResults, posts }) {
   let router = useRouter();
   //console.log(posts.posts);
   return (
@@ -37,7 +38,7 @@ export default function Home({ newsResults, comments, usersResults,posts }) {
         {/* sidebar */}
         <Sidebar />
         {/* feed */}
-        <Feed post={posts?.posts || null}/>
+        <Feed post={posts?.posts || null} />
         {/* widget */}
         <Widget
           newsResults={newsResults?.articles}

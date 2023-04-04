@@ -15,8 +15,6 @@ function PostBox({ setPosts }) {
   const { data: session } = useSession();
   //console.log(session?.user);
   const [input, setInput] = useState("");
-  // console.log(session?.user);
-  //const img = session?.user.image;
 
   const handleSubmit = async (event) => {
     event.preventDefault();

@@ -21,12 +21,8 @@ const postSchema = new Schema(
       type: Date,
       default: () => Date.now(),
     },
-    react: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "React",
-      },
-    ],
+    react: [{ type: Schema.Types.ObjectId, ref: "User" }],
+
     NumberOfReact: {
       type: "number",
       default: 0,

@@ -15,7 +15,7 @@ const Edit = ({ user }) => {
   });
 
   const handleSubmit = async (e) => {
-    console.log(user._id);
+    // console.log(user._id);
     e.preventDefault();
     try {
       const res = await fetch(`/api/user/${user._id}`, {
@@ -26,7 +26,7 @@ const Edit = ({ user }) => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data.message);
+      //console.log(data.message);
     } catch (error) {
       console.error(error);
     }
@@ -39,8 +39,8 @@ const Edit = ({ user }) => {
     });
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit} className={Style.main}>
+    <div className={Style.main}>
+      <form onSubmit={handleSubmit} className={Style.form}>
         <label>
           Name:
           <input
@@ -71,15 +71,6 @@ const Edit = ({ user }) => {
           />
         </label>
         <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
           Bio:
           <textarea
             name="bio"
@@ -105,36 +96,15 @@ const Edit = ({ user }) => {
             onChange={handleChange}
           />
         </label>
-        <button type="submit" onClick={()=>router.push(`/profile/${user._id}`)}>Save Changes</button>
+        <button
+          type="submit"
+          onClick={() => router.push(`/profile/${user._id}`)}
+        >
+          Save Changes
+        </button>
       </form>
     </div>
   );
 };
 
 export default Edit;
-{
-  /* <form action="/user/edit" method="POST">
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="name" value="{{ user?.name }}" required>
-  
-  <label for="username">Username:</label>
-  <input type="text" id="username" name="username" value="{{ user.username }}" required>
-  
-  <label for="profilePicture">Profile Picture:</label>
-  <input type="text" id="profilePicture" name="profilePicture" value="{{ user.profilePicture }}" required>
-  
-  <label for="coverPhoto">Cover Photo:</label>
-  <input type="text" id="coverPhoto" name="coverPhoto" value="{{ user.coverPhoto }}" required>
-  
-  <label for="bio">Bio:</label>
-  <textarea id="bio" name="bio" required>{{ user.bio }}</textarea>
-  
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" value="{{ user.email }}" required>
-  
-  <label for="password">Password:</label>
-  <input type="password" id="password" name="password" required>
-  
-  <button type="submit">Save Changes</button>
-</form> */
-}

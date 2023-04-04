@@ -1,7 +1,7 @@
 import {
   ChartSquareBarIcon,
   ChatIcon,
-  DotsHorizontalIcon,
+  CogIcon,
   HeartIcon,
   ShareIcon,
   TrashIcon,
@@ -31,7 +31,6 @@ function Post({ post }) {
       });
 
       if (response.ok) {
-        // Call the onDelete function passed as a prop to remove the post from the parent component's state
         console.log(post._id, " is Deleted");
       } else {
         console.error(`Failed to delete post with ID ${post._id}`);
@@ -62,10 +61,12 @@ function Post({ post }) {
             <span>{formatTime}</span>
           </div>
           {/* dot icon */}
-          <DotsHorizontalIcon className={styles.icon} />
         </div>
         {/* <Link href={`/post/${post._id}`}> */}
-        <div className={styles.textBody} onClick={() => router.push(`/post/${post._id}`)}>
+        <div
+          className={styles.textBody}
+          onClick={() => router.push(`/post/${post._id}`)}
+        >
           <p>{post.body}</p>
         </div>
 

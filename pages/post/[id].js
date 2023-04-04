@@ -9,6 +9,7 @@ import { formatDistanceToNow } from "date-fns";
 import {
   ChartSquareBarIcon,
   ChatIcon,
+  CogIcon,
   DotsHorizontalIcon,
   HeartIcon,
   ShareIcon,
@@ -16,9 +17,13 @@ import {
 } from "@heroicons/react/outline";
 import Image from "next/image";
 import PostComment from "@/components/PostComment";
+import EditPost from "./EditPost";
+import Modal from "@/components/Modal";
 
 function postPage({ newsResults, usersResults }) {
   const router = useRouter();
+  const pathCur = router.asPath;
+  //console.log(pathCur)
   const postId = router.query.id;
   //console.log(postId);
   const [post, setPost] = useState();
@@ -33,9 +38,14 @@ function postPage({ newsResults, usersResults }) {
   useEffect(() => {
     fetchPost();
   }, []);
-  //console.log(post?.Comment);
+  //console.log(post?.createdBy?.profilePicture);
   return (
     <div>
+      {router.query.modal == "editPost" && (
+        <Modal>
+          <EditPost post={post} />
+        </Modal>
+      )}
       <Sidebar />
       <main className={Style.main}>
         <div className={Style.feed}>
@@ -56,8 +66,18 @@ function postPage({ newsResults, usersResults }) {
                   <div className={styles.dot}></div>
                   <span>{formatTime}</span>
                 </div>
-                {/* dot icon */}
-                <DotsHorizontalIcon className={styles.icon} />
+                {/* dot icon */}               
+                <CogIcon
+                  className={styles.icon}
+                  onClick={() =>
+                    router.push({
+                      pathname: pathCur,
+                      query: {
+                        modal: "editPost",
+                      },
+                    })
+                  }
+                />
               </div>
               <p>{post?.body}</p>
               {post?.img && (
@@ -97,7 +117,7 @@ function postPage({ newsResults, usersResults }) {
               </div>
               {/* Comment */}
               {post?.Comment?.map((comment) => {
-                return <PostComment key={comment._id} comment={comment}/>;
+                return <PostComment key={comment._id} comment={comment} />;
               })}
             </div>
           </div>
@@ -119,7 +139,14 @@ export async function getServerSideProps() {
   const newsResults = await fetch(
     "https://saurav.tech/NewsAPI/top-headlines/category/business/us.json"
   ).then((res) => res.json());
-
+  ////posts
+  let posts = [];
+  try {
+    const res = await fetch("http://localhost:3000/api/post");
+    posts = await res.json();
+  } catch (e) {
+    posts = [];
+  }
   // follow Section
   let usersResults = [];
   try {
@@ -130,11 +157,11 @@ export async function getServerSideProps() {
     usersResults = [];
   }
 
-
   return {
     props: {
       newsResults,
       usersResults,
+      posts,
     },
   };
 }
