@@ -16,9 +16,12 @@ import { useRouter } from "next/router";
 function Post({ post }) {
   const { data: session } = useSession();
   const router = useRouter();
-  //console.log(session?.user);
+  const [reactNumber, setReactNumber] = useState(post?.react?.length);
+  const [isLiked, setIsLiked] = useState(
+    post.react.includes(session?.user?.id)
+  );
   const formatTime = formatDistanceToNow(new Date(post.createdAt));
-  //console.log(post.createdBy._id);
+  //console.log(session.user.id);
   const handleDelete = async () => {
     console.log(post._id);
     try {
@@ -39,6 +42,39 @@ function Post({ post }) {
       console.error(error);
     }
     router.replace("/");
+  };
+  const handleReact = async () => {
+    const postId = post._id;
+    const userId = session.user.id;
+    try {
+      const response = await fetch(`/api/post/react?postId=${postId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId }),
+      });
+      const { success, message } = await response.json();
+
+      if (success) {
+        console.log(message);
+        //updating the state of the component
+      } else {
+        console.error(message);
+      }
+      if (message == "liked") {
+        setReactNumber(reactNumber + 1);
+        setIsLiked(true);
+      } else {
+        setReactNumber(reactNumber - 1);
+        setIsLiked(false);
+      }
+      // message === "liked"
+      // ? setReactNumber(reactNumber + 1)
+      // : setReactNumber(reactNumber - 1);
+    } catch (error) {
+      console.error(error.message);
+    }
   };
   return (
     <div className={styles.postMain}>
@@ -70,9 +106,11 @@ function Post({ post }) {
           <p>{post.body}</p>
         </div>
 
-        {post.img && (
-          <img
+        {post.PostImage && (
+          <Image
             src={post.PostImage}
+            width={400}
+            height={350}
             alt="post Image"
             className={styles.postImage}
           />
@@ -87,12 +125,24 @@ function Post({ post }) {
                 router.replace(`?modal=comment&postId=${post._id}`);
               }}
             />
-            <h4>{post?.Comment?.length}</h4>
+            <h4>{post?.comment?.length}</h4>
           </div>
+
           <div className={styles.iconDiv}>
-            <HeartIcon className={styles.icon} />
-            <h4>{post.NumberOfReact}</h4>
+            {/* {isLiked ? (
+              <HeartIcon
+                className={styles.icon}
+                onClick={() => handleReact()}
+              />
+            ) : (
+              <div className={styles.likedHeartIcon}>
+                <HeartIcon onClick={() => handleReact()} />
+              </div>
+            )} */}
+            <HeartIcon className={styles.icon} onClick={() => handleReact()} />
+            <h4>{reactNumber}</h4>
           </div>
+
           {session && session?.user.id === post?.createdBy._id && (
             <div className={styles.iconDiv}>
               <TrashIcon

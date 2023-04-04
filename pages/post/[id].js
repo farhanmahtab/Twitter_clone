@@ -1,4 +1,3 @@
-import Post from "@/components/Post";
 import Sidebar from "@/components/Sidebar";
 import Widget from "@/components/Widget";
 import { useRouter } from "next/router";
@@ -38,7 +37,7 @@ function postPage({ newsResults, usersResults }) {
   useEffect(() => {
     fetchPost();
   }, []);
-  //console.log(post?.createdBy?.profilePicture);
+  console.log(post?.PostImage);
   return (
     <div>
       {router.query.modal == "editPost" && (
@@ -80,7 +79,7 @@ function postPage({ newsResults, usersResults }) {
                 />
               </div>
               <p>{post?.body}</p>
-              {post?.img && (
+              {post?.PostImage && (
                 <img
                   src={post?.PostImage}
                   alt="post Image"

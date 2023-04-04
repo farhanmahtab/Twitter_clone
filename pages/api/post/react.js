@@ -19,11 +19,11 @@ export default async function handler(req, res) {
           (id) => id.toString() !== userId.toString()
         );
         await post.save();
-        return res.status(200).json({ success: true, message: "Post unliked" });
+        return res.status(200).json({ success: true, message: "unliked" });
       } else {
         post.react.push(userId);
         await post.save();
-        return res.status(200).json({ success: true, message: "Post liked" });
+        return res.status(200).json({ success: true, message: "liked" });
       }
     } catch (error) {
       res.status(400).json({ success: false, error: error.message });
