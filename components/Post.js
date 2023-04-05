@@ -1,11 +1,11 @@
 import {
   ChartSquareBarIcon,
   ChatIcon,
-  CogIcon,
   HeartIcon,
   ShareIcon,
   TrashIcon,
 } from "@heroicons/react/outline";
+import { HeartIcon as HeartIconFilled } from "@heroicons/react/solid";
 import React, { useState } from "react";
 import Image from "next/image";
 import styles from "../styles/Post.module.css";
@@ -62,16 +62,9 @@ function Post({ post }) {
       } else {
         console.error(message);
       }
-      if (message == "liked") {
-        setReactNumber(reactNumber + 1);
-        setIsLiked(true);
-      } else {
-        setReactNumber(reactNumber - 1);
-        setIsLiked(false);
-      }
-      // message === "liked"
-      // ? setReactNumber(reactNumber + 1)
-      // : setReactNumber(reactNumber - 1);
+      message === "liked"
+        ? (setReactNumber(reactNumber + 1), setIsLiked(true))
+        : (setReactNumber(reactNumber - 1), setIsLiked(false));
     } catch (error) {
       console.error(error.message);
     }
@@ -85,6 +78,7 @@ function Post({ post }) {
         className={styles.profileImage}
         alt="user image"
       />
+
       <div className={styles.RightDiv}>
         {/* Username and Handle */}
         <div className={styles.rightBar}>
@@ -129,17 +123,22 @@ function Post({ post }) {
           </div>
 
           <div className={styles.iconDiv}>
-            {/* {isLiked ? (
+            {!isLiked ? (
               <HeartIcon
                 className={styles.icon}
                 onClick={() => handleReact()}
               />
             ) : (
-              <div className={styles.likedHeartIcon}>
-                <HeartIcon onClick={() => handleReact()} />
-              </div>
-            )} */}
-            <HeartIcon className={styles.icon} onClick={() => handleReact()} />
+              <HeartIconFilled
+                className={styles.icon}
+                onClick={() => handleReact()}
+              />
+            )}
+
+            {/* <HeartIconFilled
+              className={styles.icon}
+              onClick={() => handleReact()}
+            /> */}
             <h4>{reactNumber}</h4>
           </div>
 

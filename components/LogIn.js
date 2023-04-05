@@ -14,7 +14,7 @@ function LogIn() {
   });
   const handleLogIn =async (event) => {
     event.preventDefault();
-    console.log(userData);
+    //console.log(userData);
     await signIn("credentials", {
       email: userData.email,
       password: userData.password,

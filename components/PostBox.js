@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import styles from "../styles/PostBox.module.css";
 import {
@@ -12,8 +12,11 @@ import { useRouter } from "next/router";
 
 function PostBox({ setPosts }) {
   const router = useRouter();
+  const filePickerRef = useRef(null);
   const { data: session } = useSession();
   //console.log(session?.user);
+  const image = session?.user.image || session?.user.picture;
+
   const [input, setInput] = useState("");
 
   const handleSubmit = async (event) => {
@@ -42,12 +45,16 @@ function PostBox({ setPosts }) {
       console.error(error);
     }
   };
+
+  const addImageToPost = async (e) => {
+    console.log("image uploader");
+  };
   return (
     <form>
       <div className={styles.PostBoxMain}>
         <div className={styles.imageDiv}>
           <Image
-            src={session?.user.image}
+            src={image}
             className={styles.image}
             height="50"
             width="50"
@@ -67,8 +74,11 @@ function PostBox({ setPosts }) {
             />
           </div>
           <div className={styles.iconbar}>
-            <div>
+            <div onClick={() => filePickerRef.current.click()}>
               <PhotographIcon className={styles.icon} />
+              <input type="file" hidden ref={filePickerRef} />
+            </div>
+            <div>
               <EmojiHappyIcon className={styles.icon} />
               <MapIcon className={styles.icon} />
               <CalendarIcon className={styles.icon} />

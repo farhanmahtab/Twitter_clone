@@ -34,6 +34,8 @@ export const authOptions = {
           if (!isValid) {
             throw new Error("Invalid password");
           }
+          //console.log(user);
+          user.image = user.profilePicture;
           return user;
         } catch (error) {
           console.log(error);
@@ -46,25 +48,53 @@ export const authOptions = {
   },
   callbacks: {
     async session({ session, token, params }) {
-      session.user.id = token.id;
-      session.user.username = token.username
-      session.user.image=token.image;
-      session.user.isComplete = token.isComplete;
-      session.user.accessToken = token.accessToken;
+      session.user = token;
+      // session.user.username = token.username;
+      // session.user.picture = token.image;
+      // session.user.isComplete = token.isComplete;
+      // session.user.accessToken = token.accessToken;
       return session;
     },
-    async jwt({ token, user, account, profile, isNewUser }) {
+    async jwt({ token, user, account }) {
       if (user) {
         token.id = user.id;
         token.username = user.username;
-        token.image = user.profilePicture;
-        token.isComplete = user?.isComplete || false;
-        token.accessToken = user?.accessToken || "";
+        //token.image = user.profilePicture;
+        // token.isComplete = user?.isComplete || false;
+        // token.accessToken = user?.accessToken || "";
       }
       if (account) {
         // token.accessToken = account.access_token;
       }
       return token;
+    },
+    async signIn({ user, account }) {
+      if (account) {
+        try {
+          const { email, name, image } = user;
+          await conncetMongoose();
+          const existingUser = await User.findOne({ email: email });
+          if (!existingUser) {
+            const newUser = await User.create({
+              name,
+              username: name,
+              email,
+              profilePicture: image,
+              coverPhoto: image,
+              bio: "",
+              followers: [],
+              following: [],
+            });
+            await newUser.save();
+            console.log("new user created");
+            console.log(newUser);
+          }
+        } catch (err) {
+          console.log(err);
+          return false;
+        }
+        return true;
+      }
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
@@ -77,3 +107,41 @@ export const authOptions = {
   },
 };
 export default NextAuth(authOptions);
+
+// async signIn({ user, account}) {
+//   if (account) {
+//     try{
+//     const { email, name, image } = user;
+//     await dbConnect();
+//     const existingUser = await getUserByEmail(email);
+//     if (!existingUser) {
+//        await UserModel.create({
+//         username: email.split("@")[0],
+//         email,
+//         name,
+//         image
+//       });
+//     }
+//     }
+//     catch(err){
+//       return false
+//     }
+//   }
+//   return true
+// },
+// },
+
+// console.log({ user });
+// await conncetMongoose();
+// const tmpUser = await User.findOne({
+//   $or: [{ email: user.email }],
+// });
+// if (tmpUser) {
+//   return true;
+// }
+// const newUser = await User.create({
+//   username: user.name,
+//   email: user.email,
+//   profilePicture: user.image,
+// });
+// return true;

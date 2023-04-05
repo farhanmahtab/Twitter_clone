@@ -49,6 +49,10 @@
   background-color: #c1d7e0;
   border-radius: 50%;
 }
+.iconbarLeft{
+  display: flex;
+  flex-direction: row;
+}
 .postImage {
   height: 350px;
   width: 400px;

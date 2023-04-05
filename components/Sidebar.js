@@ -19,7 +19,7 @@ import { useRouter } from "next/router";
 function Sidebar() {
   const router = useRouter();
   const { data: session } = useSession();
-  const image = session?.user.image;
+  const image = session?.user.image || session?.user.picture;
   const userID = session?.user.id;
   //console.log(userID);
   return (

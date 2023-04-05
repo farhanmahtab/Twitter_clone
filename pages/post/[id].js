@@ -9,7 +9,6 @@ import {
   ChartSquareBarIcon,
   ChatIcon,
   CogIcon,
-  DotsHorizontalIcon,
   HeartIcon,
   ShareIcon,
   TrashIcon,
