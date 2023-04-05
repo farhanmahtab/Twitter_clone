@@ -69,3 +69,21 @@
 .postBoxButton:disabled {
   background-color: rgb(96, 177, 231)
 }
+.selectedImageContainer{
+  display: flex;
+  height: 220px;
+  width: 300px;
+  
+}
+.selectedImage{
+  object-fit: cover;
+  border-radius: 5%;
+}
+.close {
+  align-self: flex-end;
+  padding: 20px 2px;
+  padding: 0.1rem 0.4rem;
+  margin: 5px;
+  border-radius: 50%;
+  font-size: 2rem;
+}

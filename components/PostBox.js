@@ -18,20 +18,24 @@ function PostBox({ setPosts }) {
   const image = session?.user.image || session?.user.picture;
 
   const [input, setInput] = useState("");
+  const [selectedImages, setSelectedImages] = useState([]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(input);
+    const formData = new FormData();
+    formData.append("email", session?.user.email);
+    formData.append("body", input);
+    selectedImages.forEach((image) => {
+      formData.append("PostImage", image);
+    });
     try {
       const response = await fetch("/api/post", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: session?.user.email,
-          body: input,
-        }),
+        // headers: {
+        //   "Content-Type": "application/json",
+        // },
+        body: formData,
       });
       const data = await response.json();
       console.log(data);
@@ -39,18 +43,18 @@ function PostBox({ setPosts }) {
       const res1 = await fetch("/api/post");
       const data1 = await res1.json();
       setPosts(data1.posts);
-
+      setSelectedImages([]);
       setInput("");
     } catch (error) {
       console.error(error);
     }
   };
-
-  const addImageToPost = async (e) => {
-    console.log("image uploader");
+  const handleRemoveImage = () => {
+    setSelectedImages([]);
   };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className={styles.PostBoxMain}>
         <div className={styles.imageDiv}>
           <Image
@@ -74,9 +78,48 @@ function PostBox({ setPosts }) {
             />
           </div>
           <div className={styles.iconbar}>
-            <div onClick={() => filePickerRef.current.click()}>
-              <PhotographIcon className={styles.icon} />
-              <input type="file" hidden ref={filePickerRef} />
+            <div>
+              <label htmlFor="image-upload">
+                <PhotographIcon className={styles.icon} />
+                <input
+                  id="image-upload"
+                  type="file"
+                  hidden
+                  onChange={({ target }) => {
+                    const files = target.files;
+                    const newImages = [...selectedImages];
+                    for (let i = 0; i < files.length; i++) {
+                      newImages.push(files[i]);
+                    }
+                    setSelectedImages(newImages);
+                  }}
+                />
+              </label>
+              {selectedImages.length > 0 && (
+                <div className={styles.selectedImageContainer}>
+                  {selectedImages.map((selectedImage, index) => (
+                    <div key={index} className={styles.selectedImageContainer}>
+                      <Image
+                        width={350}
+                        height={200}
+                        src={URL.createObjectURL(selectedImage)}
+                        className={styles.selectedImage}
+                        alt="Selected Image"
+                      />
+
+                      <div
+                        className={styles.close}
+                        onClick={() => {
+                          handleRemoveImage();
+                        }}
+                      >
+                        &times;
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div></div>
             </div>
             <div>
               <EmojiHappyIcon className={styles.icon} />
@@ -86,7 +129,8 @@ function PostBox({ setPosts }) {
             <button
               disabled={!input.trim()}
               className={styles.postBoxButton}
-              onClick={handleSubmit}
+              type="submit"
+              onClick={() => router.push(`/`)}
             >
               Tweet
             </button>

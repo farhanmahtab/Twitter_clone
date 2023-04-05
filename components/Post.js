@@ -102,7 +102,7 @@ function Post({ post }) {
 
         {post.PostImage && (
           <Image
-            src={post.PostImage}
+            src={`/images/${post.PostImage}`}
             width={400}
             height={350}
             alt="post Image"
