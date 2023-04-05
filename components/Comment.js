@@ -11,10 +11,10 @@ const Comment = () => {
   const { postId } = router.query;
   const { data: session } = useSession();
   const [comment, setComment] = useState("");
-  // console.log(session.user.image);
+  const image = session?.user.image || session?.user.picture;
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // console.log(comment, "\npostID : ", postId, "\nUserId : ", session?.user.email);
     try {
       const response = await fetch("/api/post/comment", {
         method: "POST",
@@ -42,7 +42,7 @@ const Comment = () => {
       <div className={Styles.comment_content}>
         <div className={Styles.commentTop}>
           <Image
-            src={session?.user.image}
+            src={image}
             width="50"
             height="50"
             className={Styles.comment_avatar}

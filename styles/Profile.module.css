@@ -9,7 +9,7 @@
   border-left: 1px solid #e5e7eb;
   border-right: 1px solid #e5e7eb;
   margin-left: 370px;
-  width: 600px;
+  width: 500px;
   flex-grow: 1;
   max-width: 960px;
 }
@@ -71,19 +71,23 @@
   width: 100%;
   object-fit: cover;
 }
-.profilePicture {
+.profilePictureDiv {
   display: flex;
   justify-content: space-between;
-  height: 200px;
+  height: 150px;
   border: 1px solid gainsboro;
   padding: 2px 20px;
   margin-bottom: 20px;
 }
+.profilePicture {
+  height: 50px;
+}
 .profilePicture img {
-  margin-top: 20px;
-  height: 120px;
-  width: 120px;
+  margin-top: -70px;
+  height: 140px;
+  width: 140px;
   border-radius: 50%;
+  border: 3px solid gainsboro;
 }
 .profileInfo h5 {
   margin: 7px 1px;

@@ -35,8 +35,8 @@ function postPage({ newsResults, usersResults }) {
   };
   useEffect(() => {
     fetchPost();
-  }, []);
-  console.log(post?.PostImage);
+  }, [post]);
+  //console.log(post?.PostImage);
   return (
     <div>
       {router.query.modal == "editPost" && (
@@ -50,6 +50,7 @@ function postPage({ newsResults, usersResults }) {
           <div className={styles.postMain}>
             <Image
               src={post?.createdBy?.profilePicture}
+              // {`/Resources/${post?.createdBy?.profilePicture}`}
               width="50"
               height="50"
               className={styles.profileImage}
@@ -64,7 +65,7 @@ function postPage({ newsResults, usersResults }) {
                   <div className={styles.dot}></div>
                   <span>{formatTime}</span>
                 </div>
-                {/* dot icon */}               
+                {/* dot icon */}
                 <CogIcon
                   className={styles.icon}
                   onClick={() =>
@@ -80,7 +81,7 @@ function postPage({ newsResults, usersResults }) {
               <p>{post?.body}</p>
               {post?.PostImage && (
                 <img
-                  src={post?.PostImage}
+                  src={`/images/${post.PostImage}`}
                   alt="post Image"
                   className={styles.postImage}
                 />

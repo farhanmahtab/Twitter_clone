@@ -6,7 +6,7 @@ import {
   TrashIcon,
 } from "@heroicons/react/outline";
 import { HeartIcon as HeartIconFilled } from "@heroicons/react/solid";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "../styles/Post.module.css";
 import { useSession } from "next-auth/react";
@@ -17,6 +17,10 @@ function Post({ post }) {
   const { data: session } = useSession();
   const router = useRouter();
   const [reactNumber, setReactNumber] = useState(post?.react?.length);
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    setPosts(post);
+  });
   const [isLiked, setIsLiked] = useState(
     post.react.includes(session?.user?.id)
   );
@@ -134,11 +138,6 @@ function Post({ post }) {
                 onClick={() => handleReact()}
               />
             )}
-
-            {/* <HeartIconFilled
-              className={styles.icon}
-              onClick={() => handleReact()}
-            /> */}
             <h4>{reactNumber}</h4>
           </div>
 

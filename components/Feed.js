@@ -1,6 +1,4 @@
-import { CogIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Feed.module.css";
 import Post from "./Post";
@@ -9,20 +7,9 @@ import PostBox from "./PostBox";
 export default function Feed({ post }) {
   const { data: session } = useSession();
   const [posts, setPosts] = useState([]);
-  //console.log(post);
-  //console.log(session?.user);
   useEffect(() => {
     setPosts(post);
-  }, []);
-
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     const res = await fetch("/api/post");
-  //     const data = await res.json();
-  //     setPosts(data.posts);
-  //   };
-  //   fetchPosts();
-  // }, []);
+  });
 
   return (
     <div className={styles.main}>

@@ -9,21 +9,51 @@ import Image from "next/image";
 import Edit from "./EditProfile";
 import Modal from "@/components/Modal";
 
+import connectMongo from "@/Utils/db";
+import Posts from "../../models/Post";
+import Post from "@/components/Post";
+import Follow from "@/components/Follower";
+
 const profile = ({ newsResults, usersResults }) => {
   const { data: session } = useSession();
   const [user, setUser] = useState();
+  const [post, setPost] = useState([]);
+  const [followers, setFollowers] = useState([]);
+  const [following, setFollowing] = useState([]);
   const router = useRouter();
   const pathCur = router.asPath;
   const userId = router.query.id;
-  //console.log(userId);
+
+  const fetchFollowers = async () => {
+    const res = await fetch(`/api/user/follower?id=${userId}`);
+    const data = await res.json();
+    setFollowers(data.followers);
+  };
+  const fetchFollowing = async () => {
+    const res = await fetch(`/api/user/following?id=${userId}`);
+    const data = await res.json();
+    setFollowing(data.following);
+  };
+  //console.log(following);
+  const fetchPost = async () => {
+    const res = await fetch(`/api/post/userPost?id=${userId}`);
+    const data = await res.json();
+    setPost(data.posts);
+  };
+  //console.log(post);
+  const fetchUser = async () => {
+    const res = await fetch(`/api/user/${userId}`);
+    const data = await res.json();
+    setUser(data.user);
+  };
+
   useEffect(() => {
-    const fetchUser = async () => {
-      const res = await fetch(`/api/user/${userId}`);
-      const data = await res.json();
-      setUser(data.user);
-    };
     fetchUser();
-  });
+    fetchPost();
+    fetchFollowers();
+    fetchFollowing();
+  }, []);
+
   //console.log(user);
   return (
     <div>
@@ -53,8 +83,8 @@ const profile = ({ newsResults, usersResults }) => {
               className={Style.coverImg}
             />
           </div>
-          <div className={Style.profilePicture}>
-            <div>
+          <div className={Style.profilePictureDiv}>
+            <div className={Style.profilePicture}>
               <img src={user?.profilePicture} alt="proflie-picture" />{" "}
               <h4>{user?.bio}</h4>
               <h4>
@@ -82,6 +112,15 @@ const profile = ({ newsResults, usersResults }) => {
               )}
             </div>
           </div>
+          {/* {post.map((post) => {
+            return <Post key={post._id} post={post} />;
+          })} */}
+          {/* {followers.map((follow) => {
+            return <Follow follow={follow}/>;
+          })} */}
+          {following.map((follow) => {
+            return <Follow follow={follow} />;
+          })}
         </div>
 
         <Widget
@@ -96,7 +135,9 @@ const profile = ({ newsResults, usersResults }) => {
 export default profile;
 
 //get ServerSide props
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const { userID } = context.query;
+  await connectMongo();
   // random news
   const newsResults = await fetch(
     "https://saurav.tech/NewsAPI/top-headlines/category/business/us.json"
@@ -112,6 +153,28 @@ export async function getServerSideProps() {
     usersResults = await res.json();
   } catch (e) {
     usersResults = [];
+  }
+  //get posts by userId
+  let post = [];
+  try {
+    const Response = await fetch(`http://localhost:3000/api/user/${userID}`);
+    const data = await Response.json();
+    post = await Posts.find({ createdBy: userID })
+      .sort({ createdAt: -1 })
+      .populate({
+        path: "createdBy",
+        select: "name username email profilePicture",
+      })
+      .populate({
+        path: "Comment",
+        select: "body createdAt",
+        populate: {
+          path: "author",
+          select: "name username email profilePicture",
+        },
+      });
+  } catch (e) {
+    data.Post = [];
   }
 
   return {

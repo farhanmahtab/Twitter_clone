@@ -32,9 +32,6 @@ function PostBox({ setPosts }) {
     try {
       const response = await fetch("/api/post", {
         method: "POST",
-        // headers: {
-        //   "Content-Type": "application/json",
-        // },
         body: formData,
       });
       const data = await response.json();
