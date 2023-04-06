@@ -9,7 +9,7 @@ export default function Feed({ post }) {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     setPosts(post);
-  });
+  },[]);
 
   return (
     <div className={styles.main}>

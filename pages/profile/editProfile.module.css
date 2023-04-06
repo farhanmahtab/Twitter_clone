@@ -1,57 +1,69 @@
 .main {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+.main h2 {
+  color: #1da1f2;
+  margin-inline: 220px;
+  margin-bottom: 30px;
 }
 .form {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 20px;
-  }
-  
-  
-  .form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #14171a;
-  }
-  
-  .form textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    font-size: 16px;
-    color: #14171a;
-  }
-  
-  .form textarea {
-    height: 150px;
-  }
-  
-  .form button[type="submit"] {
-    background-color: #1da1f2;
-    color: #fff;
-    border: none;
-    border-radius: 25px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
-  
-  .form button[type="submit"]:hover {
-    background-color: #0c8de4;
-  }
-  
-  /* Global styles */
-  .form h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #14171a;
-  }
-  
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #14171a;
+}
+.form input {
+  border: none;
+  border-bottom: 2px solid gainsboro;
+}
+.form textarea {
+  width: 600px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #14171a;
+  overflow: hidden;
+  outline: none;
+  resize: none;
+  border: none;
+  border-bottom: 2px solid gainsboro;
+}
+
+.form textarea {
+  height: 50px;
+}
+
+.form button[type="submit"] {
+  background-color: #1da1f2;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin-left: 220px;
+}
+
+.form button[type="submit"]:hover {
+  background-color: #0c8de4;
+}
+
+/* Global styles */
+.form h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #14171a;
+}

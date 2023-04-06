@@ -40,6 +40,7 @@ const Edit = ({ user }) => {
   };
   return (
     <div className={Style.main}>
+      <h2>update your profile</h2>
       <form onSubmit={handleSubmit} className={Style.form}>
         <label>
           Name:

@@ -1,5 +1,6 @@
 import connectMongo from "@/Utils/db";
 import Posts from "../../../models/Post";
+import Comment from "../../../models/Comment";
 
 //get post by id
 const getPostById = async (req, res) => {
@@ -79,6 +80,26 @@ const deleteTweet = async (req, res) => {
       return res.status(404).json({ message: "Post not found" });
     }
     await Posts.findByIdAndDelete(postId);
+
+    const comments = await Comment.find({ post: id });
+
+    const deleteCommentsAndReplies = async (commentIds) => {
+      for (const commentId of commentIds) {
+        const comment = await Comment.findById(commentId);
+        if (comment) {
+          if (comment.reply.length > 0) {
+            await deleteCommentsAndReplies(comment.reply);
+          }
+          await Comment.findByIdAndDelete(commentId);
+        }
+      }
+    };
+
+    await deleteCommentsAndReplies(comments.map((comment) => comment._id));
+
+    // Delete comments associated with the post
+    //await Comment.deleteMany({ post: id });
+
     return res.status(200).json({ message: "Post deleted" });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
