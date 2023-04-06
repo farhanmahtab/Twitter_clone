@@ -5,7 +5,6 @@
   padding: 20px;
 }
 
-
 .form label {
   display: block;
   margin-bottom: 5px;
@@ -14,13 +13,16 @@
 }
 
 .form textarea {
-  width: 100%;
+  width: 600px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 20px;
   font-size: 16px;
   color: #14171a;
+  overflow: hidden;
+  outline: none;
+  resize: none;
 }
 
 .form textarea {

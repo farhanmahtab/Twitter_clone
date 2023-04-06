@@ -21,13 +21,10 @@ const profile = ({ newsResults, usersResults }) => {
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);
   const [selectedOption, setSelectedOption] = useState("tweets");
-  // const [showposts, setShowPosts] = useState();
-  // const [showFollowers, setShowFollowers] = useState();
-  // const [showFollowing, setShowFollowing] = useState();
   const router = useRouter();
   const pathCur = router.asPath;
   const userId = router.query.id;
-
+  console.log(post.length);
   const fetchFollowers = async () => {
     const res = await fetch(`/api/user/follower?id=${userId}`);
     const data = await res.json();
@@ -74,8 +71,10 @@ const profile = ({ newsResults, usersResults }) => {
               className={Style.homeBarIcon}
               onClick={() => router.push("/")}
             />
-            <h2>{user?.name}</h2>
-            {/* <p>{userId}</p> */}
+            <div>
+              <h2>{user?.name}</h2>
+              <p>{post.length} tweets</p>
+            </div>
           </div>
           <div className={Style.coverPhotoDiv}>
             {/* <img alt="cover-photo" src={user?.coverPhoto} /> */}
@@ -147,12 +146,14 @@ const profile = ({ newsResults, usersResults }) => {
             post.map((post) => {
               return <Post key={post._id} post={post} />;
             })}
-          {selectedOption === "followers" && followers.map((follow) => {
-            return <Follow follow={follow}/>;
-          })}
-          {selectedOption === "following" && following.map((follow) => {
-            return <Follow follow={follow} />;
-          })}
+          {selectedOption === "followers" &&
+            followers.map((follow) => {
+              return <Follow follow={follow} />;
+            })}
+          {selectedOption === "following" &&
+            following.map((follow) => {
+              return <Follow follow={follow} />;
+            })}
         </div>
 
         <Widget

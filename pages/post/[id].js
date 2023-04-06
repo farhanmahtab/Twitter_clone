@@ -17,31 +17,36 @@ import Image from "next/image";
 import PostComment from "@/components/PostComment";
 import EditPost from "./EditPost";
 import Modal from "@/components/Modal";
+import Reply from "@/components/reply";
+import { useSession } from "next-auth/react";
 
 function postPage({ newsResults, usersResults }) {
+  const { data: session } = useSession();
   const router = useRouter();
   const pathCur = router.asPath;
-  //console.log(pathCur)
   const postId = router.query.id;
-  //console.log(postId);
   const [post, setPost] = useState();
   const [formatTime, setFormatTime] = useState();
   const fetchPost = async () => {
-    const res = await fetch(`/api/post//${postId}`);
+    const res = await fetch(`/api/post/${postId}`);
     const data = await res.json();
     setPost(data.post);
     setFormatTime(formatDistanceToNow(new Date(data.post.createdAt)));
-    //console.log(data.post.createdAt);
   };
   useEffect(() => {
     fetchPost();
-  }, [post]);
-  //console.log(post?.PostImage);
+  });
+
   return (
     <div>
       {router.query.modal == "editPost" && (
         <Modal>
           <EditPost post={post} />
+        </Modal>
+      )}
+      {router.query.modal == "reply" && (
+        <Modal>
+          <Reply comment={post?.Comment} />
         </Modal>
       )}
       <Sidebar />
@@ -66,17 +71,19 @@ function postPage({ newsResults, usersResults }) {
                   <span>{formatTime}</span>
                 </div>
                 {/* dot icon */}
-                <CogIcon
-                  className={styles.icon}
-                  onClick={() =>
-                    router.push({
-                      pathname: pathCur,
-                      query: {
-                        modal: "editPost",
-                      },
-                    })
-                  }
-                />
+                {session && session?.user.id === post?.createdBy._id && (
+                  <CogIcon
+                    className={styles.icon}
+                    onClick={() =>
+                      router.push({
+                        pathname: pathCur,
+                        query: {
+                          modal: "editPost",
+                        },
+                      })
+                    }
+                  />
+                )}
               </div>
               <p>{post?.body}</p>
               {post?.PostImage && (

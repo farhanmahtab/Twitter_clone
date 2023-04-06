@@ -11,8 +11,16 @@
   height: auto;
   overflow: hidden;
   border-left: 1px solid gainsboro;
-  border-bottom: 1px solid gainsboro;
-  
+  border-bottom: 1px solid gainsboro; 
+}
+.replyMain {
+  margin-right: 0;
+  display: flex;
+  margin-left: 20px;
+  height: auto;
+  overflow: hidden;
+  border-left: 1px solid gainsboro;
+  border-bottom: 1px solid gainsboro; 
 }
 .postMain p {
   padding: 10px 2px;

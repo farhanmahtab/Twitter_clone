@@ -17,7 +17,7 @@
   display: flex;
   position: sticky;
   top: 0;
-  height: 70px;
+  height: 80px;
   /* -webkit-backdrop-filter: blur(5px); */
   backdrop-filter: blur(25px);
   background-color: rgba(255, 255, 255, 0.6);
@@ -41,6 +41,11 @@
   cursor: pointer;
   color: #17191b;
   cursor: pointer;
+}
+.homeBar p {
+  font-size: 1rem;
+  color: rgb(124, 121, 121);
+  margin: 5px 50px;
 }
 .homeBarIcon {
   position: absolute;

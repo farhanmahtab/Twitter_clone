@@ -1,5 +1,4 @@
 import { ChatIcon, HeartIcon, TrashIcon } from "@heroicons/react/outline";
-import { formatDistanceToNow } from "date-fns";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -7,40 +6,44 @@ import React, { useState } from "react";
 import Styles from "../styles/comment.module.css";
 import styles from "../styles/modal.module.css";
 
-const Comment = ({comments}) => {
+//reply modal
+const Reply = () => {
   const router = useRouter();
-  const { postId } = router.query;
+  const commentId = router.query.commentId;
+
+  const fullPath = router.asPath;
+  const url = fullPath.split("/")[2];
+  const postId = url.split("?")[0];
+  //console.log("Post ID:", postId);
   const { data: session } = useSession();
   const [comment, setComment] = useState("");
   const image = session?.user.image || session?.user.picture;
-  // const formatTime = formatDistanceToNow(new Date(comments?.createdAt));
-  console.log(comments.createdAt)
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("/api/post/comment", {
+      const response = await fetch("/api/post/comment/reply", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email: session?.user.email,
-          post: postId,
+          commentId: commentId,
           body: comment,
         }),
       });
       const data = await response.json();
-      // console.log(data);
+      console.log(data);
       setComment("");
     } catch (error) {
       console.error(error);
     }
-    router.push(`post/${postId}`);
+    router.push(`/post/${postId}`);
   };
 
   return (
     <form className={styles.form}>
-      {/* <img className="comment-avatar" src={session?.user} alt="User Avatar"> */}
       <div className={Styles.comment_content}>
         <div className={Styles.commentTop}>
           <Image
@@ -52,7 +55,7 @@ const Comment = ({comments}) => {
           />
           <div className={Styles.comment_Header}>
             <span className={Styles.comment_author}>{session?.user.name}</span>
-            <span className={Styles.comment_date}>formatTime</span>
+            <span className={Styles.comment_date}>2 hours ago</span>
           </div>
         </div>
         <div>
@@ -60,7 +63,7 @@ const Comment = ({comments}) => {
           <textarea
             className={Styles.textarea}
             value={comment}
-            placeholder="Leave Comment"
+            placeholder="Leave a reply"
             onChange={(e) => setComment(e.target.value)}
           />
           <div className={Styles.iconsBottom}>
@@ -78,7 +81,7 @@ const Comment = ({comments}) => {
               className={Styles.commentButton}
               onClick={handleSubmit}
             >
-              Comment
+              Reply
             </button>
           </div>
         </div>
@@ -87,4 +90,4 @@ const Comment = ({comments}) => {
   );
 };
 
-export default Comment;
+export default Reply;
