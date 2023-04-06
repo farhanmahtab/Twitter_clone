@@ -73,6 +73,7 @@ function Post({ post }) {
       console.error(error.message);
     }
   };
+  //console.log(post.Comment.length);
   return (
     <div className={styles.postMain}>
       <Image
@@ -123,7 +124,7 @@ function Post({ post }) {
                 router.replace(`?modal=comment&postId=${post._id}`);
               }}
             />
-            <h4>{post?.comment?.length}</h4>
+            <h4>{post.Comment.length}</h4>
           </div>
 
           <div className={styles.iconDiv}>

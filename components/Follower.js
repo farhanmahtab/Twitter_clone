@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "../styles/Widget.module.css";
-import style from "../styles/follow.module.css";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 

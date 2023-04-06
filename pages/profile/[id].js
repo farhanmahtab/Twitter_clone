@@ -20,6 +20,10 @@ const profile = ({ newsResults, usersResults }) => {
   const [post, setPost] = useState([]);
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("tweets");
+  // const [showposts, setShowPosts] = useState();
+  // const [showFollowers, setShowFollowers] = useState();
+  // const [showFollowing, setShowFollowing] = useState();
   const router = useRouter();
   const pathCur = router.asPath;
   const userId = router.query.id;
@@ -112,13 +116,41 @@ const profile = ({ newsResults, usersResults }) => {
               )}
             </div>
           </div>
-          {/* {post.map((post) => {
-            return <Post key={post._id} post={post} />;
-          })} */}
-          {/* {followers.map((follow) => {
+
+          <div className={Style.viewOptions}>
+            <div
+              className={`${Style.options} ${
+                selectedOption === "tweets" ? Style.selected : ""
+              }`}
+              onClick={() => setSelectedOption("tweets")}
+            >
+              Tweets
+            </div>
+            <div
+              className={`${Style.options} ${
+                selectedOption === "followers" ? Style.selected : ""
+              }`}
+              onClick={() => setSelectedOption("followers")}
+            >
+              Followers
+            </div>
+            <div
+              className={`${Style.options} ${
+                selectedOption === "following" ? Style.selected : ""
+              }`}
+              onClick={() => setSelectedOption("following")}
+            >
+              Following
+            </div>
+          </div>
+          {selectedOption === "tweets" &&
+            post.map((post) => {
+              return <Post key={post._id} post={post} />;
+            })}
+          {selectedOption === "followers" && followers.map((follow) => {
             return <Follow follow={follow}/>;
-          })} */}
-          {following.map((follow) => {
+          })}
+          {selectedOption === "following" && following.map((follow) => {
             return <Follow follow={follow} />;
           })}
         </div>

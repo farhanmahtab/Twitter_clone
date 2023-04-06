@@ -117,3 +117,28 @@
   background-color: rgb(29, 155, 240);
   transform: scale(1.01);
 }
+.feedbottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.viewOptions {
+  margin-top: 1.5rem;
+  display: flex;
+  border-bottom: 1px solid #eff3f4;
+}
+
+.options {
+  width: 33.33%;
+  padding: 0.5rem 0rem;
+  text-align: center;
+}
+
+.selected {
+  border-bottom: 3px solid #1d9bf0;
+}
+
+.options:hover {
+  cursor: pointer;
+  background-color: rgb(250, 248, 248);
+}
