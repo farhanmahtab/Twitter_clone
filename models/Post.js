@@ -22,21 +22,61 @@ const postSchema = new Schema(
       default: () => Date.now(),
     },
     react: [{ type: Schema.Types.ObjectId, ref: "User" }],
-
     NumberOfReact: {
       type: "number",
       default: 0,
     },
-    Comment: [
+    comments: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "Comment",
+        createdBy: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+        },
+        body: {
+          type: "string",
+        },
+        createdAt: {
+          type: Date,
+          immutable: true,
+          default: () => Date.now(),
+        },
+        updatedAt: {
+          type: Date,
+          default: () => Date.now(),
+        },
+        react: [{ type: Schema.Types.ObjectId, ref: "User" }],
+        NumberOfReact: {
+          type: "number",
+          default: 0,
+        },
+        replies: [
+          {
+            createdBy: {
+              type: Schema.Types.ObjectId,
+              ref: "User",
+            },
+            body: {
+              type: "string",
+            },
+            createdAt: {
+              type: Date,
+              immutable: true,
+              default: () => Date.now(),
+            },
+            updatedAt: {
+              type: Date,
+              default: () => Date.now(),
+            },
+          },
+        ],
       },
     ],
-    NumberOfComment: {
-      type: "number",
-      default: 0,
-    },
+    retweets: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   { timestamps: true }
 );

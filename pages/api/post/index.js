@@ -23,11 +23,14 @@ export const parseForm = async (req) => {
   });
 };
 //Get all post
-const getAllposts = async (req, res) => {
+const getAllPosts = async (req, res) => {
   try {
     const posts = await Posts.find({})
       .populate("createdBy", "name username email profilePicture")
-      .populate("Comment", "body")
+      .populate({
+        path: "Comments",
+        populate: { path: "replies", select: "createdBy body" },
+      })
       .sort({ createdAt: -1 });
     res.status(200).json({ message: "Posts fetched", posts });
   } catch (error) {
@@ -37,10 +40,6 @@ const getAllposts = async (req, res) => {
 // create a new post with single image
 
 const postTweet = async (req, res) => {
-  // const { body, PostImage } = req.body;
-  // if (!body && !PostImage) {
-  //   return res.status(400).json({ message: "Add something to post" });
-  // }
   try {
     const { fields, files } = await parseForm(req);
     //console.log(files)
@@ -70,7 +69,7 @@ const postTweet = async (req, res) => {
 export default async function handler(req, res) {
   await connectMongo();
   if (req.method === "GET") {
-    await getAllposts(req, res);
+    await getAllPosts(req, res);
   } else if (req.method === "POST") {
     await postTweet(req, res);
   } else {

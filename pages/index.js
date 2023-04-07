@@ -29,16 +29,11 @@ export default function Home({ newsResults, comments, usersResults, posts }) {
           <LogIn />
         </Modal>
       )}
-      {router.query.modal == "comment" && (
-        <Modal>
-          <Comment comments={comments.data} />
-        </Modal>
-      )}
-      <main className={styles.main}>
+        <main className={styles.main}>
         {/* sidebar */}
         <Sidebar />
         {/* feed */}
-        <Feed post={posts?.posts || null} />
+        <Feed />
         {/* widget */}
         <Widget
           newsResults={newsResults?.articles}

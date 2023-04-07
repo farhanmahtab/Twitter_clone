@@ -13,66 +13,64 @@ import { useSession } from "next-auth/react";
 import { formatDistanceToNow } from "date-fns";
 import { useRouter } from "next/router";
 
-function Post({ post }) {
+function Post({post}) {
   const { data: session } = useSession();
   const router = useRouter();
-  const [reactNumber, setReactNumber] = useState(post?.react?.length);
-  const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    setPosts(post);
-  });
+
+
+
   const [isLiked, setIsLiked] = useState(
     post.react.includes(session?.user?.id)
   );
-  const formatTime = formatDistanceToNow(new Date(post.createdAt));
+  // const formatTime = formatDistanceToNow(new Date(post.createdAt));
   //console.log(session.user.id);
-  const handleDelete = async () => {
-    console.log(post._id);
-    try {
-      const response = await fetch(`/api/post/${post._id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
+  // const handleDelete = async () => {
+  //   console.log(post._id);
+  //   try {
+  //     const response = await fetch(`/api/post/${post._id}`, {
+  //       method: "DELETE",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       credentials: "include",
+  //     });
 
-      if (response.ok) {
-        console.log(post._id, " is Deleted");
-      } else {
-        console.error(`Failed to delete post with ID ${post._id}`);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-    router.replace("/");
-  };
-  const handleReact = async () => {
-    const postId = post._id;
-    const userId = session.user.id;
-    try {
-      const response = await fetch(`/api/post/react?postId=${postId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userId }),
-      });
-      const { success, message } = await response.json();
+  //     if (response.ok) {
+  //       console.log(post._id, " is Deleted");
+  //     } else {
+  //       console.error(`Failed to delete post with ID ${post._id}`);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  //   router.replace("/");
+  // };
+  // const handleReact = async () => {
+  //   const postId = post._id;
+  //   const userId = session.user.id;
+  //   try {
+  //     const response = await fetch(`/api/post/react?postId=${postId}`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ userId }),
+  //     });
+  //     const { success, message } = await response.json();
 
-      if (success) {
-        console.log(message);
-        //updating the state of the component
-      } else {
-        console.error(message);
-      }
-      message === "liked"
-        ? (setReactNumber(reactNumber + 1), setIsLiked(true))
-        : (setReactNumber(reactNumber - 1), setIsLiked(false));
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
+  //     if (success) {
+  //       console.log(message);
+  //       //updating the state of the component
+  //     } else {
+  //       console.error(message);
+  //     }
+  //     message === "liked"
+  //       ? (setReactNumber(reactNumber + 1), setIsLiked(true))
+  //       : (setReactNumber(reactNumber - 1), setIsLiked(false));
+  //   } catch (error) {
+  //     console.error(error.message);
+  //   }
+  // };
   //console.log(post.Comment.length);
   return (
     <div className={styles.postMain}>
@@ -93,7 +91,7 @@ function Post({ post }) {
             </h4>
             <span>{post.createdBy.username}</span>
             <div className={styles.dot}></div>
-            <span>{formatTime}</span>
+            <span>formatTime</span>
           </div>
           {/* dot icon */}
         </div>
@@ -139,7 +137,7 @@ function Post({ post }) {
                 onClick={() => handleReact()}
               />
             )}
-            <h4>{reactNumber}</h4>
+            <h4>{post.NumberOfReact}</h4>
           </div>
 
           {session && session?.user.id === post?.createdBy._id && (
