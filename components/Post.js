@@ -13,11 +13,9 @@ import { useSession } from "next-auth/react";
 import { formatDistanceToNow } from "date-fns";
 import { useRouter } from "next/router";
 
-function Post({post}) {
+function Post({ post }) {
   const { data: session } = useSession();
   const router = useRouter();
-
-
 
   const [isLiked, setIsLiked] = useState(
     post.react.includes(session?.user?.id)
@@ -26,25 +24,29 @@ function Post({post}) {
   //console.log(session.user.id);
   // const handleDelete = async () => {
   //   console.log(post._id);
-  //   try {
-  //     const response = await fetch(`/api/post/${post._id}`, {
-  //       method: "DELETE",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       credentials: "include",
-  //     });
+  // }
+  const handleDelete = async () => {
+    console.log(post._id);
+    const postId = post._id;
+    try {
+      const response = await fetch(`/api/post/posts`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ postId }),
+      });
 
-  //     if (response.ok) {
-  //       console.log(post._id, " is Deleted");
-  //     } else {
-  //       console.error(`Failed to delete post with ID ${post._id}`);
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  //   router.replace("/");
-  // };
+      if (response.ok) {
+        console.log(post._id, " is Deleted");
+      } else {
+        console.error(`Failed to delete post with ID ${post._id}`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    router.replace("/");
+  };
   // const handleReact = async () => {
   //   const postId = post._id;
   //   const userId = session.user.id;

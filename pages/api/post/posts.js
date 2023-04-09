@@ -3,6 +3,9 @@ import Posts from "../../../models/Post";
 import User from "../../../models/User";
 import formidable from "formidable";
 import path from "path";
+import bodyParser from "body-parser";
+
+const jsonParser = bodyParser.json();
 
 export const config = {
   api: {
@@ -66,12 +69,33 @@ const createPost = async (req, res) => {
   }
 };
 
+//delete a post By Id
+const deleteTweet = async (req, res) => {
+  jsonParser(req, res, async () => {
+    const { postId } = req.body; 
+    console.log(postId);
+    try {
+      const post = await Posts.findById(postId);
+      console.log(post);
+      if (!post) {
+        return res.status(404).json({ message: "Post not found" });
+      }
+      await Posts.findByIdAndDelete(postId);
+      return res.status(200).json({ message: "Post deleted" });
+    } catch (error) {
+      res.status(400).json({ success: false, error: error.message });
+    }
+  });
+};
+
 export default async function handler(req, res) {
   await connectMongo();
   if (req.method === "GET") {
     await getAllPosts(req, res);
   } else if (req.method === "POST") {
     await createPost(req, res);
+  } else if (req.method === "DELETE") {
+    await deleteTweet(req, res);
   } else {
     res.status(405).json({ message: "Method Not Allowed" });
   }

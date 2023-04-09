@@ -70,6 +70,7 @@ const updatePostById = async (req, res) => {
   }
 };
 
+
 // delete a post
 const deleteTweet = async (req, res) => {
   const { id } = req.query;
@@ -94,17 +95,13 @@ const deleteTweet = async (req, res) => {
         }
       }
     };
-
     await deleteCommentsAndReplies(comments.map((comment) => comment._id));
-
-    // Delete comments associated with the post
-    //await Comment.deleteMany({ post: id });
-
     return res.status(200).json({ message: "Post deleted" });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
   }
 };
+
 
 export default async function handler(req, res) {
   await connectMongo();
