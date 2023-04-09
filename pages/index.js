@@ -3,7 +3,6 @@ import Modal from "@/components/Modal";
 import Sidebar from "@/components/Sidebar";
 import SignUp from "@/components/SignUp";
 import LogIn from "@/components/LogIn";
-import Comment from "@/components/Comment";
 import Widget from "@/components/Widget";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
@@ -29,11 +28,11 @@ export default function Home({ newsResults, comments, usersResults, posts }) {
           <LogIn />
         </Modal>
       )}
-        <main className={styles.main}>
+      <main className={styles.main}>
         {/* sidebar */}
         <Sidebar />
         {/* feed */}
-        <Feed />
+        <Feed post={posts.posts} />
         {/* widget */}
         <Widget
           newsResults={newsResults?.articles}
@@ -61,7 +60,7 @@ export async function getServerSideProps({ context }) {
   //posts
   let posts = [];
   try {
-    const res = await fetch("http://localhost:3000/api/post");
+    const res = await fetch("http://localhost:3000/api/post/posts");
     posts = await res.json();
   } catch (e) {
     posts = [];

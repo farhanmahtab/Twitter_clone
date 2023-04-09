@@ -30,14 +30,14 @@ function PostBox({ setPosts }) {
       formData.append("PostImage", image);
     });
     try {
-      const response = await fetch("/api/post", {
+      const response = await fetch("/api/post/posts", {
         method: "POST",
         body: formData,
       });
       const data = await response.json();
       console.log(data);
 
-      const res1 = await fetch("/api/post");
+      const res1 = await fetch("/api/post/posts");
       const data1 = await res1.json();
       setPosts(data1.posts);
       setSelectedImages([]);

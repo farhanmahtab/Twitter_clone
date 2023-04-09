@@ -22,7 +22,7 @@ function Post({post}) {
   const [isLiked, setIsLiked] = useState(
     post.react.includes(session?.user?.id)
   );
-  // const formatTime = formatDistanceToNow(new Date(post.createdAt));
+  const formatTime = formatDistanceToNow(new Date(post.createdAt));
   //console.log(session.user.id);
   // const handleDelete = async () => {
   //   console.log(post._id);
@@ -91,7 +91,7 @@ function Post({post}) {
             </h4>
             <span>{post.createdBy.username}</span>
             <div className={styles.dot}></div>
-            <span>formatTime</span>
+            <span>{formatTime}</span>
           </div>
           {/* dot icon */}
         </div>
@@ -122,7 +122,7 @@ function Post({post}) {
                 router.replace(`?modal=comment&postId=${post._id}`);
               }}
             />
-            <h4>{post.Comment.length}</h4>
+            <h4>post.Comments.length</h4>
           </div>
 
           <div className={styles.iconDiv}>
