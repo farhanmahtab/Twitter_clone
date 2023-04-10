@@ -17,7 +17,7 @@ const getComments = async (req, res) => {
   }
 };
 
-//create a new comment
+// Create a comment
 const postComments = async (req, res) => {
   try {
     const author = await Users.findOne({ email: req.body.email });
@@ -37,7 +37,6 @@ const postComments = async (req, res) => {
     res.status(400).json({ success: false, error: error.message });
   }
 };
-
 
 export default async function handler(req, res) {
   await conncetMongoose();

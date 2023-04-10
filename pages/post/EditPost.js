@@ -2,7 +2,8 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Styles from "./editPost.module.css";
 
-const EditPost = ({ post }) => {
+const EditPost = ({ post ,posts,setPosts }) => {
+  //console.log(post);
   const router = useRouter();
   const id = router.query.postId;
   const [formData, setFormData] = useState({
@@ -21,7 +22,9 @@ const EditPost = ({ post }) => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      //console.log(data.message);
+      
+      // setPosts([data.data, ...post]);
+      // console.log(data);
     } catch (error) {
       console.error(error);
     }

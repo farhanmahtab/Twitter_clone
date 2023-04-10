@@ -12,17 +12,25 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import Reply from "./CommentReply";
 import CommentReply from "./CommentReply";
+import { useSession } from "next-auth/react";
 
 export default function PostComment({ comment }) {
+  const { data: session } = useSession();
+  //console.log(comment.createdBy._id);
   const router = useRouter();
   const pathCur = router.asPath;
   //console.log(comment._id);
   const formatTime = formatDistanceToNow(new Date(comment.createdAt));
+
+  const handleDelete = async () => {
+    console.log(comment._id);
+  };
+
   return (
     <div>
       <div className={styles.commentMain}>
         <Image
-          src={comment.author.profilePicture}
+          src={comment.createdBy.profilePicture}
           width="50"
           height="50"
           className={styles.profileImage}
@@ -30,8 +38,8 @@ export default function PostComment({ comment }) {
         />
         <div className={styles.RightDiv}>
           <div className={styles.nameBar}>
-            <h4>{comment.author.name}</h4>
-            <span>{comment.author.username}</span>
+            <h4>{comment.createdBy.name}</h4>
+            <span>{comment.createdBy.username}</span>
             <div className={styles.dot}></div>
             <span>replied : {formatTime}</span>
           </div>
@@ -45,15 +53,22 @@ export default function PostComment({ comment }) {
                     pathname: pathCur,
                     query: {
                       modal: "reply",
-                      commentId: comment._id
+                      commentId: comment._id,
                     },
                   })
                 }
               />
             </div>
-            <div className={styles.iconDiv}>
-              <TrashIcon className={styles.icon} />
-            </div>
+            {}
+            {session && session?.user.id === comment?.createdBy?._id && (
+              <div className={styles.iconDiv}>
+                <TrashIcon
+                  className={styles.icon}
+                  onClick={() => handleDelete()}
+                />
+              </div>
+            )}
+
             <div className={styles.iconDiv}>
               <HeartIcon className={styles.icon} />
             </div>
@@ -66,7 +81,7 @@ export default function PostComment({ comment }) {
           </div>
         </div>
       </div>
-      <CommentReply key={comment._id} commentId={comment._id}/>
+      {/* <CommentReply key={comment._id} commentId={comment._id}/> */}
     </div>
   );
 }

@@ -7,35 +7,35 @@ import React, { useState } from "react";
 import Styles from "../styles/comment.module.css";
 import styles from "../styles/modal.module.css";
 
-const Comment = ({comments}) => {
+const Comment = ({ comments, setComments }) => {
   const router = useRouter();
   const { postId } = router.query;
+  //console.log(postId)
   const { data: session } = useSession();
   const [comment, setComment] = useState("");
   const image = session?.user.image || session?.user.picture;
-  // const formatTime = formatDistanceToNow(new Date(comments?.createdAt));
-  console.log(comments.createdAt)
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("/api/post/comment", {
+      const response = await fetch("/api/post/comments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email: session?.user.email,
-          post: postId,
+          postId: postId,
           body: comment,
         }),
       });
       const data = await response.json();
-      // console.log(data);
+      console.log(data);
       setComment("");
+      setComments([data.comment, ...comments]);
     } catch (error) {
       console.error(error);
     }
-    router.push(`post/${postId}`);
+    router.push(`/`);
   };
 
   return (
@@ -52,11 +52,9 @@ const Comment = ({comments}) => {
           />
           <div className={Styles.comment_Header}>
             <span className={Styles.comment_author}>{session?.user.name}</span>
-            <span className={Styles.comment_date}>formatTime</span>
           </div>
         </div>
         <div>
-          {/* <div className={Styles.comment_body}>Leave a comment</div> */}
           <textarea
             className={Styles.textarea}
             value={comment}

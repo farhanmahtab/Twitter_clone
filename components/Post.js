@@ -7,7 +7,7 @@ import {
   PencilAltIcon,
 } from "@heroicons/react/outline";
 import { HeartIcon as HeartIconFilled } from "@heroicons/react/solid";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "../styles/Post.module.css";
 import { useSession } from "next-auth/react";
@@ -15,6 +15,8 @@ import { formatDistanceToNow } from "date-fns";
 import { useRouter } from "next/router";
 import Modal from "./Modal";
 import EditPost from "@/pages/post/EditPost";
+import Comment from "./Comment";
+import PostComment from "./PostComment";
 
 function Post({ post, posts, setPosts }) {
   const { data: session } = useSession();
@@ -24,9 +26,21 @@ function Post({ post, posts, setPosts }) {
   const [isLiked, setIsLiked] = useState(
     post?.react?.includes(session?.user?.id)
   );
+
+  const [comment, setComment] = useState([]);
   const formatTime = formatDistanceToNow(new Date(post?.createdAt));
 
-  //console.log(session.user.id);
+  const fetchComment = async () => {
+    const res = await fetch(`/api/post/comments?postId=${post._id}`);
+    const data = await res.json();
+    //console.log(data.comments);
+    setComment(data.comments);
+  };
+  useEffect(() => {
+    fetchComment();
+  }, []);
+
+  //console.log(comment);
   const handleDelete = async () => {
     const postId = post._id;
     try {
@@ -53,6 +67,8 @@ function Post({ post, posts, setPosts }) {
     }
     router.replace("/");
   };
+
+  //handle Like
   const handleReact = async () => {
     const postId = post._id;
     const userId = session.user.id;
@@ -78,12 +94,18 @@ function Post({ post, posts, setPosts }) {
       console.error(error.message);
     }
   };
-  //console.log(post.Comment.length);
+  //console.log(post.comments);
+
   return (
     <div className={styles.postMain}>
       {router.query.modal == "editPost" && (
         <Modal>
-          <EditPost />
+          <EditPost post={posts} setPosts={setPosts} />
+        </Modal>
+      )}
+      {router.query.modal == "comment" && (
+        <Modal>
+          <Comment comments={comment} setComments={setComment} />
         </Modal>
       )}
       <Image
@@ -122,13 +144,11 @@ function Post({ post, posts, setPosts }) {
               }
             />
           )}
-
           {/* dot icon */}
         </div>
-        {/* <Link href={`/post/${post._id}`}> */}
         <div
           className={styles.textBody}
-          onClick={() => router.push(`/post/${post._id}`)}
+          // onClick={() => router.push(`/post/${post._id}`)}
         >
           <p>{post.body}</p>
         </div>
@@ -148,11 +168,17 @@ function Post({ post, posts, setPosts }) {
           <div className={styles.iconDiv}>
             <ChatIcon
               className={styles.icon}
-              onClick={() => {
-                router.replace(`?modal=comment&postId=${post._id}`);
-              }}
+              onClick={() =>
+                router.push({
+                  pathname: pathCur,
+                  query: {
+                    modal: `comment`,
+                    postId: post._id,
+                  },
+                })
+              }
             />
-            <h4>post.Comments.length</h4>
+            <h4>{post.comments.length}</h4>
           </div>
 
           <div className={styles.iconDiv}>
@@ -188,6 +214,10 @@ function Post({ post, posts, setPosts }) {
             <h4>200</h4>
           </div>
         </div>
+        {/* Comment */}
+        {comment.map((comment) => {
+          return <PostComment key={comment._id} comment={comment} />;
+        })}
       </div>
     </div>
   );
