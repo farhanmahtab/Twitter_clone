@@ -28,6 +28,7 @@ export default function Home({ newsResults, comments, usersResults, posts }) {
           <LogIn />
         </Modal>
       )}
+
       <main className={styles.main}>
         {/* sidebar */}
         <Sidebar />

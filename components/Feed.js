@@ -17,9 +17,11 @@ export default function Feed({ post }) {
         <h2>Home</h2>
         {/* <CogIcon className={styles.homeBarIcon} /> */}
       </div>
-      {session && <PostBox setPosts={setPosts} />}
+      {session && <PostBox setPosts={setPosts} allPost={posts} />}
       {posts.map((post) => {
-        return <Post key={post._id} post={post} />;
+        return (
+          <Post key={post._id} post={post} setPosts={setPosts} posts={posts} />
+        );
       })}
     </div>
   );

@@ -4,6 +4,7 @@ import {
   HeartIcon,
   ShareIcon,
   TrashIcon,
+  PencilAltIcon,
 } from "@heroicons/react/outline";
 import { HeartIcon as HeartIconFilled } from "@heroicons/react/solid";
 import React, { useEffect, useState } from "react";
@@ -12,21 +13,21 @@ import styles from "../styles/Post.module.css";
 import { useSession } from "next-auth/react";
 import { formatDistanceToNow } from "date-fns";
 import { useRouter } from "next/router";
+import Modal from "./Modal";
+import EditPost from "@/pages/post/EditPost";
 
-function Post({ post }) {
+function Post({ post, posts, setPosts }) {
   const { data: session } = useSession();
   const router = useRouter();
-
+  const pathCur = router.asPath;
+  const [reactNumber, setReactNumber] = useState(post?.react?.length);
   const [isLiked, setIsLiked] = useState(
-    post.react.includes(session?.user?.id)
+    post?.react?.includes(session?.user?.id)
   );
-  const formatTime = formatDistanceToNow(new Date(post.createdAt));
+  const formatTime = formatDistanceToNow(new Date(post?.createdAt));
+
   //console.log(session.user.id);
-  // const handleDelete = async () => {
-  //   console.log(post._id);
-  // }
   const handleDelete = async () => {
-    console.log(post._id);
     const postId = post._id;
     try {
       const response = await fetch(`/api/post/posts`, {
@@ -39,6 +40,11 @@ function Post({ post }) {
 
       if (response.ok) {
         console.log(post._id, " is Deleted");
+
+        const newPosts = posts.filter(
+          (postIterable) => postIterable._id !== post._id
+        );
+        setPosts(newPosts);
       } else {
         console.error(`Failed to delete post with ID ${post._id}`);
       }
@@ -47,35 +53,39 @@ function Post({ post }) {
     }
     router.replace("/");
   };
-  // const handleReact = async () => {
-  //   const postId = post._id;
-  //   const userId = session.user.id;
-  //   try {
-  //     const response = await fetch(`/api/post/react?postId=${postId}`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ userId }),
-  //     });
-  //     const { success, message } = await response.json();
+  const handleReact = async () => {
+    const postId = post._id;
+    const userId = session.user.id;
+    try {
+      const response = await fetch(`/api/post/react?postId=${postId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId }),
+      });
+      const { success, message } = await response.json();
 
-  //     if (success) {
-  //       console.log(message);
-  //       //updating the state of the component
-  //     } else {
-  //       console.error(message);
-  //     }
-  //     message === "liked"
-  //       ? (setReactNumber(reactNumber + 1), setIsLiked(true))
-  //       : (setReactNumber(reactNumber - 1), setIsLiked(false));
-  //   } catch (error) {
-  //     console.error(error.message);
-  //   }
-  // };
+      if (success) {
+        console.log(message);
+      } else {
+        console.error(message);
+      }
+      message === "liked"
+        ? (setReactNumber(reactNumber + 1), setIsLiked(true))
+        : (setReactNumber(reactNumber - 1), setIsLiked(false));
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
   //console.log(post.Comment.length);
   return (
     <div className={styles.postMain}>
+      {router.query.modal == "editPost" && (
+        <Modal>
+          <EditPost />
+        </Modal>
+      )}
       <Image
         src={post.createdBy.profilePicture}
         width="50"
@@ -95,6 +105,24 @@ function Post({ post }) {
             <div className={styles.dot}></div>
             <span>{formatTime}</span>
           </div>
+          {session && session?.user.id === post?.createdBy._id && (
+            <PencilAltIcon
+              className={styles.icon}
+              onClick={() =>
+                router.push(
+                  {
+                    pathname: pathCur,
+                    query: {
+                      modal: `editPost`,
+                      postId: post._id,
+                    },
+                  },
+                  console.log(post._id)
+                )
+              }
+            />
+          )}
+
           {/* dot icon */}
         </div>
         {/* <Link href={`/post/${post._id}`}> */}
@@ -139,7 +167,7 @@ function Post({ post }) {
                 onClick={() => handleReact()}
               />
             )}
-            <h4>{post.NumberOfReact}</h4>
+            <h4>{reactNumber}</h4>
           </div>
 
           {session && session?.user.id === post?.createdBy._id && (

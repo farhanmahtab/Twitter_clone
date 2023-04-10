@@ -61,6 +61,7 @@ const createPost = async (req, res) => {
       PostImage: image,
     });
     await post.save().then(() => console.log("post Created"));
+    await post.populate("createdBy", "name username profilePicture");
     res.status(200).json({ status: true, data: post });
     //console.log(post);
   } catch (error) {
@@ -72,7 +73,7 @@ const createPost = async (req, res) => {
 //delete a post By Id
 const deleteTweet = async (req, res) => {
   jsonParser(req, res, async () => {
-    const { postId } = req.body; 
+    const { postId } = req.body;
     console.log(postId);
     try {
       const post = await Posts.findById(postId);
@@ -88,6 +89,37 @@ const deleteTweet = async (req, res) => {
   });
 };
 
+//Udpate Post
+const updatePostById = async (req, res) => {
+  jsonParser(req, res, async () => {
+    try {
+      const id = req.query.postId;
+      console.log(id);
+      const { body, postImage } = req.body;
+      const updatedPost = {};
+      updatedPost.id = id;
+      //console.log(id);
+      if (body) updatedPost.body = body;
+      if (postImage) updatedPost.postImage = postImage;
+
+      const post = await Posts.findByIdAndUpdate(id, updatedPost, {
+        new: true,
+        runValidators: true,
+      }).populate({
+        path: "createdBy",
+        select: "name username email profilePicture",
+      });
+      //console.log(post);
+      if (!post) {
+        return res.status(404).json({ message: "Post not found" });
+      }
+      res.status(200).json({ message: "Post updated", post });
+    } catch (error) {
+      res.status(400).json({ success: false, error: error.message });
+    }
+  });
+};
+
 export default async function handler(req, res) {
   await connectMongo();
   if (req.method === "GET") {
@@ -96,6 +128,8 @@ export default async function handler(req, res) {
     await createPost(req, res);
   } else if (req.method === "DELETE") {
     await deleteTweet(req, res);
+  } else if (req.method === "PATCH") {
+    await updatePostById(req, res);
   } else {
     res.status(405).json({ message: "Method Not Allowed" });
   }

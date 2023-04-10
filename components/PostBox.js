@@ -10,7 +10,8 @@ import {
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
-function PostBox({ setPosts }) {
+function PostBox({ setPosts, allPost }) {
+  //console.log(allPost);
   const router = useRouter();
   const filePickerRef = useRef(null);
   const { data: session } = useSession();
@@ -36,10 +37,7 @@ function PostBox({ setPosts }) {
       });
       const data = await response.json();
       console.log(data);
-
-      const res1 = await fetch("/api/post/posts");
-      const data1 = await res1.json();
-      setPosts(data1.posts);
+      setPosts([data.data, ...allPost]);
       setSelectedImages([]);
       setInput("");
     } catch (error) {

@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import Styles from "./editPost.module.css";
 
 const EditPost = ({ post }) => {
-  //console.log(post);
   const router = useRouter();
+  const id = router.query.postId;
   const [formData, setFormData] = useState({
     body: post?.body,
     PostImage: post?.PostImage,
@@ -13,7 +13,7 @@ const EditPost = ({ post }) => {
     // console.log(user._id);
     e.preventDefault();
     try {
-      const res = await fetch(`/api/post/${post._id}`, {
+      const res = await fetch(`/api/post/posts?postId=${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -55,7 +55,7 @@ const EditPost = ({ post }) => {
           />
         </label>
 
-        <button type="submit" onClick={() => router.push(`/post/${post._id}`)}>
+        <button type="submit" onClick={() => router.push(`/`)}>
           Tweet
         </button>
       </form>
