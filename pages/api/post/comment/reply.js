@@ -55,6 +55,7 @@ const postReply = async (req, res) => {
     return res.status(500).json({ error: "Server error" });
   }
 };
+
 export default async function handler(req, res) {
   await conncetMongoose();
   if (req.method == "GET") {

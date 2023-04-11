@@ -8,26 +8,29 @@ const jsonParser = bodyParser.json();
 //Get comments by post Id
 const getComments = async (req, res) => {
   try {
-    if (req.method === "GET") {
-      const { postId } = req.query;
-      const post = await Posts.findById(postId).populate({
+    const { postId } = req.query;
+    const post = await Posts.findById(postId)
+      .populate({
         path: "comments.createdBy",
         select: "name username email profilePicture",
+      })
+      .populate({
+        path: "comments.replies",
+        select: "createdBy body createdAt updatedAt",
+        populate:{
+          path:"createdBy",
+          select: "name username email profilePicture",
+        }
       });
-      if (!post) {
-        return res
-          .status(404)
-          .json({ success: false, message: "Post not found" });
-      }
-      const comments = post.comments.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      );
-      res.status(200).json({ success: true, comments });
-    } else {
-      res
-        .status(400)
-        .json({ success: false, message: "Invalid request method" });
+    if (!post) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Post not found" });
     }
+    const comments = post.comments.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+    res.status(200).json({ success: true, comments });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
   }
@@ -37,48 +40,42 @@ const getComments = async (req, res) => {
 const postComments = async (req, res) => {
   jsonParser(req, res, async () => {
     try {
-      if (req.method === "POST") {
-        const { email, postId, body } = req.body;
-        const user = await Users.findOne({ email });
+      const { email, postId, body } = req.body;
+      const user = await Users.findOne({ email });
 
-        if (!user) {
-          return res
-            .status(404)
-            .json({ success: false, message: "User not found" });
-        }
-        const post = await Posts.findById(postId);
-
-        if (!post) {
-          return res
-            .status(404)
-            .json({ success: false, message: "Post not found" });
-        }
-        const comment = {
-          createdBy: user._id,
-          body,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        };
-        post.comments.push(comment);
-        await post.save();
-
-        res.status(201).json({ success: true, comment });
-      } else {
-        res
-          .status(400)
-          .json({ success: false, message: "Invalid request method" });
+      if (!user) {
+        return res
+          .status(404)
+          .json({ success: false, message: "User not found" });
       }
+      const post = await Posts.findById(postId);
+
+      if (!post) {
+        return res
+          .status(404)
+          .json({ success: false, message: "Post not found" });
+      }
+      const comment = {
+        createdBy: user._id,
+        body,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+      post.comments.push(comment);
+      await post.save();
+
+      res.status(201).json({ success: true, comment });
     } catch (error) {
       res.status(400).json({ success: false, error: error.message });
     }
   });
 };
 
-//delet Comment by id
+//delete Comment by id
 const deleteComment = async (req, res) => {
   jsonParser(req, res, async () => {
     try {
-      const commentId = req.body.commentId; 
+      const commentId = req.body.commentId;
       const post = await Posts.findOneAndUpdate(
         { "comments._id": commentId },
         { $pull: { comments: { _id: commentId } } },
@@ -106,7 +103,6 @@ const deleteComment = async (req, res) => {
     }
   });
 };
-
 
 export default async function handler(req, res) {
   await conncetMongoose();

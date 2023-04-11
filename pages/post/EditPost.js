@@ -42,7 +42,7 @@ const EditPost = ({ post ,posts,setPosts }) => {
           <textarea
             name="body"
             value={formData.body}
-            placeholder="Update your post"
+            placeholder="Update your tweet"
             onChange={handleChange}
           ></textarea>
         </label>

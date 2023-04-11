@@ -10,11 +10,8 @@ import styles from "../styles/modal.module.css";
 const Reply = () => {
   const router = useRouter();
   const commentId = router.query.commentId;
+  const postId = router.query.postId;
 
-  const fullPath = router.asPath;
-  const url = fullPath.split("/")[2];
-  const postId = url.split("?")[0];
-  //console.log("Post ID:", postId);
   const { data: session } = useSession();
   const [comment, setComment] = useState("");
   const image = session?.user.image || session?.user.picture;
@@ -22,13 +19,14 @@ const Reply = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("/api/post/comment/reply", {
+      const response = await fetch("/api/post/comments/reply", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email: session?.user.email,
+          postId: postId,
           commentId: commentId,
           body: comment,
         }),
@@ -39,7 +37,7 @@ const Reply = () => {
     } catch (error) {
       console.error(error);
     }
-    router.push(`/post/${postId}`);
+    router.push(`/`);
   };
 
   return (

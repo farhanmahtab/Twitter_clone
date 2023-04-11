@@ -8,6 +8,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 import EditPost from "./post/EditPost";
+import Reply from "@/components/reply";
 
 export default function Home({ newsResults, comments, usersResults, posts }) {
   let router = useRouter();
@@ -26,6 +27,16 @@ export default function Home({ newsResults, comments, usersResults, posts }) {
       {router.query.modal == "login" && (
         <Modal>
           <LogIn />
+        </Modal>
+      )}
+      {router.query.modal == "editPost" && (
+        <Modal>
+          <EditPost />
+        </Modal>
+      )}
+      {router.query.modal == "reply" && (
+        <Modal>
+          <Reply/>
         </Modal>
       )}
 

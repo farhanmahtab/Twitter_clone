@@ -14,7 +14,6 @@ import { useSession } from "next-auth/react";
 import { formatDistanceToNow } from "date-fns";
 import { useRouter } from "next/router";
 import Modal from "./Modal";
-import EditPost from "@/pages/post/EditPost";
 import Comment from "./Comment";
 import PostComment from "./PostComment";
 
@@ -98,11 +97,7 @@ function Post({ post, posts, setPosts }) {
 
   return (
     <div className={styles.postMain}>
-      {router.query.modal == "editPost" && (
-        <Modal>
-          <EditPost post={posts} setPosts={setPosts} />
-        </Modal>
-      )}
+ 
       {router.query.modal == "comment" && (
         <Modal>
           <Comment comments={comment} setComments={setComment} />
@@ -148,7 +143,6 @@ function Post({ post, posts, setPosts }) {
         </div>
         <div
           className={styles.textBody}
-          // onClick={() => router.push(`/post/${post._id}`)}
         >
           <p>{post.body}</p>
         </div>
@@ -216,7 +210,7 @@ function Post({ post, posts, setPosts }) {
         </div>
         {/* Comment */}
         {comment.map((comment) => {
-          return <PostComment key={comment._id} comment={comment} />;
+          return <PostComment key={comment._id} comment={comment} postId={post._id}/>;
         })}
       </div>
     </div>

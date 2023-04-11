@@ -4,15 +4,16 @@ import ReplyComponent from "./ReplyComponent";
 const CommentReply = ({ commentId }) => {
   const [reply, setReply] = useState([]);
   const fetchReplies = async () => {
-    const res = await fetch(`/api/post/comment/reply?commentId=${commentId}`);
+    const res = await fetch(`/api/post/comments/reply?commentId=${commentId}`);
     const data = await res.json();
-    //console.log(data.data);
+    console.log(data.data);
     setReply(data.data);
   };
   //console.log(reply);
   useEffect(() => {
     fetchReplies();
-  },[reply]);
+  }, [reply]);
+  console.log(reply);
   return (
     <div>
       {/* <ReplyComponent /> */}
