@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import Styles from "../styles/comment.module.css";
 import styles from "../styles/modal.module.css";
 
-const Comment = ({ comments, setComments }) => {
+const Comment = () => {
   const router = useRouter();
   const { postId } = router.query;
   //console.log(postId)
@@ -31,7 +31,6 @@ const Comment = ({ comments, setComments }) => {
       const data = await response.json();
       console.log(data);
       setComment("");
-      setComments([data.comment, ...comments]);
     } catch (error) {
       console.error(error);
     }

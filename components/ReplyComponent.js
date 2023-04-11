@@ -11,7 +11,7 @@ import Image from "next/image";
 import { formatDistanceToNow } from "date-fns";
 
 const ReplyComponent = ({ reply }) => {
-  const img = reply.createdBy.profilePicture;
+  const img = reply.createdBy?.profilePicture;
   const formatTime = formatDistanceToNow(new Date(reply.createdAt));
   return (
     <div className={styles.replyMain}>
@@ -24,8 +24,8 @@ const ReplyComponent = ({ reply }) => {
       />
       <div className={styles.RightDiv}>
         <div className={styles.nameBar}>
-          <h4>{reply.createdBy.name}</h4>
-          <span>{reply.createdBy.username}</span>
+          <h4>{reply.createdBy?.name}</h4>
+          <span>{reply.createdBy?.username}</span>
           <div className={styles.dot}></div>
           <span>replied : {formatTime}</span>
         </div>

@@ -57,7 +57,6 @@ const Reply = () => {
           </div>
         </div>
         <div>
-          {/* <div className={Styles.comment_body}>Leave a comment</div> */}
           <textarea
             className={Styles.textarea}
             value={comment}

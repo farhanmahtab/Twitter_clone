@@ -25,7 +25,7 @@ export default function PostComment({ comment, postId }) {
     console.log(comment._id);
   };
   const replies = comment.replies;
-  // console.log(postId);
+   //console.log(replies);
   return (
     <div>
       <div className={styles.commentMain}>
@@ -55,9 +55,8 @@ export default function PostComment({ comment, postId }) {
                       query: {
                         modal: "reply",
                         commentId: comment._id,
-                        postId: postId
-                        
-                      },
+                        postId: postId,
+                      }
                     })
                   }
                 />
@@ -86,9 +85,10 @@ export default function PostComment({ comment, postId }) {
           </div>
         </div>
       </div>
-      {replies.map((rep) => (
+      <CommentReply reply={replies}/>
+      {/* {replies.map((rep) => (
         <ReplyComponent key={rep._id} reply={rep} postId={postId} />
-      ))}
+      ))} */}
     </div>
   );
 }

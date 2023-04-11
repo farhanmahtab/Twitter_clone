@@ -9,9 +9,16 @@ import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 import EditPost from "./post/EditPost";
 import Reply from "@/components/reply";
+import { useEffect, useState } from "react";
+import { set } from "mongoose";
+import Comment from "@/components/Comment";
 
 export default function Home({ newsResults, comments, usersResults, posts }) {
   let router = useRouter();
+  const [post, setPost] = useState([]);
+  useEffect(() => {
+    setPost(posts);
+  }, []);
   //console.log(posts.posts);
   return (
     <>
@@ -36,7 +43,12 @@ export default function Home({ newsResults, comments, usersResults, posts }) {
       )}
       {router.query.modal == "reply" && (
         <Modal>
-          <Reply/>
+          <Reply post={post} setPost={setPost} />
+        </Modal>
+      )}
+      {router.query.modal == "comment" && (
+        <Modal>
+          <Comment />
         </Modal>
       )}
 

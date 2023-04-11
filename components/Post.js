@@ -28,7 +28,7 @@ function Post({ post, posts, setPosts }) {
 
   const [comment, setComment] = useState([]);
   const formatTime = formatDistanceToNow(new Date(post?.createdAt));
-
+  // console.log(posts);
   const fetchComment = async () => {
     const res = await fetch(`/api/post/comments?postId=${post._id}`);
     const data = await res.json();
@@ -97,12 +97,6 @@ function Post({ post, posts, setPosts }) {
 
   return (
     <div className={styles.postMain}>
- 
-      {router.query.modal == "comment" && (
-        <Modal>
-          <Comment comments={comment} setComments={setComment} />
-        </Modal>
-      )}
       <Image
         src={post.createdBy.profilePicture}
         width="50"
@@ -110,7 +104,6 @@ function Post({ post, posts, setPosts }) {
         className={styles.profileImage}
         alt="user image"
       />
-
       <div className={styles.RightDiv}>
         {/* Username and Handle */}
         <div className={styles.rightBar}>
@@ -141,9 +134,7 @@ function Post({ post, posts, setPosts }) {
           )}
           {/* dot icon */}
         </div>
-        <div
-          className={styles.textBody}
-        >
+        <div className={styles.textBody}>
           <p>{post.body}</p>
         </div>
 
@@ -210,7 +201,13 @@ function Post({ post, posts, setPosts }) {
         </div>
         {/* Comment */}
         {comment.map((comment) => {
-          return <PostComment key={comment._id} comment={comment} postId={post._id}/>;
+          return (
+            <PostComment
+              key={comment._id}
+              comment={comment}
+              postId={post._id}
+            />
+          );
         })}
       </div>
     </div>
