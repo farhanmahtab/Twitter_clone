@@ -73,10 +73,31 @@ const postSchema = new Schema(
     ],
     retweets: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "User",
+        typeofTweet: {
+          type: "string",
+          enum: ["original", "retweet"],
+        },
+        post: {
+          type: Schema.Types.ObjectId,
+          ref: "Post",
+        },
+        createdBy: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+        },
       },
     ],
+    typeofTweet: {
+      type: "string",
+      enum: ["original", "retweet"],
+    },
+    originalTweetId: {
+      type: "string",
+    },
+    NumberOfRetweet: {
+      type: "Number",
+      default: 0,
+    },
   },
   { timestamps: true }
 );

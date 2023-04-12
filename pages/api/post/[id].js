@@ -15,14 +15,7 @@ const getPostById = async (req, res) => {
         path: "createdBy",
         select: "name username email profilePicture",
       })
-      .populate({
-        path: "Comment",
-        select: "body createdAt",
-        populate: {
-          path: "author",
-          select: "name username email profilePicture",
-        },
-      });
+      .exec();
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
@@ -70,7 +63,6 @@ const updatePostById = async (req, res) => {
   }
 };
 
-
 // delete a post
 const deleteTweet = async (req, res) => {
   const { id } = req.query;
@@ -101,7 +93,6 @@ const deleteTweet = async (req, res) => {
     res.status(400).json({ success: false, error: error.message });
   }
 };
-
 
 export default async function handler(req, res) {
   await connectMongo();

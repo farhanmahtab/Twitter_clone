@@ -58,6 +58,7 @@ const createPost = async (req, res) => {
     const post = await Posts.create({
       createdBy: author._id,
       body: body,
+      typeofTweet: "original",
       PostImage: image,
     });
     await post.save().then(() => console.log("post Created"));

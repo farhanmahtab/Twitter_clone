@@ -102,3 +102,13 @@
   display: flex;
   align-items: center;
 }
+.retweetMain{
+  border: 1px solid gainsboro;
+  border-radius: 1rem;
+}
+.retweetBody{
+  margin-left: 10px;
+}
+.retweetDiv {
+  display: flex;
+}

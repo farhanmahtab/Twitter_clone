@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/Feed.module.css";
 import Post from "./Post";
 import PostBox from "./PostBox";
+import PostRetweet from "./PostRetweet";
+import RetweetPost from "./PostRetweet";
 
 export default function Feed({ post }) {
   const { data: session } = useSession();
@@ -18,10 +20,27 @@ export default function Feed({ post }) {
         {/* <CogIcon className={styles.homeBarIcon} /> */}
       </div>
       {session && <PostBox setPosts={setPosts} allPost={posts} />}
+
       {posts.map((post) => {
-        return (
-          <Post key={post._id} post={post} setPosts={setPosts} posts={posts} />
-        );
+        if (post.typeofTweet === "retweet") {
+          return (
+            <RetweetPost
+              key={post._id}
+              post={post}
+              setPosts={setPosts}
+              posts={posts}
+            />
+          );
+        } else {
+          return (
+            <Post
+              key={post._id}
+              post={post}
+              setPosts={setPosts}
+              posts={posts}
+            />
+          );
+        }
       })}
     </div>
   );

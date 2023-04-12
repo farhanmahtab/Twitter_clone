@@ -13,22 +13,28 @@ import styles from "../styles/Post.module.css";
 import { useSession } from "next-auth/react";
 import { formatDistanceToNow } from "date-fns";
 import { useRouter } from "next/router";
-import Modal from "./Modal";
-import Comment from "./Comment";
 import PostComment from "./PostComment";
+import RetweetBox from "./RetweetBox";
 
-function Post({ post, posts, setPosts }) {
+const RetweetPost = ({ post, posts, setPosts }) => {
   const { data: session } = useSession();
   const router = useRouter();
   const pathCur = router.asPath;
-  const [reactNumber, setReactNumber] = useState(post?.react?.length);
+  const [reactNumber, setReactNumber] = useState(post.react.length);
   const [isLiked, setIsLiked] = useState(
     post?.react?.includes(session?.user?.id)
   );
+  const [tweet, setTweet] = useState();
 
   const [comment, setComment] = useState([]);
   const formatTime = formatDistanceToNow(new Date(post?.createdAt));
-  //console.log(post.typeofTweet);
+
+  const fetchtweet = async () => {
+    const res = await fetch(`/api/post/${post.originalTweetId}`);
+    const data = await res.json();
+    setTweet(data.post);
+  };
+  //console.log(tweet);
   const fetchComment = async () => {
     const res = await fetch(`/api/post/comments?postId=${post._id}`);
     const data = await res.json();
@@ -37,6 +43,7 @@ function Post({ post, posts, setPosts }) {
   };
   useEffect(() => {
     fetchComment();
+    fetchtweet();
   }, []);
 
   //console.log(comment);
@@ -112,6 +119,7 @@ function Post({ post, posts, setPosts }) {
               {post.createdBy.name}
             </h4>
             <span>{post.createdBy.username}</span>
+            <span>retweeted</span>
             <div className={styles.dot}></div>
             <span>{formatTime}</span>
           </div>
@@ -147,7 +155,7 @@ function Post({ post, posts, setPosts }) {
             className={styles.postImage}
           />
         )}
-
+        <RetweetBox post={tweet} />
         {/* Icons */}
         <div className={styles.iconsBottom}>
           <div className={styles.iconDiv}>
@@ -212,6 +220,6 @@ function Post({ post, posts, setPosts }) {
       </div>
     </div>
   );
-}
+};
 
-export default Post;
+export default RetweetPost;
