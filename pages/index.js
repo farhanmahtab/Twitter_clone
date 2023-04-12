@@ -12,6 +12,7 @@ import Reply from "@/components/reply";
 import { useEffect, useState } from "react";
 import { set } from "mongoose";
 import Comment from "@/components/Comment";
+import Retweet from "@/components/Retweet";
 
 export default function Home({ newsResults, comments, usersResults, posts }) {
   let router = useRouter();
@@ -49,6 +50,11 @@ export default function Home({ newsResults, comments, usersResults, posts }) {
       {router.query.modal == "comment" && (
         <Modal>
           <Comment />
+        </Modal>
+      )}
+      {router.query.modal == "retweet" && (
+        <Modal>
+          <Retweet />
         </Modal>
       )}
 

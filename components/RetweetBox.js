@@ -3,15 +3,15 @@ import styles from "../styles/Post.module.css";
 import Image from "next/image";
 import { formatDistanceToNow } from "date-fns";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const RetweetBox = ({ post }) => {
-    // const formatTime = formatDistanceToNow(new Date(post?.createdAt));
-    // console.log(formatTime);
-   //console.log(post);
+  const router = useRouter();
+  //   const formatTime = formatDistanceToNow(new Date(post?.createdAt));
+  //console.log(formatTime);
 
   const { data: session } = useSession();
   return (
-    // <div>test</div>
     <div className={styles.retweetMain}>
       <div className={styles.retweetDiv}>
         <Image

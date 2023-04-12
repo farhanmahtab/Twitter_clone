@@ -100,6 +100,11 @@ const RetweetPost = ({ post, posts, setPosts }) => {
       console.error(error.message);
     }
   };
+
+  //handle retweet
+  const handleRetweet = async () => {
+    console.log(post._id);
+  };
   //console.log(post.comments);
 
   return (
@@ -199,8 +204,19 @@ const RetweetPost = ({ post, posts, setPosts }) => {
           )}
 
           <div className={styles.iconDiv}>
-            <ShareIcon className={styles.icon} />
-            <h4>20</h4>
+            <ShareIcon
+              className={styles.icon}
+              onClick={() =>
+                router.push({
+                  pathname: pathCur,
+                  query: {
+                    modal: `retweet`,
+                    postId: post._id,
+                  },
+                })
+              }
+            />
+            <h4>{post.NumberOfRetweet}</h4>
           </div>
           <div className={styles.iconDiv}>
             <ChartSquareBarIcon className={styles.icon} />
