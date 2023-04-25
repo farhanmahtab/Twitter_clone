@@ -70,7 +70,7 @@ const updateUserById = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res.status(200).json({ message: "User updated", user });
+    res.status(200).json({ message: "success", user });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
   }

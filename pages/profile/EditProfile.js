@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Style from "./editProfile.module.css";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 
 const Edit = ({ user }) => {
   const router = useRouter();
@@ -26,6 +27,9 @@ const Edit = ({ user }) => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+      if (data.message === "success") {
+        await signIn("credentials",{redirect:false});
+      }
       //console.log(data.message);
     } catch (error) {
       console.error(error);

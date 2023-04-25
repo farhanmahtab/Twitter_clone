@@ -27,6 +27,8 @@ export const parseForm = async (req) => {
 
 //Get all post
 const getAllPosts = async (req, res) => {
+  const page = req.query.p || 0 ;
+  const postPerPage = 3 ;
   try {
     const posts = await Posts.find({})
       .populate("createdBy", "name username email profilePicture")
@@ -34,7 +36,9 @@ const getAllPosts = async (req, res) => {
         path: "comments",
         populate: { path: "replies", select: "createdBy body" },
       })
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .skip(page*postPerPage)
+      .limit(postPerPage);
 
     res.status(200).json({ message: "Posts fetched", posts });
   } catch (error) {

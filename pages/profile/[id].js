@@ -24,7 +24,7 @@ const profile = ({ newsResults, usersResults }) => {
   const router = useRouter();
   const pathCur = router.asPath;
   const userId = router.query.id;
-  console.log(post.length);
+  
   const fetchFollowers = async () => {
     const res = await fetch(`/api/user/follower?id=${userId}`);
     const data = await res.json();
@@ -54,7 +54,7 @@ const profile = ({ newsResults, usersResults }) => {
     fetchFollowers();
     fetchFollowing();
   }, []);
-
+  console.log(session);
   //console.log(user);
   return (
     <div>

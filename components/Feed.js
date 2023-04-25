@@ -12,7 +12,7 @@ export default function Feed({ post }) {
   useEffect(() => {
     setPosts(post);
   }, []);
-  //console.log(post);
+
   return (
     <div className={styles.main}>
       <div className={styles.homeBar}>
