@@ -1,6 +1,6 @@
 .messages {
   border-right: 1px solid var(--border-color);
-  width: 500px;
+  width: var(--main-width);
   height: 100vh;
   position: relative;
   overflow: hidden;
@@ -187,4 +187,10 @@
   background-color: var(--primary-color);
   border-bottom-left-radius: 0.2rem;
   color: white;
+}
+.seenUnseen{
+  text-align: end;
+  font-size: .8rem;
+  color: var(--border-color-2);
+  margin-right: 1.3rem;
 }

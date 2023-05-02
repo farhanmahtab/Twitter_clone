@@ -21,19 +21,13 @@ export default function MessageList({ setselectedID, messages }) {
         },
       });
       const result = await res.json();
-      console.log(result);
       res.ok && setUsers(result.users);
     } catch (error) {
       console.log(error);
     }
   }
   useEffect(() => {
-    console.log({ messages });
-    if (!messages) {
-      console.log("called");
-    }
     getUsers();
-
     return () => {};
   }, [messages]);
   const onSubmit = (e, str) => {
@@ -150,7 +144,9 @@ export default function MessageList({ setselectedID, messages }) {
                   <div className={style.convoDetails}>
                     <div className={style.convoHeader}>
                       <span className={style.convoName}>{user.name}</span>
-                      <span className={style.convoUsername}>{user.username}</span>
+                      <span className={style.convoUsername}>
+                        {user.username}
+                      </span>
                     </div>
                     <div className={style.convoContent}>
                       {/* <span>Hey, how are you?</span> */}

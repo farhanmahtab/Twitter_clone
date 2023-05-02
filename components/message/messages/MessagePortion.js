@@ -12,14 +12,14 @@ export default function MessagePortion({ profile }) {
     lastmsg.current?.scrollIntoView({ behavior: "smooth" });
     return () => {};
   }, [recentmessages]);
-
+  console.log(profile)
   return (
     <div className={style.messagePortion}>
       {/* {console.count("rerender")} */}
       <section className={style.description}>
-        <Avatar image={profile.image}></Avatar>
-        <div className={style.name}>{profile.username}</div>
-        <p className={style.email}>@{profile.email}</p>
+        <Avatar image={profile.profilePicture}></Avatar>
+        <div className={style.name}>{profile.name}</div>
+        <p className={style.email}>{profile.email}</p>
         <p>{profile.bio}</p>
         {profile.createdAt && <p>Joined {profile.createdAt.slice(0, 10)}</p>}
       </section>
