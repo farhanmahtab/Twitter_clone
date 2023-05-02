@@ -1,0 +1,86 @@
+.signUpDiv {
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    /* max-width: 400px; */
+}
+
+.showSignIn {
+    border: none;
+    margin: 1rem 5rem;
+    width: 400px;
+}
+
+.signUpDiv>* {
+    margin-bottom: .8rem;
+}
+
+.signUpDiv>form>* {
+    margin-bottom: .8rem;
+
+}
+
+.signUpDiv>h1 {
+    font-size: 1.5rem;
+}
+
+.signUpDiv>p {
+    font-size: .85rem;
+    letter-spacing: normal;
+    color: var(--text-color-tertiary);
+}
+
+.signUpDiv>p>span {
+    font-size: .85rem;
+    letter-spacing: normal;
+    color: var(--primary-color);
+}
+
+.btnOutline {
+    background-color:var(--bg);
+    color: var(--text-color-primary);
+    border: 1px var(--border-color) solid;
+    padding-block: .5rem;
+
+}
+
+.btnOutline:hover {
+    background-color: var(--hover-secondary-trans-color);
+}
+
+.input-group {
+    position: relative;
+}
+
+.input {
+    width: 100%;
+    border: solid 1.5px var(--border-color);
+    border-radius: 1rem;
+    background: none;
+    padding: 1rem;
+    font-size: 1rem;
+    transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.user-label {
+    position: absolute;
+    left: 10px;
+    color: var(--text-color-tertiary);
+    pointer-events: none;
+    transform: translateY(1rem);
+    transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input:focus,
+.input:valid {
+    outline: none;
+    border: 1.5px solid #1a73e8;
+}
+
+.input:focus~.user-label,
+.input:valid~.user-label {
+    transform: translate(-20%, -50%) scale(0.5);
+    background-color: #ffffff;
+    padding: 0 .2em;
+    color: #2196f3;
+}

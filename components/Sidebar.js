@@ -78,7 +78,15 @@ function Sidebar() {
       {session && (
         <>
           <SideBarMenuItems text="Notification" Icon={BellIcon} />
-          <SideBarMenuItems text="Messages" Icon={InboxIcon} />
+          <div onClick={() => router.push("/message")}>
+            <div className={styles.message}>
+              {recentMessage.showNotification && (
+                <span className={styles.notificaion}></span>
+              )}
+              <SideBarMenuItems text="Messages" Icon={InboxIcon} />
+            </div>
+          </div>
+
           {/* <SideBarMenuItems text="Bookmarks" Icon={BookmarkAltIcon} /> */}
           {/* <SideBarMenuItems text="Lists" Icon={ClipboardCheckIcon} /> */}
           <div onClick={() => router.push(`/profile/${userID}`)}>

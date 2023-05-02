@@ -1,6 +1,5 @@
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
-
 import style from "./Message.module.css";
 import Avatar from "@/components/common/avatar/avatar";
 export default function MessageComponent({ message, showAvatar }) {

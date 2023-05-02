@@ -1,0 +1,201 @@
+.post {
+    border-bottom: 1px var(--border-color) solid;
+    display: flex;
+    gap: .5rem;
+    padding: .5rem 1rem;
+    /* max-width: 600px;
+    width: 100%; */
+
+}
+
+/* .tweet:hover {
+    background-color: var(--bg-hover);
+} */
+
+
+.body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* align-self: start; */
+    align-items: self-start;
+
+}
+
+
+.body>form {
+    width: 100%;
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.body>form>textarea::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.body>form>textarea {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+
+.body>form>textarea {
+    outline: none;
+    border: none;
+    font-size: 1.4rem;
+    resize: none;
+    width: 100%;
+    height: 100px;
+    border-radius: 1rem;
+    padding: .5rem;
+    /* height: 200px; */
+    transition: height .300s ease;
+}
+
+.body>form>textarea:focus-visible {
+    height: 105px;
+}
+
+.privacyShow {
+    color: var(--primary-color);
+    display: inline-block;
+    /* justify-content: center;
+     */
+    text-align: start;
+    padding: .1rem .5rem;
+    border-radius: 10000px;
+    /* padding-left: 0px; */
+    /* margin-bottom: 1rem; */
+    font-size: 1rem;
+
+
+}
+
+.hr {
+    width: 100%;
+    background-color: var(--border-color);
+    height: 1px;
+    margin-block: .5rem;
+
+    /* border: none; */
+
+}
+
+.privacyShow:hover {
+    background-color: var(--hover-primary-trans-color);
+
+}
+
+.body>div>p>span>svg {
+    color: var(--primary-color);
+    width: 1rem;
+    fill: currentColor;
+    text-align: end;
+    transform: translateY(3px);
+}
+
+
+
+.likeNcommnet {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    display: grid;
+    gap: .5rem;
+    grid-template-columns: 1fr 100px;
+}
+
+
+.likeNcommnet>div {
+    display: flex;
+    /* width: 40%; */
+
+    margin-block: .5rem;
+    align-items: flex-start;
+    align-items: center;
+}
+
+.likeNcommnet>div>svg {
+    width: 1.3rem;
+    color: var(--primary-color);
+    fill: currentColor;
+    box-sizing: content-box;
+    padding: .5rem;
+    border-radius: 10000px;
+}
+
+.likeNcommnet>div>svg:hover {
+    background-color: var(--hover-primary-trans-color);
+}
+
+.picSVG{
+    width: 1.3rem;
+    color: var(--primary-color);
+    fill: currentColor;
+    box-sizing: content-box;
+    padding: .5rem;
+    border-radius: 10000px;
+}
+.picSVG:hover {
+    background-color: var(--hover-primary-trans-color);
+}
+.uploadPic{
+    width: 300px;
+}
+
+
+.privacy {
+    color: var(--primary-color);
+    border: 1px var(--border-color) solid;
+    border-radius: 10000px;
+    padding: .1rem .5rem;
+    /* box-sizing: content-box; */
+    margin-bottom: .5rem;
+    display: inline-block;
+    font-size: 1rem;
+    display: flex;
+    /* margin-right: .3rem; */
+
+}
+
+.privacy>svg {
+    width: 1rem;
+    margin-left: .5rem;
+    color: var(--primary-color);
+    fill: currentColor;
+}
+
+.names>* {
+    margin-right: .3rem;
+}
+
+.username {
+    color: var(--text-color-tertiary);
+}
+
+.threeDot {
+    color: var(--text-color-tertiary);
+    fill: currentColor;
+    width: 25px;
+}
+
+
+
+.cross{
+    position: absolute;
+    left: -15px;
+    top:-10px ;
+    width: 25px;
+    padding:.5rem ;
+    box-sizing: content-box;
+    border-radius: 1000px;
+    background-color: var(--hover-primary-trans-color);
+    
+}
+.cross:hover{
+    background-color: var(--bg);
+
+}

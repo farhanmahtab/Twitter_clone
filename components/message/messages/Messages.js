@@ -16,7 +16,7 @@ export default function Messages({ _id, email }) {
   const [messages, setMessages] = useState();
   const [recentmessages, setRecentMessages] = useContext(RecentMessageContext);
   const session = useSession();
-
+  //console.log(session.data.user.id);
   useEffect(
     () => {
       const requestOptions = {
@@ -27,7 +27,7 @@ export default function Messages({ _id, email }) {
       async function getMessages() {
         try {
           const response = await fetch(
-            `/api/v2/messages?senderId=${session.data?.user._id}&receiverId=${_id?._id}`,
+            `/api/messages?senderId=${session.data?.user.id}&receiverId=${_id?._id}`,
             requestOptions
           );
           const result = await response.json();
@@ -78,10 +78,7 @@ export default function Messages({ _id, email }) {
 
     async function sendRequest() {
       try {
-        var response = await fetch(
-          "http://localhost:3000/api/v2/messages",
-          requestOptions
-        );
+        var response = await fetch("/api/messages", requestOptions);
         var result = await response.json();
         //
 

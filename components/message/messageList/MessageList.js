@@ -14,22 +14,25 @@ export default function MessageList({ setselectedID, messages }) {
   const router = useRouter();
   async function getUsers(number = 10000) {
     try {
-      const res = await fetch("/api/v2/users?number=" + number, {
+      const res = await fetch("/api/users?number=" + number, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
       });
       const result = await res.json();
-
+      console.log(result);
       res.ok && setUsers(result.users);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }
   useEffect(() => {
+    console.log({ messages });
     if (!messages) {
       console.log("called");
-      getUsers();
     }
+    getUsers();
 
     return () => {};
   }, [messages]);
@@ -43,7 +46,7 @@ export default function MessageList({ setselectedID, messages }) {
     async function fetchUser() {
       try {
         const response = await fetch(
-          "/api/v2/messages/searchUser?search=" + (str == "" ? str : search),
+          "/api/messages/searchUser?search=" + (str == "" ? str : search),
           requestOptions
         );
         const result = await response.json();
@@ -62,6 +65,7 @@ export default function MessageList({ setselectedID, messages }) {
       onSubmit(event, "");
     }
   };
+  //console.log(users)
 
   return (
     <>
@@ -102,7 +106,7 @@ export default function MessageList({ setselectedID, messages }) {
               onChange={onChange}
               type="text"
               name="Search"
-              placeholder="Hola"
+              placeholder=""
               className={`${styles["input"]} ${style["input"]}`}
             />
             <label className={styles["user-label"]}>Search</label>
@@ -141,12 +145,12 @@ export default function MessageList({ setselectedID, messages }) {
                   }}
                 >
                   <div className={style.convoAvatar}>
-                    <Avatar image={user.image} width="50px"></Avatar>
+                    <Avatar image={user.profilePicture} width="50px"></Avatar>
                   </div>
                   <div className={style.convoDetails}>
                     <div className={style.convoHeader}>
-                      <span className={style.convoName}>{user.username}</span>
-                      <span className={style.convoUsername}>{user.email}</span>
+                      <span className={style.convoName}>{user.name}</span>
+                      <span className={style.convoUsername}>{user.username}</span>
                     </div>
                     <div className={style.convoContent}>
                       {/* <span>Hey, how are you?</span> */}

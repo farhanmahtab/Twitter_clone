@@ -1,7 +1,7 @@
 .list {
   border-inline: 1px solid var(--border-color);
   width: 400px;
-  margin-left: 1rem;
+  margin-left: 400px;
 }
 
 .header {

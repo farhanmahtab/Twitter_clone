@@ -9,7 +9,7 @@ const handler = async (req, res) => {
         { name: { $regex: search, $options: "i" } },
         { email: { $regex: search, $options: "i" } },
       ],
-    }).select({ username: 1, image: 1, email: 1 });
+    }).select({ username: 1, email: 1, name: 1, profilePicture: 1 });
 
     res.status(200).json(users);
   } catch (err) {

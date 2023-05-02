@@ -1,6 +1,6 @@
 .messages {
   border-right: 1px solid var(--border-color);
-  width: var(--main-width);
+  width: 500px;
   height: 100vh;
   position: relative;
   overflow: hidden;
