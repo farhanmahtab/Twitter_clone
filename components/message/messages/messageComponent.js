@@ -21,7 +21,7 @@ export default function MessageComponent({ message, sender, showAvatar }) {
     }
     return () => {};
   }, [session.data, message.sender, message.cus_id, recentMsg.unseenMessages]);
-  console.log(sender)
+  //console.log(sender)
 
   return (
     <>

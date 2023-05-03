@@ -1,0 +1,759 @@
+{
+	"info": {
+		"_postman_id": "00a2479b-5ad5-46dc-8bf9-9835a71e48de",
+		"name": "Twitter Clone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26216135",
+		"_collection_link": "https://interstellar-satellite-335460.postman.co/workspace/My-Workspace~42cd07eb-805a-411c-8721-827ac64572e0/collection/26216135-00a2479b-5ad5-46dc-8bf9-9835a71e48de?action=share&creator=26216135&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "get all user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/user?id=6426792cb4407e69dc71d149",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "6426792cb4407e69dc71d149"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/user/64226c35f1b98662c7301067",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"64226c35f1b98662c7301067"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post  a User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n     \"name\": \"Test user\",\n    \"username\": \"test1\",\n    \"email\": \"test1@gmail.com\",\n    \"password\": \"1234\",\n    \"profilePicture\": \"/Resource/anindo.jpg\",\n    \"coverPhoto\": \"/Resource/img6.jpeg\",\n    \"bio\": \"never stop\",\n    \"followers\": [],\n    \"following\": []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patch user by id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bio\":\"Patching going on\"\r\n \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/user/64522bdf6d81e61829794c84",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"64522bdf6d81e61829794c84"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all tweet",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/post/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get post by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/post/6436420b8aef418b9775e9d5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"6436420b8aef418b9775e9d5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get posts by user Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/post/userPost?id=64227c2cac613fcee5f0ac31",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"userPost"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "64227c2cac613fcee5f0ac31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post a tweet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"mahi@gmail.com\",\n    \"body\": \"Post Image New\",\n    \"postImage\":\"/Resource/post_image3.jpeg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update post by Id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"body\":\"post poast\",\n    \"PostImage\":\"/Resource/post_image5.jpeg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/post/642a98060a99e7b9d0878940",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"642a98060a99e7b9d0878940"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a post by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/post/6422adc16edba74216116e9f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"6422adc16edba74216116e9f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Like/unlike a post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\":\"64227c2cac613fcee5f0ac31\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/post/react?postId=642d0758aa0ca5c0e13e35e3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"react"
+					],
+					"query": [
+						{
+							"key": "postId",
+							"value": "642d0758aa0ca5c0e13e35e3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all comments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/post/comment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post a comment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"mahi@gmail.com\",\n    \"postId\":\"64339bbb9c917bf6515f8bc4\",\n    \"body\":\"test comment 4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/post/comment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "follow/unfollow user by ID",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"currentUserId\":\"64225946691de128e8d3a6d8\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/user/64227c2cac613fcee5f0ac31",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"64227c2cac613fcee5f0ac31"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get followers by userId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/user/follower?id=64226c35f1b98662c7301067",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"follower"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "64226c35f1b98662c7301067"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Follwoing by userId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/user/following?id=64226c35f1b98662c7301067",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"following"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "64226c35f1b98662c7301067"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post reply to comment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"mahi@gmail.com\",\n    \"commentId\": \"642e497d0f0b011ddef206ff\",\n    \"body\": \"test reply\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/post/comment/reply",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"comment",
+						"reply"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get reply commentID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"commentId\":\"642e60ab0f0b011ddef3c2db\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/post/comment/reply?commentId=642e60ab0f0b011ddef3c2db",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"comment",
+						"reply"
+					],
+					"query": [
+						{
+							"key": "commentId",
+							"value": "642e60ab0f0b011ddef3c2db"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create a post/tweet(new Schema)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"mahi@gmail.com\",\r\n    \"body\": \"new Schema post 2\",\r\n    \"postImage\": \"/Resource/post_image3.jpeg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/post/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete a post(new Schema)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"postId\":\"642d04f8aa0ca5c0e13e3595\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/post/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit post (new Schema)",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"body\":\"post Toast\",\n    \"PostImage\":\"/Resource/post_image5.jpeg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/post/posts?postId=643381179c917bf6515f8777",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"posts"
+					],
+					"query": [
+						{
+							"key": "postId",
+							"value": "643381179c917bf6515f8777"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get comments from postId(new Schema)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/post/comments?postId=6433d1de9c917bf6515f9ac3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"comments"
+					],
+					"query": [
+						{
+							"key": "postId",
+							"value": "6433d1de9c917bf6515f9ac3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create a reply(new Schema)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"mahi@gmail.com\",\n    \"postId\": \"6433d1de9c917bf6515f9ac3\",\n    \"commentId\":\"6434d572d8d959a0bcdef9fe\",\n    \"body\": \"reply 3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/post/comments/reply",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"comments",
+						"reply"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get replies by commentId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/post/comments/reply?commentId=6434d572d8d959a0bcdef9fe",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"comments",
+						"reply"
+					],
+					"query": [
+						{
+							"key": "commentId",
+							"value": "6434d572d8d959a0bcdef9fe"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post a retweet by postId",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"maruf@gmail.com\",\n    \"postId\": \"6432dadc3b177333172a2914\",\n    \"postBody\": \"wryy tweet\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/post/retweet",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"post",
+						"retweet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search users in messages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/messages/searchUser?search=mahi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"messages",
+						"searchUser"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "mahi"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

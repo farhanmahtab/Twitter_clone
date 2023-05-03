@@ -26,17 +26,42 @@ export const parseForm = async (req) => {
 };
 
 //Get all post
+// const getAllPosts = async (req, res) => {
+//   try {
+//     const posts = await Posts.find({})
+//       .populate("createdBy", "name username email profilePicture")
+//       .populate({
+//         path: "comments",
+//         populate: { path: "replies", select: "createdBy body" },
+//       })
+//       .sort({ createdAt: -1 })
+//       // .limit(5);
+
+//     res.status(200).json({ message: "Posts fetched", posts });
+//   } catch (error) {
+//     res.status(400).json({ success: false, error: error.message });
+//   }
+// };
+
+//new getPost
 const getAllPosts = async (req, res) => {
   try {
+    const { page = 0 } = req.query;
     const posts = await Posts.find({})
       .populate("createdBy", "name username email profilePicture")
       .populate({
-        path: "comments",
+        path: "Comments",
         populate: { path: "replies", select: "createdBy body" },
+        strictPopulate:false
       })
-      .sort({ createdAt: -1 });
-
-    res.status(200).json({ message: "Posts fetched", posts });
+      .sort({ createdAt: -1 })
+      .skip(parseInt(page))
+      .limit(5);
+    res.status(200).json({
+      message: "Posts fetched",
+      posts,
+      nextpage: parseInt(page) + posts.length,
+    });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
   }

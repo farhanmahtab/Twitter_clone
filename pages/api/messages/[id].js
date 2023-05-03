@@ -1,6 +1,4 @@
 import connectMongo from "@/Utils/db";
-// import UserDBV2 from "@/db/modelsV2/userModelV2";
-// import Message from "@/db/modelsV2/messageModelV2";
 import User from "@/models/User";
 import Message from "@/models/Message";
 

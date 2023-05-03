@@ -12,7 +12,7 @@ export default function MessagePortion({ profile }) {
     lastmsg.current?.scrollIntoView({ behavior: "smooth" });
     return () => {};
   }, [recentmessages]);
-  console.log(profile)
+  //console.log(profile)
   return (
     <div className={style.messagePortion}>
       {/* {console.count("rerender")} */}

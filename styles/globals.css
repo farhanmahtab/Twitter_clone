@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap");
 
 :root {
   --bg: #fff;
-  --bg-op:rgba(255, 255, 255, 0.5);
+  --bg-op: rgba(255, 255, 255, 0.5);
   --bg-hover: hsla(204, 88%, 53%, 0.144);
   --bg-hover: #eff3f4;
   --bg-hover: rgba(87, 87, 87, 0.08);
@@ -14,16 +14,15 @@
   --border-color-2: #cfd9de;
   --primary-color: #1d9bf0;
   --disabled-color: #536471;
-  --hover-primary-trans-color: rgba(29, 155, 240, .1);
-  --hover-secondary-trans-color: rgba(15, 20, 25, .1);
+  --hover-primary-trans-color: rgba(29, 155, 240, 0.1);
+  --hover-secondary-trans-color: rgba(15, 20, 25, 0.1);
   --hover-bg-color: rgb(26, 140, 216);
 
   --line-height: 20px;
 
   --main-width: 600px;
-  --noti-bg-color:#ff45ae;
+  --noti-bg-color: #ff45ae;
   --noti-bg-color: var(--primary-color);
-
 }
 
 /* :root {
@@ -49,8 +48,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg:#100031;
-    --bg-op:rgba(9, 0, 26, 0.4);
+    --bg: #100031;
+    --bg-op: rgba(9, 0, 26, 0.4);
     --bg-hover: hsla(204, 88%, 53%, 0.144);
     --bg-hover: #eff3f4;
     --bg-hover: rgba(133, 54, 212, 0.158);
@@ -66,28 +65,27 @@
     --hover-primary-trans-color: rgba(133, 54, 212, 0.2);
     --hover-secondary-trans-color: rgba(0, 0, 0, 0.3);
     --hover-bg-color: #bc45af;
-  --hover-bg-color: #fa46a8;
+    --hover-bg-color: #fa46a8;
 
-  
     --line-height: 20px;
-  
+
     --main-width: 600px;
   }
 }
 
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   box-sizing: inherit;
   padding: 0;
   margin: 0;
   line-height: var(--line-height);
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   /* border: 1px solid salmon;
   background-color: rgba(255, 0, 0, 0.068); */
 }
-.light{
+.light {
   --bg: #fff;
-  --bg-op:rgba(255, 255, 255, 0.5);
+  --bg-op: rgba(255, 255, 255, 0.5);
   --bg-hover: hsla(204, 88%, 53%, 0.144);
   --bg-hover: #eff3f4;
   --bg-hover: rgba(87, 87, 87, 0.08);
@@ -99,37 +97,34 @@
   --border-color-2: #cfd9de;
   --primary-color: #1d9bf0;
   --disabled-color: #536471;
-  --hover-primary-trans-color: rgba(29, 155, 240, .1);
-  --hover-secondary-trans-color: rgba(15, 20, 25, .1);
+  --hover-primary-trans-color: rgba(29, 155, 240, 0.1);
+  --hover-secondary-trans-color: rgba(15, 20, 25, 0.1);
   --hover-bg-color: rgb(26, 140, 216);
 
   --line-height: 20px;
 
   --main-width: 600px;
 }
-.dark{
-  --bg:#100031;
-  --bg-op:rgba(9, 0, 26, 0.4);
+/* .dark {
+  --bg: #100031;
+  --bg-op: rgba(9, 0, 26, 0.4);
   --bg-hover: hsla(204, 88%, 53%, 0.144);
   --bg-hover: #eff3f4;
   --bg-hover: rgba(133, 54, 212, 0.158);
   --text-color-primary: #fefefd;
   --text-color-secondery: #0f1419;
   --text-color-tertiary: rgb(110, 121, 129);
-  /* --border-color: #cfd9de; */
   --border-color: #2a0086;
   --border-color-2: #6624be;
   --primary-color: #8435cf;
-  /* --primary-color:#feac05; */
   --disabled-color: #536471;
   --hover-primary-trans-color: rgba(133, 54, 212, 0.2);
   --hover-secondary-trans-color: rgba(0, 0, 0, 0.3);
   --hover-bg-color: #fa46a8;
-
   --line-height: 20px;
-
   --main-width: 600px;
-}
+} */
+
 html,
 body {
   box-sizing: border-box;
@@ -137,15 +132,14 @@ body {
   background-color: var(--bg);
   color: var(--text-color-primary);
 
-
   /* overflow-y: hidden; */
-
 }
-svg{
+svg {
   /* color: var(--text-color-primary); */
   fill: currentColor;
 }
-textarea, input{
+textarea,
+input {
   background-color: var(--bg-op);
   color: var(--text-color-primary);
 }
@@ -159,7 +153,6 @@ textarea, input{
   padding-block: 1rem;
   font-size: 1rem;
   font-weight: 700;
-
 }
 
 .btn-primary:hover {
@@ -171,11 +164,10 @@ textarea, input{
 }
 
 .hover-effect {
-
   color: var(--primary-color);
   fill: currentColor;
   box-sizing: content-box;
-  padding: .5rem;
+  padding: 0.5rem;
   border-radius: 10000px;
 }
 
@@ -183,11 +175,11 @@ textarea, input{
   background-color: var(--hover-primary-trans-color);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
-}
+} */
 
 a {
   text-decoration: none;

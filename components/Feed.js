@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "../styles/Feed.module.css";
 import Post from "./Post";
 import PostBox from "./PostBox";
@@ -9,6 +9,10 @@ import RetweetPost from "./PostRetweet";
 export default function Feed({ post }) {
   const { data: session } = useSession();
   const [posts, setPosts] = useState([]);
+  const [loading, setLoadinng] = useState(false);
+  const [page, setPage] = useState(1);
+  const loaderRef = useRef(null);
+
   useEffect(() => {
     setPosts(post);
   }, []);

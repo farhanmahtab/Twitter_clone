@@ -70,15 +70,18 @@ export default function Message({ receiver, messages }) {
   const [selectedID, setselectedID] = useState(receiver);
 
   useEffect(() => {
+    //console.log("useEffect of Message");
     async function requestPermission() {
       const permission = await Notification.requestPermission();
       const messaging = getMessaging();
+      console.log(permission);
       if (permission === "granted") {
         // Generate Token
         const token = await getToken(messaging, {
           vapidKey: process.env.FCM_VAPID_KEY,
         });
 
+        console.log("token : ", token);
         try {
           const res = await fetch("/api/users/token", {
             method: "PATCH",
@@ -86,12 +89,13 @@ export default function Message({ receiver, messages }) {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              _id: session.data.user._id,
+              _id: session.data.user.id,
               token,
             }),
           });
 
           const result = await res.json();
+          console.log(result);
         } catch (error) {}
         // Send this token  to server ( db)
         //
@@ -101,7 +105,7 @@ export default function Message({ receiver, messages }) {
       }
     }
 
-    if (session.data?.user._id) {
+    if (session.data) {
       requestPermission();
     }
   }, [session.data]);

@@ -1,6 +1,4 @@
 import connectMongo from "@/Utils/db";
-// import User from "@/db/modelsV2/userModelV2";
-// import Message from "@/db/modelsV2/messageModelV2";
 import User from "@/models/User";
 import Message from "@/models/Message";
 import service from "./service.json";
@@ -17,15 +15,9 @@ const getAllMessages = async (req, res) => {
     //   receiver: receiverId,
     // }).sort({ "messages.createdAt": -1 });
     const messages = await Message.findOne({
-      // cus_id: "643cf9ec28271f6cc91b53e7642f7cdd8d1cecb1945c6536",
       cus_id:
         senderId >= receiverId ? senderId + receiverId : receiverId + senderId,
     }).sort({ "messages.createdAt": -1 });
-
-    // if (!messages) {
-    //   return res.status(404).JSON({ msg: "Not found" });
-    // }
-
     const messages2 = await Message.findOne({
       sender: receiverId,
       receiver: senderId,
@@ -41,18 +33,6 @@ const getAllMessages = async (req, res) => {
 const postMessages = async (req, res) => {
   try {
     const { senderEmail, receiverEmail, body } = req.body;
-    // const sender = await User.findOne({ email: senderEmail }).select({
-    //   username: 1,
-    //   _id: 1,
-    //   image: 1,
-    // });
-
-    // const receiver = await User.findOne({ email: receiverEmail }).select({
-    //   username: 1,
-    //   _id: 1,
-    //   image: 1,
-    //   token: 1,
-    // });
 
     const [sender, receiver] = await Promise.all([
       User.findOne({ email: senderEmail }).select({
@@ -114,15 +94,6 @@ const postMessages = async (req, res) => {
         messages: [mainData],
       });
     }
-
-    // sender.messages.push({
-    //   sender: receiver._id,
-    //   chatID: existingMessage._id,
-    //   cus_id: existingMessage.cus_id,
-    //   senderUsername: receiver.username,
-    //   senderEmail: receiver.email,
-    //   senderImage: receiver.image,
-    // });
 
     if (receiver.token) {
       if (admin.apps.length == 0) {

@@ -9,7 +9,7 @@ import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 import EditPost from "./post/EditPost";
 import Reply from "@/components/reply";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { set } from "mongoose";
 import Comment from "@/components/Comment";
 import Retweet from "@/components/Retweet";
@@ -17,6 +17,7 @@ import Retweet from "@/components/Retweet";
 export default function Home({ newsResults, comments, usersResults, posts }) {
   let router = useRouter();
   const [post, setPost] = useState([]);
+
   useEffect(() => {
     setPost(posts);
   }, []);
@@ -90,7 +91,10 @@ export async function getServerSideProps({ context }) {
   //posts
   let posts = [];
   try {
-    const res = await fetch("http://localhost:3000/api/post/posts");
+    const res = await fetch(
+      `http://localhost:3000/api/post/posts`
+      //`http://localhost:3000/api/post/posts?=page${page}`
+    );
     posts = await res.json();
   } catch (e) {
     posts = [];
