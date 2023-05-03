@@ -92,7 +92,7 @@ export async function getServerSideProps({ context }) {
   let posts = [];
   try {
     const res = await fetch(
-      `http://localhost:3000/api/post/posts`
+      `http://localhost:3000/api/post`
       //`http://localhost:3000/api/post/posts?=page${page}`
     );
     posts = await res.json();

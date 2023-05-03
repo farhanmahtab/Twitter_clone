@@ -29,8 +29,10 @@ const getAllPosts = async (req, res) => {
       .populate({
         path: "Comments",
         populate: { path: "replies", select: "createdBy body" },
+        strictPopulate:false
       })
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .limit(5);
     res.status(200).json({ message: "Posts fetched", posts });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
