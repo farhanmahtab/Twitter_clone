@@ -7,16 +7,39 @@ import Avatar from "@/components/common/avatar/avatar";
 import { useSession } from "next-auth/react";
 import { RecentMessageContext } from "@/providers/RecentMessageProvider";
 import MessageComponent from "./messageComponent";
+import deleteNotification from "@/helper/frontend/deleteNotification";
 import { format } from "date-fns";
 import MessagePortion from "./MessagePortion";
 import MessageInput from "./MessageInput";
-export default function Messages({ _id, email }) {
-  const [profile, setProfile] = useState(_id);
 
+export default function Messages({ receiver, email }) {
+  const [profile, setProfile] = useState(receiver);
   const [messages, setMessages] = useState();
   const [recentmessages, setRecentMessages] = useContext(RecentMessageContext);
   const session = useSession();
-  //console.log(session.data.user.id);
+  //console.log(receiver);
+  const deleteNotificationState = async () => {
+    setRecentMessages((state) => {
+      const newState = { ...state };
+      newState.latestMessages = state.latestMessages.filter(
+        (el) => el.sender !== receiver._id
+      );
+      if (newState.latestMessages.length == 0) {
+        newState.showNotification = false;
+      }
+
+      return newState;
+    });
+  };
+  useEffect(() => {
+    if (session.data) {
+      deleteNotificationState();
+      deleteNotification(session.data?.user.id, receiver._id);
+    }
+
+    return () => {};
+  }, [setRecentMessages, receiver, session.data]);
+  console.log(session.data.user.id);
   useEffect(
     () => {
       const requestOptions = {
@@ -44,14 +67,14 @@ export default function Messages({ _id, email }) {
         } catch (error) {}
       }
 
-      if (session.data && _id) {
+      if (session.data && receiver) {
         getMessages();
       }
-      setProfile({ ..._id });
+      setProfile({ ...receiver });
 
       return () => {};
     },
-    [session.data, setRecentMessages, _id],
+    [session.data, setRecentMessages, receiver],
     session.data
   );
 

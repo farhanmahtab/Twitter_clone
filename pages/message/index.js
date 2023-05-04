@@ -123,7 +123,7 @@ export default function Message({ receiver, messages }) {
           messages={messages}
           setselectedID={setselectedID}
         ></MessageList>
-        {selectedID && <Messages _id={selectedID}></Messages>}
+        {selectedID && <Messages receiver={selectedID}></Messages>}
       </main>
       <style jsx>{`
         .body {

@@ -1,10 +1,12 @@
 import User from "@/models/User";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../../auth/[...nextauth]";
+// import { authOptions } from "../../auth/[...nextauth]";
 import * as admin from "firebase-admin";
 import service from "../messages/service.json";
 import { NOTIFICATION_TYPE_SEEN } from "@/helper/constStrings";
 import get_cus_id from "@/helper/helperFunc/get_cus_id";
+import { authOptions } from "../auth/[...nextauth]";
+
 export default async function handler(req, res) {
   if (req.method == "GET") {
     const { id, type, sender } = req.query;
@@ -38,7 +40,6 @@ export default async function handler(req, res) {
   if (req.method == "DELETE") {
     const { id, sender } = req.query;
     let deleted_msg = null;
-
     try {
       if (!id) {
         return res.status(404).json({ msg: "User not found" });
@@ -49,7 +50,7 @@ export default async function handler(req, res) {
         User.findById(id).select({ notifications: 1, username: 1 }),
         User.findById(sender).select({ token: 1, username: 1 }),
       ]);
-      
+
       if (!user) {
         return res.status(404).json({ msg: "User not found" });
       }
@@ -82,7 +83,7 @@ export default async function handler(req, res) {
               },
               data: {
                 key: "value",
-                name: "sourav",
+                name: "mahi",
                 message: JSON.stringify({
                   mainData: {
                     receiver: id,
@@ -112,9 +113,9 @@ export default async function handler(req, res) {
 
       return res.status(200).json({
         msg: "Notifications deleted successfully",
-        // notifications: newUser.notifications,
       });
     } catch (error) {
+      console.log(error);
       return res.status(500).json({ msg: "Server error" });
     }
   }

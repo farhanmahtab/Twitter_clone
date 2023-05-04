@@ -21,16 +21,14 @@ export default function MessageComponent({ message, sender, showAvatar }) {
     }
     return () => {};
   }, [session.data, message.sender, message.cus_id, recentMsg.unseenMessages]);
-  //console.log(sender)
+  console.log(recentMsg.unseenMessages)
 
   return (
     <>
-    {/* <div>{message.body}</div> */}
       <div className={style.msgComponentWrapper}>
         {/* {!isMy && showAvatar && <Avatar width="20px" image={sender.profilePicture} />} */}
-        {!showAvatar && <div style={{ width: "22px" ,color:"gray"}}></div>}
+        {!showAvatar && <div style={{ width: "22px", color: "gray" }}></div>}
         <div className={style.msgComponentDiv}>
-  
           <div
             className={`${style.msgComponent} ${
               isMy ? style.msgComponentMy : style.msgComponentNotMy
@@ -44,7 +42,7 @@ export default function MessageComponent({ message, sender, showAvatar }) {
         )}
         {!showAvatar && <div style={{ width: "22px" }}></div>}
       </div>
-      {isUnseen && <div className={style.seenUnseen}>Delivered</div>}
+      {isUnseen && <div className={style.seenUnseen}>sent</div>}
     </>
   );
 }
