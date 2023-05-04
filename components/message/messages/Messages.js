@@ -11,6 +11,7 @@ import deleteNotification from "@/helper/frontend/deleteNotification";
 import { format } from "date-fns";
 import MessagePortion from "./MessagePortion";
 import MessageInput from "./MessageInput";
+import Image from "next/image";
 
 export default function Messages({ receiver, email }) {
   const [profile, setProfile] = useState(receiver);
@@ -121,7 +122,14 @@ export default function Messages({ receiver, email }) {
           <>
             <div className={styleList.glassPortion}>
               <div className={styleList.header}>
-                {profile && <h3>{profile.username} </h3>}
+                <Image
+                  src={profile.profilePicture}
+                  className={style.image}
+                  height="45"
+                  width="45"
+                  alt="user-image"
+                ></Image>
+                {profile && <h3 className={styleList.topName}>{profile.username} </h3>}
               </div>
             </div>
             {recentmessages.messages && <MessagePortion profile={profile} />}

@@ -73,7 +73,7 @@ export default function Home({ newsResults, comments, usersResults, posts }) {
     </>
   );
 }
-// randomUsersResults={randomUsersResults?.results || null}
+
 export async function getServerSideProps({ context }) {
   // random news
   const newsResults = await fetch(

@@ -8,12 +8,6 @@ import * as admin from "firebase-admin";
 const getAllMessages = async (req, res) => {
   try {
     const { senderId, receiverId } = req.query;
-
-    // Find messages that match the sender ID and receiver ID
-    // const messages = await Message.findOne({
-    //   sender: senderId,
-    //   receiver: receiverId,
-    // }).sort({ "messages.createdAt": -1 });
     const messages = await Message.findOne({
       cus_id:
         senderId >= receiverId ? senderId + receiverId : receiverId + senderId,
@@ -40,8 +34,6 @@ const postMessages = async (req, res) => {
         _id: 1,
         image: 1,
         email: 1,
-        // messages: 1,
-        // notifications:1
       }),
       User.findOne({ email: receiverEmail }).select({
         username: 1,
@@ -49,8 +41,6 @@ const postMessages = async (req, res) => {
         image: 1,
         email: 1,
         token: 1,
-        // messages: 1,
-        // notifications: 1,
       }),
     ]);
 
@@ -81,8 +71,6 @@ const postMessages = async (req, res) => {
           : receiver._id + sender._id),
         existingMessage.messages.push(mainData);
       await existingMessage.save();
-
-      // res.status(200).json(existingMessage);
     } else {
       existingMessage = await Message.create({
         cus_id:

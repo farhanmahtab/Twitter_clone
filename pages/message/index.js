@@ -57,12 +57,12 @@ export async function getServerSideProps(context) {
   } catch (e) {
     console.log(e);
   }
-  return {
-    props: {
-      receiver: null,
-      messages: null,
-    },
-  };
+  // return {
+  //   props: {
+  //     receiver: null,
+  //     messages: null,
+  //   },
+  // };
 }
 
 export default function Message({ receiver, messages }) {
@@ -70,18 +70,16 @@ export default function Message({ receiver, messages }) {
   const [selectedID, setselectedID] = useState(receiver);
 
   useEffect(() => {
-    //console.log("useEffect of Message");
     async function requestPermission() {
       const permission = await Notification.requestPermission();
       const messaging = getMessaging();
-      console.log(permission);
+
       if (permission === "granted") {
         // Generate Token
         const token = await getToken(messaging, {
           vapidKey: process.env.FCM_VAPID_KEY,
         });
 
-        console.log("token : ", token);
         try {
           const res = await fetch("/api/users/token", {
             method: "PATCH",
@@ -97,9 +95,6 @@ export default function Message({ receiver, messages }) {
           const result = await res.json();
           console.log(result);
         } catch (error) {}
-        // Send this token  to server ( db)
-        //
-        // send to the User
       } else if (permission === "denied") {
         alert("You denied for the notification");
       }
@@ -112,10 +107,8 @@ export default function Message({ receiver, messages }) {
   return (
     <>
       <Head>
-        <title>Twitter</title>
-        <meta name="description" content="Message page of twitter clone" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/fav2.ico" />
+        <title>twitter</title>
+        <link rel="icon" href="/Twitter-logo.ico" type="image/icon type"></link>
       </Head>
       <main className="body">
         <Sidebar />

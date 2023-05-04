@@ -15,7 +15,6 @@ import styles from "../styles/Sidebar.module.css";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import { getMessaging, onMessage } from "firebase/messaging";
-import { onMessageListener } from "@/helper/Firebase/OnMessage";
 import { RecentMessageContext } from "@/providers/RecentMessageProvider";
 
 function Sidebar() {
