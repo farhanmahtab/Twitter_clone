@@ -12,10 +12,8 @@ export default function MessagePortion({ profile }) {
     lastmsg.current?.scrollIntoView({ behavior: "smooth" });
     return () => {};
   }, [recentmessages]);
-  //console.log(profile)
   return (
     <div className={style.messagePortion}>
-      {/* {console.count("rerender")} */}
       <section className={style.description}>
         <Avatar image={profile.profilePicture}></Avatar>
         <div className={style.name}>{profile.name}</div>
@@ -59,6 +57,10 @@ export default function MessagePortion({ profile }) {
           );
         })}
       </div>
+      {recentmessages.unseenMessages &&
+        recentmessages.unseenMessages.length == 0 && (
+          <div className={style.seenUnseen}>Seen</div>
+        )}
       <div ref={lastmsg}></div>
     </div>
   );

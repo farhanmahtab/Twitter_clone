@@ -44,19 +44,15 @@ export default async function handler(req, res) {
         return res.status(404).json({ msg: "User not found" });
       }
 
-      // const user = await User.findById(id);
       const [session, user, senderDB] = await Promise.all([
         getServerSession(req, res, authOptions(req)),
         User.findById(id).select({ notifications: 1, username: 1 }),
         User.findById(sender).select({ token: 1, username: 1 }),
       ]);
+      
       if (!user) {
         return res.status(404).json({ msg: "User not found" });
       }
-
-      // if (session?.user?.id != id) {
-      //   return res.status(401).json({ msg: "Not authorized" });
-      // }
 
       if (!user) {
         return res.status(404).json({ msg: "User not found" });
