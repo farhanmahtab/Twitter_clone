@@ -25,24 +25,6 @@ export const parseForm = async (req) => {
   });
 };
 
-//Get all post
-// const getAllPosts = async (req, res) => {
-//   try {
-//     const posts = await Posts.find({})
-//       .populate("createdBy", "name username email profilePicture")
-//       .populate({
-//         path: "comments",
-//         populate: { path: "replies", select: "createdBy body" },
-//       })
-//       .sort({ createdAt: -1 })
-//       // .limit(5);
-
-//     res.status(200).json({ message: "Posts fetched", posts });
-//   } catch (error) {
-//     res.status(400).json({ success: false, error: error.message });
-//   }
-// };
-
 //new getPost
 const getAllPosts = async (req, res) => {
   try {
@@ -52,18 +34,25 @@ const getAllPosts = async (req, res) => {
       .populate({
         path: "Comments",
         populate: { path: "replies", select: "createdBy body" },
-        strictPopulate:false
+        strictPopulate: false,
       })
       .sort({ createdAt: -1 })
       .skip(req.query.page)
       .limit(5);
     res.status(200).json({
-      message: "Posts fetched",
+      type: "Posts",
+      status: 200,
+      message: "OK",
       posts,
       nextpage: parseInt(page) + posts.length,
     });
   } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
+    res.status(400).json({
+      type: "Error",
+      status: 400,
+      message: "Bad request",
+      error: error.message,
+    });
   }
 };
 // create a new post with single image
@@ -88,11 +77,18 @@ const createPost = async (req, res) => {
     });
     await post.save().then(() => console.log("post Created"));
     await post.populate("createdBy", "name username profilePicture");
-    res.status(200).json({ status: true, data: post });
+    res
+      .status(200)
+      .json({ type: "Posts", status: 201, message: "Created", data: post });
     //console.log(post);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: " Server Error" });
+    res.status(500).json({
+      type: "Error",
+      status: 400,
+      message: "Bad request",
+      error: error.message,
+    });
   }
 };
 
@@ -105,12 +101,24 @@ const deleteTweet = async (req, res) => {
       const post = await Posts.findById(postId);
       console.log(post);
       if (!post) {
-        return res.status(404).json({ message: "Post not found" });
+        return res.status(404).json({
+          type: "Error",
+          status: 404,
+          message: "Not Found",
+          error: error.message,
+        });
       }
       await Posts.findByIdAndDelete(postId);
-      return res.status(200).json({ message: "Post deleted" });
+      return res
+        .status(200)
+        .json({ type: "Posts", status: 200, message: "Deleted" });
     } catch (error) {
-      res.status(400).json({ success: false, error: error.message });
+      res.status(400).json({
+        type: "Error",
+        status: 400,
+        message: "Bad request",
+        error: error.message,
+      });
     }
   });
 };
@@ -137,11 +145,25 @@ const updatePostById = async (req, res) => {
       });
       //console.log(post);
       if (!post) {
-        return res.status(404).json({ message: "Post not found" });
+        return res
+          .status(404)
+          .json({
+            type: "Error",
+            status: 404,
+            message: "Not Found",
+            error: error.message,
+          });
       }
-      res.status(200).json({ message: "Post updated", post });
+      res
+        .status(200)
+        .json({ type: "Posts", status: 200, message: "Updated", post });
     } catch (error) {
-      res.status(400).json({ success: false, error: error.message });
+      res.status(400).json({
+        type: "Error",
+        status: 400,
+        message: "Bad request",
+        error: error.message,
+      });
     }
   });
 };

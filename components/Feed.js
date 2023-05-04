@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "../styles/Feed.module.css";
 import Post from "./Post";
 import PostBox from "./PostBox";
-import PostRetweet from "./PostRetweet";
 import RetweetPost from "./PostRetweet";
 
 export default function Feed({ post }) {
@@ -20,7 +19,9 @@ export default function Feed({ post }) {
     const fetchPosts = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:3000/api/post/posts?page=${page}`);
+        const res = await fetch(
+          `http://localhost:3000/api/post/posts?page=${page}`
+        );
         const data = await res.json();
         console.log(data.posts);
         setPosts((prevPosts) => [...prevPosts, ...data.posts]);
@@ -33,6 +34,7 @@ export default function Feed({ post }) {
     fetchPosts();
     console.log("useEffect");
   }, [page]);
+
   const observer = useRef(
     typeof IntersectionObserver !== "undefined" &&
       new IntersectionObserver(

@@ -21,9 +21,14 @@ const getUserById = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "Post not found" });
     }
-    res.status(200).json({ message: "user fetched", user });
+    res.status(200).json({ type: "User", status: 200, message: "OK", user });
   } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
+    res.status(400).json({
+      type: "Error",
+      status: 404,
+      message: "Not found",
+      error: error.message,
+    });
   }
 };
 
@@ -70,9 +75,18 @@ const updateUserById = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res.status(200).json({ message: "User updated", user });
+    res
+      .status(200)
+      .json({ type: "User", status: 200, message: "Updated", user });
   } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
+    res
+      .status(400)
+      .json({
+        type: "User",
+        status: 404,
+        message: "User Not Found",
+        error: error.message,
+      });
   }
 };
 

@@ -20,9 +20,21 @@ const getPostById = async (req, res) => {
       return res.status(404).json({ message: "Post not found" });
     }
     //console.log(post.Comment)
-    res.status(200).json({ message: "Post fetched", post });
+    res.status(200).json({
+      type: "Posts",
+      status: 200,
+      message: "OK",
+      post,
+    });
   } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
+    res
+      .status(400)
+      .json({
+        type: "Posts",
+        status: 404,
+        message: "Not Found",
+        error: error.message,
+      });
   }
 };
 //Update post

@@ -13,20 +13,18 @@ const getAllUsers = async (req, res) => {
       return { ...user.toObject(), isFollowed };
     });
     //console.log(updatedUsers);
-    res.status(200).json({ success: true, users: updatedUsers });
+    res
+      .status(200)
+      .json({ type: "User", status: 200, message: "OK", users: updatedUsers });
   } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
+    res.status(400).json({
+      type: "Error",
+      status: 404,
+      message: "Not found",
+      error: error.message,
+    });
   }
 };
-
-// const getAllUsers = async (req, res) => {
-//   try {
-//     const users = await Users.find({});
-//     res.status(200).json({ success: true, users: users });
-//   } catch (error) {
-//     res.status(400).json({ success: false, error: error.message });
-//   }
-// };
 
 //create a user
 const postUsers = async (req, res) => {
@@ -64,9 +62,21 @@ const postUsers = async (req, res) => {
       following,
     });
     await user.save().then(() => console.log("User Created"));
-    res.status(200).json({ status: true, data: user });
+    res.status(200).json({
+      type: "User",
+      status: 200,
+      message: "OK",
+      status: true,
+      data: user,
+    });
   } catch (error) {
-    res.status(400).json({ status: false, error: error.message });
+    res.status(400).json({
+      type: "Error",
+      status: 404,
+      message: "Not found",
+      status: false,
+      error: error.message,
+    });
   }
 };
 

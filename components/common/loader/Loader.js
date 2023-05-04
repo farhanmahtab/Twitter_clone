@@ -11,10 +11,6 @@ export default function Loader({ size = 50, color = "black" }) {
           r="105"
           fill="none"
           stroke="#000"
-          // stroke-width="20"
-          // stroke-dasharray="0 660"
-          // stroke-dashoffset="-330"
-          // stroke-linecap="round"
         ></circle>
         <circle
           className="pl__ring pl__ring--b"
@@ -23,10 +19,6 @@ export default function Loader({ size = 50, color = "black" }) {
           r="35"
           fill="none"
           stroke="#000"
-          // stroke-width="20"
-          // stroke-dasharray="0 220"
-          // stroke-dashoffset="-110"
-          // stroke-linecap="round"
         ></circle>
         <circle
           className="pl__ring pl__ring--c"
@@ -35,9 +27,6 @@ export default function Loader({ size = 50, color = "black" }) {
           r="70"
           fill="none"
           stroke="#000"
-          // stroke-width="20"
-          // stroke-dasharray="0 440"
-          // stroke-linecap="round"
         ></circle>
         <circle
           className="pl__ring pl__ring--d"
@@ -46,9 +35,6 @@ export default function Loader({ size = 50, color = "black" }) {
           r="70"
           fill="none"
           stroke="#000"
-          // stroke-width="20"
-          // stroke-dasharray="0 440"
-          // stroke-linecap="round"
         ></circle>
       </svg>
       <style jsx>{`

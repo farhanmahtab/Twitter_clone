@@ -16,9 +16,16 @@ const getPostByUserId = async (req, res) => {
       .sort({
         postCreatedAt: -1,
       });
-    res.status(200).json({ message: "Posts fetched", user,posts });
+    res.status(200).json({ type: "Posts", status: 200, message: "OK", posts });
   } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
+    res
+      .status(400)
+      .json({
+        type: "Error",
+        status: 400,
+        message: "Not Found",
+        error: error.message,
+      });
   }
 };
 
