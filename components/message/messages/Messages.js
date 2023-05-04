@@ -17,7 +17,7 @@ export default function Messages({ receiver, email }) {
   const [messages, setMessages] = useState();
   const [recentmessages, setRecentMessages] = useContext(RecentMessageContext);
   const session = useSession();
-  //console.log(receiver);
+  //console.log(recentmessages);
   const deleteNotificationState = async () => {
     setRecentMessages((state) => {
       const newState = { ...state };
@@ -39,44 +39,42 @@ export default function Messages({ receiver, email }) {
 
     return () => {};
   }, [setRecentMessages, receiver, session.data]);
-  console.log(session.data.user.id);
-  useEffect(
-    () => {
-      const requestOptions = {
-        method: "GET",
-        redirect: "follow",
-      };
+  useEffect(() => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
 
-      async function getMessages() {
-        try {
-          const response = await fetch(
-            `/api/messages?senderId=${session.data?.user.id}&receiverId=${_id?._id}`,
-            requestOptions
-          );
-          const result = await response.json();
+    async function getMessages() {
+      try {
+        const response = await fetch(
+          `/api/messages?senderId=${session.data?.user.id}&receiverId=${receiver?._id}`,
+          requestOptions
+        );
+        const result = await response.json();
 
-          if (result) {
-            setRecentMessages((state) => {
-              return { ...state, messages: result.messages };
-            });
-          } else {
-            setRecentMessages((state) => {
-              return { ...state, messages: [] };
-            });
-          }
-        } catch (error) {}
+        if (result) {
+          setRecentMessages((state) => {
+            return { ...state, messages: result.messages };
+          });
+        } else {
+          setRecentMessages((state) => {
+            return { ...state, messages: [] };
+          });
+        }
+      } catch (error) {
+        console.log(error);
       }
+    }
 
-      if (session.data && receiver) {
-        getMessages();
-      }
-      setProfile({ ...receiver });
+    if (session.data && receiver) {
+      console.log(receiver);
+      getMessages();
+    }
+    setProfile({ ...receiver });
 
-      return () => {};
-    },
-    [session.data, setRecentMessages, receiver],
-    session.data
-  );
+    return () => {};
+  }, [session.data, setRecentMessages, receiver]);
 
   const handleSendMsg = async (e) => {
     e.preventDefault();
