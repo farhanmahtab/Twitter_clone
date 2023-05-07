@@ -11,9 +11,20 @@ const handler = async (req, res) => {
       ],
     }).select({ username: 1, email: 1, name: 1, profilePicture: 1 });
 
-    res.status(200).json(users);
+    res.status(200).json({
+      success: true,
+      type: "Search",
+      status: 200,
+      message: "OK",
+      users,
+    });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(400).json({
+      success: false,
+      status: 400,
+      message: "Bad request",
+      error: err.message,
+    });
   }
 };
 

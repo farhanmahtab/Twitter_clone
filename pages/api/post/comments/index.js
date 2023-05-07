@@ -17,22 +17,37 @@ const getComments = async (req, res) => {
       .populate({
         path: "comments.replies",
         select: "createdBy body createdAt updatedAt",
-        populate:{
-          path:"createdBy",
+        populate: {
+          path: "createdBy",
           select: "name username email profilePicture",
-        }
+        },
       });
     if (!post) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Post not found" });
+      return res.status(404).json({
+        success: false,
+        type: "Comment",
+        status: 404,
+        message: "Post not found",
+      });
     }
     const comments = post.comments.sort(
       (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
     );
-    res.status(200).json({ success: true, comments });
+    res.status(200).json({
+      success: true,
+      type: "Comment",
+      status: 200,
+      message: "OK",
+      comments,
+    });
   } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
+    res.status(400).json({
+      success: false,
+      type: "Comment",
+      status: 400,
+      message: "Bad Request",
+      error: error.message,
+    });
   }
 };
 
@@ -44,16 +59,22 @@ const postComments = async (req, res) => {
       const user = await Users.findOne({ email });
 
       if (!user) {
-        return res
-          .status(404)
-          .json({ success: false, message: "User not found" });
+        return res.status(404).json({
+          success: false,
+          type: "Comment",
+          status: 404,
+          message: "User not found",
+        });
       }
       const post = await Posts.findById(postId);
 
       if (!post) {
-        return res
-          .status(404)
-          .json({ success: false, message: "Post not found" });
+        return res.status(404).json({
+          success: false,
+          type: "Comment",
+          status: 404,
+          message: "Post not found",
+        });
       }
       const comment = {
         createdBy: user._id,
@@ -64,9 +85,21 @@ const postComments = async (req, res) => {
       post.comments.push(comment);
       await post.save();
 
-      res.status(201).json({ success: true, comment });
+      res.status(201).json({
+        success: true,
+        type: "Comment",
+        status: 201,
+        message: "OK",
+        comment,
+      });
     } catch (error) {
-      res.status(400).json({ success: false, error: error.message });
+      res.status(400).json({
+        success: false,
+        type: "Comment",
+        status: 400,
+        message: "Bad Request",
+        error: error.message,
+      });
     }
   });
 };
@@ -82,24 +115,39 @@ const deleteComment = async (req, res) => {
         { new: true }
       );
       if (!post) {
-        return res
-          .status(404)
-          .json({ success: false, message: "Comment not found" });
+        return res.status(404).json({
+          success: false,
+          type: "Comment",
+          status: 404,
+          message: "Post not found",
+        });
       }
       const deletedComment = post.comments.find(
         (comment) => comment._id.toString() === commentId
       );
       if (!deletedComment) {
-        return res
-          .status(404)
-          .json({ success: false, message: "Comment not found" });
+        return res.status(404).json({
+          success: false,
+          type: "Comment",
+          status: 404,
+          message: "Comment not found",
+        });
       }
 
-      res
-        .status(200)
-        .json({ success: true, message: "Comment deleted successfully" });
+      res.status(200).json({
+        success: true,
+        type: "Comment",
+        status: 200,
+        message: "OK",
+      });
     } catch (error) {
-      res.status(400).json({ success: false, error: error.message });
+      res.status(400).json({
+        success: false,
+        type: "Comment",
+        status: 400,
+        message: "Bad Request",
+        error: error.message,
+      });
     }
   });
 };

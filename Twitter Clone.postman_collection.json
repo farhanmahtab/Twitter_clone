@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "get all user",
+			"name": "Get all user",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -31,7 +31,72 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/user?id=6426792cb4407e69dc71d149",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6426792cb4407e69dc71d149"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"dpcnesrf4m15j\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 09:07:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"result\",\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"users\": [\n        {\n            \"_id\": \"64226c35f1b98662c7301067\",\n            \"name\": \"Mazhar Ali\",\n            \"username\": \"mazharali22\",\n            \"email\": \"shawon@gmail.com\",\n            \"password\": \"$2b$10$7PghdTch.SdGZE3Yvy9.8OGShFTsWHLpHSEGw1ZAsj8qdKGKsnEG2\",\n            \"profilePicture\": \"/Resource/user.jpeg\",\n            \"coverPhoto\": \"/Resource/img4.jpeg\",\n            \"bio\": \"GS Shawon\",\n            \"followers\": [\n                \"64225946691de128e8d3a6d8\",\n                \"6426792cb4407e69dc71d149\",\n                \"64226c35f1b98662c7301067\",\n                \"64227c2cac613fcee5f0ac31\"\n            ],\n            \"following\": [\n                \"642ce11e16b840aab116ec63\",\n                \"642bbcee54dcd68c01c9dccb\",\n                \"64268101b4407e69dc71d1f2\",\n                \"64226c35f1b98662c7301067\"\n            ],\n            \"__v\": 104,\n            \"notifications\": [],\n            \"updatedAt\": \"2023-05-04T06:28:03.065Z\",\n            \"messages\": [\n                {\n                    \"sender\": \"64227c2cac613fcee5f0ac31\",\n                    \"chatID\": \"6450daa299e83c171839b7a2\",\n                    \"cus_id\": \"64227c2cac613fcee5f0ac3164226c35f1b98662c7301067\",\n                    \"username\": \"ironblood\",\n                    \"email\": \"mahi@gmail.com\",\n                    \"_id\": \"6450daa299e83c171839b7a7\"\n                },\n                {\n                    \"sender\": \"64226c35f1b98662c7301067\",\n                    \"chatID\": \"6451fed26d81e61829793aba\",\n                    \"cus_id\": \"64226c35f1b98662c730106764226c35f1b98662c7301067\",\n                    \"username\": \"mazharali22\",\n                    \"email\": \"shawon@gmail.com\",\n                    \"_id\": \"6451fed26d81e61829793abf\"\n                },\n                {\n                    \"sender\": \"642bbcee54dcd68c01c9dccb\",\n                    \"chatID\": \"645204d86d81e61829794499\",\n                    \"cus_id\": \"642bbcee54dcd68c01c9dccb64226c35f1b98662c7301067\",\n                    \"username\": \"heromaruf\",\n                    \"email\": \"maruf@gmail.com\",\n                    \"_id\": \"645204d96d81e6182979449e\"\n                }\n            ],\n            \"token\": \"dEFxgir6zsuifi25XSvD4s:APA91bG6WxBKzIfbAEIyfd--XOKOKTFAdXGK-9x5YwTcAZdN8tWFeFb0uaU6XoAohD8o2tUA3iDwJpR8_n_ufR5P6DGBxL92OQPxiYDYxwh6w0lg-xxYXroVzqjh5WL2zanhin_rcp9w\",\n            \"isFollowed\": true\n        }\n    ]\n}"
+				}
+			]
 		},
 		{
 			"name": "Get User by Id",
@@ -52,7 +117,118 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/user/642ce11e16b840aab116ec63",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"642ce11e16b840aab116ec63"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"u8za960wg1f6\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "546"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 09:12:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"User\",\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"user\": {\n        \"_id\": \"642ce11e16b840aab116ec63\",\n        \"name\": \"Farhan Mahtab Mahi\",\n        \"username\": \"Farhan Mahtab Mahi\",\n        \"email\": \"farhan.mahi1999@gmail.com\",\n        \"profilePicture\": \"https://avatars.githubusercontent.com/u/51365144?v=4\",\n        \"coverPhoto\": \"https://avatars.githubusercontent.com/u/51365144?v=4\",\n        \"bio\": \"\",\n        \"followers\": [\n            {\n                \"_id\": \"64226c35f1b98662c7301067\",\n                \"name\": \"Mazhar Ali\",\n                \"username\": \"mazharali22\",\n                \"email\": \"shawon@gmail.com\",\n                \"profilePicture\": \"/Resource/user.jpeg\"\n            }\n        ],\n        \"following\": [],\n        \"__v\": 1,\n        \"notifications\": [],\n        \"messages\": []\n    }\n}"
+				},
+				{
+					"name": "Error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/user/642ce11e16b840aab116ec6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"642ce11e16b840aab116ec6"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"1307x3kfurk4s\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "172"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 09:12:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Error\",\n    \"status\": 404,\n    \"message\": \"Not found\",\n    \"error\": \"Cast to ObjectId failed for value \\\"642ce11e16b840aab116ec6\\\" (type string) at path \\\"_id\\\" for model \\\"User\\\"\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Post  a User",
@@ -81,7 +257,134 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"name\": \"Test user 1\",\n    \"username\": \"test1\",\n    \"email\": \"test1@gmail.com\",\n    \"password\": \"1234\",\n    \"profilePicture\": \"https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1\",\n    \"coverPhoto\": \"https://images.pexels.com/photos/7310213/pexels-photo-7310213.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1\",\n    \"bio\": \"never stop\",\n    \"followers\": [],\n    \"following\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"luel60hpgwi4\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "652"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 09:16:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"User\",\n    \"status\": true,\n    \"message\": \"OK\",\n    \"data\": {\n        \"name\": \"Test user 1\",\n        \"username\": \"test1\",\n        \"email\": \"test1@gmail.com\",\n        \"password\": \"$2b$10$wI9J1uKtVKw7bCEce5cqce3T.E.uRYf8uGpWJcbxXN9QX5zYM.Th6\",\n        \"profilePicture\": \"https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1\",\n        \"coverPhoto\": \"https://images.pexels.com/photos/7310213/pexels-photo-7310213.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1\",\n        \"bio\": \"never stop\",\n        \"followers\": [],\n        \"following\": [],\n        \"_id\": \"6453780408a9fba1b4e05e8a\",\n        \"notifications\": [],\n        \"messages\": [],\n        \"createdAt\": \"2023-05-04T09:16:52.264Z\",\n        \"updatedAt\": \"2023-05-04T09:16:52.264Z\",\n        \"__v\": 0\n    }\n}"
+				},
+				{
+					"name": "Error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"name\": \"Test user 1\",\n    \"username\": \"test1\",\n    \"email\": \"test1@gmail.com\",\n    \"password\": \"1234\",\n    \"profilePicture\": \"https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1\",\n    \"coverPhoto\": \"https://images.pexels.com/photos/7310213/pexels-photo-7310213.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1\",\n    \"bio\": \"never stop\",\n    \"followers\": [],\n    \"following\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"4hpegme7zw3c\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "120"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 09:18:35 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Error\",\n    \"status\": false,\n    \"message\": \"Not found\",\n    \"error\": \"User validation failed: email: Path `email` is required.\"\n}"
+				}
+			]
 		},
 		{
 			"name": "patch user by id",
@@ -111,15 +414,144 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bio\":\"never settle\"\r\n \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user/645372aa08a9fba1b4e05b1b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"645372aa08a9fba1b4e05b1b"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"11a9z3ai5j6i8\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "656"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 09:22:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"User\",\n    \"status\": 200,\n    \"message\": \"Updated\",\n    \"user\": {\n        \"_id\": \"645372aa08a9fba1b4e05b1b\",\n        \"name\": \"Test user 2\",\n        \"username\": \"test2\",\n        \"email\": \"test2@gmail.com\",\n        \"password\": \"$2b$10$ZzgdsNkiR7eU0lyvQvwDNuMp6gH8n0mCe9N58rSPZR14GjJlzOpGi\",\n        \"profilePicture\": \"https://images.pexels.com/photos/3777622/pexels-photo-3777622.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1\",\n        \"coverPhoto\": \"https://images.pexels.com/photos/699459/pexels-photo-699459.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1\",\n        \"bio\": \"never settle\",\n        \"followers\": [],\n        \"following\": [],\n        \"notifications\": [],\n        \"messages\": [],\n        \"createdAt\": \"2023-05-04T08:54:02.801Z\",\n        \"updatedAt\": \"2023-05-04T09:22:18.507Z\",\n        \"__v\": 0\n    }\n}"
+				},
+				{
+					"name": "Error",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bio\":\"never settle\"\r\n \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user/645372aa08a9fba1b4e05b1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"645372aa08a9fba1b4e05b1"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"3ry6l4jt7x4w\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "176"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 09:23:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"User\",\n    \"status\": 404,\n    \"message\": \"User Not Found\",\n    \"error\": \"Cast to ObjectId failed for value \\\"645372aa08a9fba1b4e05b1\\\" (type string) at path \\\"_id\\\" for model \\\"User\\\"\"\n}"
+				}
+			]
 		},
 		{
-			"name": "Get all tweet",
+			"name": "Get all post",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/post/posts",
+					"raw": "http://localhost:3000/api/post/posts?page=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -129,13 +561,146 @@
 						"api",
 						"post",
 						"posts"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/post/posts?page=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"s5l6nkaky01vi\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 09:27:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Posts\",\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"posts\": [\n        {\n            \"_id\": \"643667fb8aef418b977603d7\",\n            \"createdBy\": {\n                \"_id\": \"64226c35f1b98662c7301067\",\n                \"name\": \"Mazhar Ali\",\n                \"username\": \"mazharali22\",\n                \"email\": \"shawon@gmail.com\",\n                \"profilePicture\": \"/Resource/user.jpeg\"\n            },\n            \"body\": \"nice :3\",\n            \"react\": [],\n            \"NumberOfReact\": 0,\n            \"typeofTweet\": \"retweet\",\n            \"originalTweetId\": \"6432dadc3b177333172a2914\",\n            \"NumberOfRetweet\": 0,\n            \"createdAt\": \"2023-04-12T08:12:43.934Z\",\n            \"updatedAt\": \"2023-04-12T08:13:05.035Z\",\n            \"comments\": [],\n            \"retweets\": [],\n            \"__v\": 2\n        },\n        {\n            \"_id\": \"643666698aef418b97760021\",\n            \"createdBy\": {\n                \"_id\": \"642bbcee54dcd68c01c9dccb\",\n                \"name\": \"maruf pulok\",\n                \"username\": \"heromaruf\",\n                \"email\": \"maruf@gmail.com\",\n                \"profilePicture\": \"/Resource/marufPP.jpg\"\n            },\n            \"body\": \"re re tweet tweet\",\n            \"react\": [],\n            \"NumberOfReact\": 0,\n            \"typeofTweet\": \"retweet\",\n            \"originalTweetId\": \"643666538aef418b9775ff95\",\n            \"NumberOfRetweet\": 0,\n            \"createdAt\": \"2023-04-12T08:06:01.235Z\",\n            \"updatedAt\": \"2023-04-12T08:06:01.235Z\",\n            \"comments\": [],\n            \"retweets\": [],\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"643666538aef418b9775ff95\",\n            \"createdBy\": {\n                \"_id\": \"642bbcee54dcd68c01c9dccb\",\n                \"name\": \"maruf pulok\",\n                \"username\": \"heromaruf\",\n                \"email\": \"maruf@gmail.com\",\n                \"profilePicture\": \"/Resource/marufPP.jpg\"\n            },\n            \"body\": \"retweet test\",\n            \"react\": [],\n            \"NumberOfReact\": 0,\n            \"typeofTweet\": \"retweet\",\n            \"originalTweetId\": \"6436420b8aef418b9775e9d5\",\n            \"NumberOfRetweet\": 1,\n            \"createdAt\": \"2023-04-12T08:05:39.784Z\",\n            \"updatedAt\": \"2023-04-12T08:06:01.313Z\",\n            \"comments\": [],\n            \"retweets\": [\n                {\n                    \"typeofTweet\": \"retweet\",\n                    \"post\": \"643666698aef418b97760021\",\n                    \"createdBy\": \"642bbcee54dcd68c01c9dccb\",\n                    \"_id\": \"643666698aef418b97760023\"\n                }\n            ],\n            \"__v\": 1\n        },\n        {\n            \"_id\": \"643664338aef418b9775fdc8\",\n            \"createdBy\": {\n                \"_id\": \"642bbcee54dcd68c01c9dccb\",\n                \"name\": \"maruf pulok\",\n                \"username\": \"heromaruf\",\n                \"email\": \"maruf@gmail.com\",\n                \"profilePicture\": \"/Resource/marufPP.jpg\"\n            },\n            \"body\": \"wryy tweet\",\n            \"react\": [],\n            \"NumberOfReact\": 0,\n            \"typeofTweet\": \"retweet\",\n            \"originalTweetId\": \"6432dadc3b177333172a2914\",\n            \"NumberOfRetweet\": 0,\n            \"createdAt\": \"2023-04-12T07:56:35.752Z\",\n            \"updatedAt\": \"2023-04-12T07:56:35.752Z\",\n            \"comments\": [],\n            \"retweets\": [],\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"643642288aef418b9775e9e9\",\n            \"createdBy\": {\n                \"_id\": \"64227c2cac613fcee5f0ac31\",\n                \"name\": \"Farhan Mahtab\",\n                \"username\": \"ironblood\",\n                \"email\": \"mahi@gmail.com\",\n                \"profilePicture\": \"/Resource/pp.jpeg\"\n            },\n            \"body\": \"test retweet 1\",\n            \"react\": [],\n            \"NumberOfReact\": 0,\n            \"typeofTweet\": \"retweet\",\n            \"originalTweetId\": \"6436420b8aef418b9775e9d5\",\n            \"NumberOfRetweet\": 0,\n            \"createdAt\": \"2023-04-12T05:31:20.424Z\",\n            \"updatedAt\": \"2023-04-12T05:31:20.424Z\",\n            \"comments\": [],\n            \"retweets\": [],\n            \"__v\": 0\n        }\n    ],\n    \"nextpage\": 5\n}"
+				},
+				{
+					"name": "Error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/post/posts?page=-1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "-1"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"g03mkxmz1a3b\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "119"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 09:28:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Posts\",\n    \"status\": 400,\n    \"message\": \"Bad request\",\n    \"error\": \"BSON field 'skip' value must be >= 0, actual value '-1'\"\n}"
+				}
+			]
 		},
 		{
-			"name": "get post by id",
+			"name": "Get post by id",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -153,10 +718,121 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/post/6436420b8aef418b9775e9d5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"6436420b8aef418b9775e9d5"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"srhha2a3ogo3\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "867"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 09:31:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Posts\",\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"post\": {\n        \"_id\": \"6436420b8aef418b9775e9d5\",\n        \"createdBy\": {\n            \"_id\": \"642bbcee54dcd68c01c9dccb\",\n            \"name\": \"maruf pulok\",\n            \"username\": \"heromaruf\",\n            \"email\": \"maruf@gmail.com\",\n            \"profilePicture\": \"/Resource/marufPP.jpg\"\n        },\n        \"body\": \"original post\",\n        \"PostImage\": null,\n        \"react\": [],\n        \"NumberOfReact\": 0,\n        \"typeofTweet\": \"original\",\n        \"NumberOfRetweet\": 3,\n        \"createdAt\": \"2023-04-12T05:30:51.703Z\",\n        \"updatedAt\": \"2023-04-12T08:05:39.888Z\",\n        \"comments\": [],\n        \"retweets\": [\n            {\n                \"typeofTweet\": \"retweet\",\n                \"post\": \"643642288aef418b9775e9e9\",\n                \"createdBy\": \"64227c2cac613fcee5f0ac31\",\n                \"_id\": \"643642288aef418b9775e9eb\"\n            },\n            {\n                \"typeofTweet\": \"retweet\",\n                \"post\": \"643649918aef418b9775ed04\",\n                \"createdBy\": \"642bbcee54dcd68c01c9dccb\",\n                \"_id\": \"643649918aef418b9775ed06\"\n            },\n            {\n                \"typeofTweet\": \"retweet\",\n                \"post\": \"643666538aef418b9775ff95\",\n                \"createdBy\": \"642bbcee54dcd68c01c9dccb\",\n                \"_id\": \"643666538aef418b9775ff97\"\n            }\n        ],\n        \"__v\": 3\n    }\n}"
+				},
+				{
+					"name": "Error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/post/6436420b8aef418b9775e9d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"6436420b8aef418b9775e9d"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"n9ul9m3k8q4t\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "173"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 09:39:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Posts\",\n    \"status\": 404,\n    \"message\": \"Not Found\",\n    \"error\": \"Cast to ObjectId failed for value \\\"6436420b8aef418b9775e9d\\\" (type string) at path \\\"_id\\\" for model \\\"Posts\\\"\"\n}"
+				}
+			]
 		},
 		{
-			"name": "get posts by user Id",
+			"name": "Get posts by user Id",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -192,7 +868,152 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/userPost?id=64227c2cac613fcee5f0ac31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"userPost"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "64227c2cac613fcee5f0ac31"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"qka9ja7x7a3fb\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 09:53:38 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Posts\",\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"posts\": [\n        {\n            \"NumberOfRetweet\": 0,\n            \"_id\": \"642d01c6aa0ca5c0e13e3533\",\n            \"createdBy\": {\n                \"_id\": \"64227c2cac613fcee5f0ac31\",\n                \"name\": \"Farhan Mahtab\",\n                \"username\": \"ironblood\",\n                \"profilePicture\": \"/Resource/pp.jpeg\"\n            },\n            \"body\": \"test\",\n            \"PostImage\": \"32fabd2427b7cc0f913450600.jpeg\",\n            \"react\": [\n                \"64226c35f1b98662c7301067\"\n            ],\n            \"NumberOfReact\": 0,\n            \"Comment\": [],\n            \"NumberOfComment\": 0,\n            \"createdAt\": \"2023-04-05T05:06:14.504Z\",\n            \"updatedAt\": \"2023-04-05T07:59:29.764Z\",\n            \"__v\": 1,\n            \"comments\": [],\n            \"retweets\": []\n        },\n        {\n            \"NumberOfRetweet\": 0,\n            \"_id\": \"642d02d0aa0ca5c0e13e356d\",\n            \"createdBy\": {\n                \"_id\": \"64227c2cac613fcee5f0ac31\",\n                \"name\": \"Farhan Mahtab\",\n                \"username\": \"ironblood\",\n                \"profilePicture\": \"/Resource/pp.jpeg\"\n            },\n            \"body\": \"Post\",\n            \"PostImage\": null,\n            \"react\": [],\n            \"NumberOfReact\": 0,\n            \"Comment\": [],\n            \"NumberOfComment\": 0,\n            \"createdAt\": \"2023-04-05T05:10:40.798Z\",\n            \"updatedAt\": \"2023-04-05T05:10:40.798Z\",\n            \"__v\": 0,\n            \"comments\": [],\n            \"retweets\": []\n        },\n        {\n            \"NumberOfRetweet\": 0,\n            \"_id\": \"642d02efaa0ca5c0e13e3577\",\n            \"createdBy\": {\n                \"_id\": \"64227c2cac613fcee5f0ac31\",\n                \"name\": \"Farhan Mahtab\",\n                \"username\": \"ironblood\",\n                \"profilePicture\": \"/Resource/pp.jpeg\"\n            },\n            \"body\": \"knee guard\",\n            \"PostImage\": \"32fabd2427b7cc0f913450601.jpeg\",\n            \"react\": [],\n            \"NumberOfReact\": 0,\n            \"Comment\": [\n                \"642d2cacaa0ca5c0e13f3f2d\"\n            ],\n            \"NumberOfComment\": 0,\n            \"createdAt\": \"2023-04-05T05:11:11.595Z\",\n            \"updatedAt\": \"2023-04-06T03:20:15.963Z\",\n            \"__v\": 9,\n            \"comments\": [],\n            \"retweets\": []\n        },\n        {\n            \"NumberOfRetweet\": 0,\n            \"_id\": \"6432a7153b177333172a2882\",\n            \"createdBy\": {\n                \"_id\": \"64227c2cac613fcee5f0ac31\",\n                \"name\": \"Farhan Mahtab\",\n                \"username\": \"ironblood\",\n                \"profilePicture\": \"/Resource/pp.jpeg\"\n            },\n            \"body\": \"image post\",\n            \"PostImage\": \"93dc0a01d42dce1865daffc01.jpg\",\n            \"react\": [\n                \"642bbcee54dcd68c01c9dccb\"\n            ],\n            \"NumberOfReact\": 0,\n            \"retweets\": [],\n            \"createdAt\": \"2023-04-09T11:52:53.555Z\",\n            \"updatedAt\": \"2023-04-11T07:44:58.030Z\",\n            \"comments\": [\n                {\n                    \"createdBy\": \"64227c2cac613fcee5f0ac31\",\n                    \"body\": \"nice image\",\n                    \"createdAt\": \"2023-04-11T07:03:13.573Z\",\n                    \"updatedAt\": \"2023-04-11T07:03:13.573Z\",\n                    \"react\": [],\n                    \"NumberOfReact\": 0,\n                    \"_id\": \"64350631d8d959a0bcdf0a96\",\n                    \"replies\": []\n                },\n                {\n                    \"createdBy\": \"64227c2cac613fcee5f0ac31\",\n                    \"body\": \"comment\",\n                    \"createdAt\": \"2023-04-11T07:04:14.328Z\",\n                    \"updatedAt\": \"2023-04-11T07:04:14.328Z\",\n                    \"react\": [],\n                    \"NumberOfReact\": 0,\n                    \"_id\": \"6435066ed8d959a0bcdf0af5\",\n                    \"replies\": [\n                        {\n                            \"createdBy\": \"64227c2cac613fcee5f0ac31\",\n                            \"body\": \"reply\",\n                            \"createdAt\": \"2023-04-11T07:06:10.139Z\",\n                            \"updatedAt\": \"2023-04-11T07:06:10.139Z\",\n                            \"_id\": \"643506e2d8d959a0bcdf0b6b\"\n                        }\n                    ]\n                },\n                {\n                    \"createdBy\": \"64227c2cac613fcee5f0ac31\",\n                    \"body\": \"comment 2\",\n                    \"createdAt\": \"2023-04-11T07:06:36.965Z\",\n                    \"updatedAt\": \"2023-04-11T07:06:36.965Z\",\n                    \"react\": [],\n                    \"NumberOfReact\": 0,\n                    \"_id\": \"643506fcd8d959a0bcdf0be9\",\n                    \"replies\": [\n                        {\n                            \"createdBy\": \"642bbcee54dcd68c01c9dccb\",\n                            \"body\": \"reply 2\",\n                            \"createdAt\": \"2023-04-11T07:44:58.028Z\",\n                            \"updatedAt\": \"2023-04-11T07:44:58.028Z\",\n                            \"_id\": \"64350ffad8d959a0bcdf1e23\"\n                        }\n                    ]\n                }\n            ],\n            \"__v\": 12\n        },\n        {\n            \"_id\": \"6432dadc3b177333172a2914\",\n            \"createdBy\": {\n                \"_id\": \"64227c2cac613fcee5f0ac31\",\n                \"name\": \"Farhan Mahtab\",\n                \"username\": \"ironblood\",\n                \"profilePicture\": \"/Resource/pp.jpeg\"\n            },\n            \"body\": \"Updated post\",\n            \"PostImage\": \"93dc0a01d42dce1865daffc02.jpg\",\n            \"react\": [\n                \"642bbcee54dcd68c01c9dccb\"\n            ],\n            \"NumberOfReact\": 0,\n            \"retweets\": [\n                {\n                    \"typeofTweet\": \"retweet\",\n                    \"post\": \"643664338aef418b9775fdc8\",\n                    \"createdBy\": \"642bbcee54dcd68c01c9dccb\",\n                    \"_id\": \"643664338aef418b9775fdca\"\n                },\n                {\n                    \"typeofTweet\": \"retweet\",\n                    \"post\": \"643667fb8aef418b977603d7\",\n                    \"createdBy\": \"64226c35f1b98662c7301067\",\n                    \"_id\": \"643667fc8aef418b977603d9\"\n                }\n            ],\n            \"createdAt\": \"2023-04-09T15:33:48.371Z\",\n            \"updatedAt\": \"2023-04-12T08:12:44.019Z\",\n            \"comments\": [\n                {\n                    \"createdBy\": \"642bbcee54dcd68c01c9dccb\",\n                    \"body\": \"tomioka Giyu\",\n                    \"createdAt\": \"2023-04-10T08:06:41.476Z\",\n                    \"updatedAt\": \"2023-04-10T08:06:41.476Z\",\n                    \"react\": [],\n                    \"NumberOfReact\": 0,\n                    \"_id\": \"6433c3919c917bf6515f969c\",\n                    \"replies\": []\n                }\n            ],\n            \"__v\": 14,\n            \"NumberOfRetweet\": 2\n        },\n        {\n            \"_id\": \"643642288aef418b9775e9e9\",\n            \"createdBy\": {\n                \"_id\": \"64227c2cac613fcee5f0ac31\",\n                \"name\": \"Farhan Mahtab\",\n                \"username\": \"ironblood\",\n                \"profilePicture\": \"/Resource/pp.jpeg\"\n            },\n            \"body\": \"test retweet 1\",\n            \"react\": [],\n            \"NumberOfReact\": 0,\n            \"typeofTweet\": \"retweet\",\n            \"originalTweetId\": \"6436420b8aef418b9775e9d5\",\n            \"NumberOfRetweet\": 0,\n            \"createdAt\": \"2023-04-12T05:31:20.424Z\",\n            \"updatedAt\": \"2023-04-12T05:31:20.424Z\",\n            \"comments\": [],\n            \"retweets\": [],\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6450a0d199e83c171839ae6c\",\n            \"createdBy\": {\n                \"_id\": \"64227c2cac613fcee5f0ac31\",\n                \"name\": \"Farhan Mahtab\",\n                \"username\": \"ironblood\",\n                \"profilePicture\": \"/Resource/pp.jpeg\"\n            },\n            \"body\": \"test \",\n            \"PostImage\": null,\n            \"react\": [],\n            \"NumberOfReact\": 0,\n            \"typeofTweet\": \"original\",\n            \"NumberOfRetweet\": 0,\n            \"createdAt\": \"2023-05-02T05:34:09.500Z\",\n            \"updatedAt\": \"2023-05-02T05:34:14.579Z\",\n            \"comments\": [],\n            \"retweets\": [],\n            \"__v\": 2\n        }\n    ]\n}"
+				},
+				{
+					"name": "Error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/userPost?id=64227c2cac613fcee5f0ac3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"userPost"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "64227c2cac613fcee5f0ac3"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"129w9ldhlo34s\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "172"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 09:53:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Error\",\n    \"status\": 400,\n    \"message\": \"Not Found\",\n    \"error\": \"Cast to ObjectId failed for value \\\"64227c2cac613fcee5f0ac3\\\" (type string) at path \\\"_id\\\" for model \\\"User\\\"\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Post a tweet",
@@ -221,16 +1042,80 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test1@gmail.com\",\n    \"body\": \"Post Image New\",\n    \"postImage\":\"https://images.pexels.com/photos/920220/pexels-photo-920220.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"smu5g0tc8l8c\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "300"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 10:00:35 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": true,\n    \"data\": {\n        \"createdBy\": \"6453780408a9fba1b4e05e8a\",\n        \"body\": \"Post Image New\",\n        \"PostImage\": null,\n        \"react\": [],\n        \"NumberOfReact\": 0,\n        \"NumberOfRetweet\": 0,\n        \"_id\": \"6453824308a9fba1b4e06061\",\n        \"createdAt\": \"2023-05-04T10:00:35.814Z\",\n        \"updatedAt\": \"2023-05-04T10:00:35.814Z\",\n        \"comments\": [],\n        \"retweets\": [],\n        \"__v\": 0\n    }\n}"
+				}
+			]
 		},
 		{
-			"name": "update post by Id",
+			"name": "Patch Post",
 			"request": {
 				"method": "PATCH",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"body\":\"post poast\",\n    \"PostImage\":\"/Resource/post_image5.jpeg\"\n}",
+					"raw": "{\n    \"body\":\"post Toast\",\n    \"PostImage\":\"/Resource/post_image5.jpeg\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -238,7 +1123,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/post/642a98060a99e7b9d0878940",
+					"raw": "http://localhost:3000/api/post/posts?postId=643381179c917bf6515f8777",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -247,19 +1132,175 @@
 					"path": [
 						"api",
 						"post",
-						"642a98060a99e7b9d0878940"
+						"posts"
+					],
+					"query": [
+						{
+							"key": "postId",
+							"value": "643381179c917bf6515f8777"
+						}
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"body\":\"post Toast\",\n    \"PostImage\":\"32fabd2427b7cc0f913450600.jpeg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/posts?postId=6453824308a9fba1b4e06061",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "6453824308a9fba1b4e06061"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"4g6cv1rernev\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "535"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 10:06:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Posts\",\n    \"status\": 200,\n    \"message\": \"Updated\",\n    \"post\": {\n        \"_id\": \"6453824308a9fba1b4e06061\",\n        \"createdBy\": {\n            \"_id\": \"6453780408a9fba1b4e05e8a\",\n            \"name\": \"Test user 1\",\n            \"username\": \"test1\",\n            \"email\": \"test1@gmail.com\",\n            \"profilePicture\": \"https://images.pexels.com/photos/3196887/pexels-photo-3196887.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1\"\n        },\n        \"body\": \"post Toast\",\n        \"PostImage\": null,\n        \"react\": [],\n        \"NumberOfReact\": 0,\n        \"NumberOfRetweet\": 0,\n        \"createdAt\": \"2023-05-04T10:00:35.814Z\",\n        \"updatedAt\": \"2023-05-04T10:06:48.623Z\",\n        \"comments\": [],\n        \"retweets\": [],\n        \"__v\": 0\n    }\n}"
+				},
+				{
+					"name": "Error",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"body\":\"post Toast\",\n    \"PostImage\":\"/Resource/post_image5.jpeg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/posts?postId=6453824308a9fba1b4e06061s",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "6453824308a9fba1b4e06061s"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"7azdg9uc894x\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "177"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 10:04:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Error\",\n    \"status\": 400,\n    \"message\": \"Bad request\",\n    \"error\": \"Cast to ObjectId failed for value \\\"6453824308a9fba1b4e06061s\\\" (type string) at path \\\"_id\\\" for model \\\"Posts\\\"\"\n}"
+				}
+			]
 		},
 		{
-			"name": "Delete a post by ID",
+			"name": "Delete a post",
 			"request": {
 				"method": "DELETE",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"postId\":\"642d04f8aa0ca5c0e13e3595\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:3000/api/post/6422adc16edba74216116e9f",
+					"raw": "http://localhost:3000/api/post/posts",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -268,11 +1309,140 @@
 					"path": [
 						"api",
 						"post",
-						"6422adc16edba74216116e9f"
+						"posts"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"postId\":\"645383f108a9fba1b4e06162\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"posts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"le0nffcrb01d\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 10:08:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Posts\",\n    \"status\": 200,\n    \"message\": \"Deleted\"\n}"
+				},
+				{
+					"name": "Error",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"postId\":\"645383f108a9fba1b4e061621\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"posts"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"17ciasvlgi04x\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "177"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 10:08:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Error\",\n    \"status\": 400,\n    \"message\": \"Bad request\",\n    \"error\": \"Cast to ObjectId failed for value \\\"645383f108a9fba1b4e061621\\\" (type string) at path \\\"_id\\\" for model \\\"Posts\\\"\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Like/unlike a post",
@@ -308,15 +1478,156 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Like a post",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\":\"64227c2cac613fcee5f0ac31\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/react?postId=642d0758aa0ca5c0e13e35e3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"react"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "642d0758aa0ca5c0e13e35e3"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"uxjd5ohpp51r\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 17:39:57 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"type\": \"Reacts\",\n    \"status\": 201,\n    \"message\": \"Liked\"\n}"
+				},
+				{
+					"name": "Unlike a post",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\":\"64227c2cac613fcee5f0ac31\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/react?postId=642d0758aa0ca5c0e13e35e3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"react"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "642d0758aa0ca5c0e13e35e3"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"mq524s31xl1t\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "65"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 17:42:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"type\": \"Reacts\",\n    \"status\": 201,\n    \"message\": \"Unliked\"\n}"
+				}
+			]
 		},
 		{
-			"name": "get all comments",
+			"name": "Get comments",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/post/comment",
+					"raw": "http://localhost:3000/api/post/comments?postId=6433d1de9c917bf6515f9ac3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -325,14 +1636,143 @@
 					"path": [
 						"api",
 						"post",
-						"comment"
+						"comments"
+					],
+					"query": [
+						{
+							"key": "postId",
+							"value": "6433d1de9c917bf6515f9ac3"
+						}
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/post/comments?postId=6453824308a9fba1b4e06061",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "6453824308a9fba1b4e06061"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"uledhgqo8ab6\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "402"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 18:01:40 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"type\": \"Comment\",\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"comments\": [\n        {\n            \"createdBy\": {\n                \"_id\": \"64226c35f1b98662c7301067\",\n                \"name\": \"Mazhar Ali\",\n                \"username\": \"mazharali22\",\n                \"email\": \"shawon@gmail.com\",\n                \"profilePicture\": \"/Resource/user.jpeg\"\n            },\n            \"body\": \"toast\",\n            \"createdAt\": \"2023-05-04T18:01:07.080Z\",\n            \"updatedAt\": \"2023-05-04T18:01:07.080Z\",\n            \"react\": [],\n            \"NumberOfReact\": 0,\n            \"_id\": \"6453f2e38b9ac3c6ba483d85\",\n            \"replies\": []\n        }\n    ]\n}"
+				},
+				{
+					"name": "Error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/post/comments?postId=6433d1de9c917bf6515f9ac3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "postId",
+									"value": "6433d1de9c917bf6515f9ac3"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"u27r4hdhde22\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "74"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 17:58:04 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"type\": \"Comment\",\n    \"status\": 404,\n    \"message\": \"Post not found\"\n}"
+				}
+			]
 		},
 		{
-			"name": "post a comment",
+			"name": "Post a comment",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -359,7 +1799,136 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"mahi@gmail.com\",\n    \"postId\":\"6453824308a9fba1b4e06061\",\n    \"body\":\"Post Comment\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"comments"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"114bvr20jdo5w\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "212"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 14:26:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"type\": \"Comment\",\n    \"status\": 201,\n    \"message\": \"OK\",\n    \"comment\": {\n        \"createdBy\": \"64227c2cac613fcee5f0ac31\",\n        \"body\": \"Post Comment\",\n        \"createdAt\": \"2023-05-07T14:26:37.031Z\",\n        \"updatedAt\": \"2023-05-07T14:26:37.031Z\"\n    }\n}"
+				},
+				{
+					"name": "Error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"mahi@gmail.com\",\n    \"postId\":\"6453824308a9fba1b4e0606\",\n    \"body\":\"Post Comment\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"comments"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"j3wcjtfwn25d\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "193"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 14:26:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"type\": \"Comment\",\n    \"status\": 400,\n    \"message\": \"Bad Request\",\n    \"error\": \"Cast to ObjectId failed for value \\\"6453824308a9fba1b4e0606\\\" (type string) at path \\\"_id\\\" for model \\\"Posts\\\"\"\n}"
+				}
+			]
 		},
 		{
 			"name": "follow/unfollow user by ID",
@@ -389,10 +1958,211 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "success(follow)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"currentUserId\":\"64227c2cac613fcee5f0ac31\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user/64227c2cac613fcee5f0ac31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"64227c2cac613fcee5f0ac31"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"a7f8e8twep12k\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 14:35:08 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"FOllow\",\n    \"status\": 201,\n    \"message\": \"user followed\",\n    \"userToFollow\": {\n        \"_id\": \"64227c2cac613fcee5f0ac31\",\n        \"name\": \"Farhan Mahtab\",\n        \"username\": \"ironblood\",\n        \"email\": \"mahi@gmail.com\",\n        \"password\": \"$2b$10$vzuU1Aa46HV6xBWWscKpOuhOqO1wAVxfty/YN5F.9LzT4czRvPvuC\",\n        \"profilePicture\": \"/Resource/pp.jpeg\",\n        \"coverPhoto\": \"/Resource/post_image1.jpeg\",\n        \"bio\": \"Patching\",\n        \"followers\": [\n            \"64225946691de128e8d3a6d8\",\n            \"6426792cb4407e69dc71d149\",\n            \"64227c2cac613fcee5f0ac31\",\n            \"642bbcee54dcd68c01c9dccb\",\n            \"64227c2cac613fcee5f0ac31\",\n            \"64227c2cac613fcee5f0ac31\",\n            \"64227c2cac613fcee5f0ac31\",\n            \"64227c2cac613fcee5f0ac31\",\n            \"64227c2cac613fcee5f0ac31\"\n        ],\n        \"following\": [\n            \"642bbcee54dcd68c01c9dccb\",\n            \"64268101b4407e69dc71d1f2\",\n            \"64226c35f1b98662c7301067\"\n        ],\n        \"__v\": 97,\n        \"messages\": [\n            {\n                \"sender\": \"64226c35f1b98662c7301067\",\n                \"chatID\": \"6450daa299e83c171839b7a2\",\n                \"cus_id\": \"64227c2cac613fcee5f0ac3164226c35f1b98662c7301067\",\n                \"username\": \"mazharali22\",\n                \"email\": \"shawon@gmail.com\",\n                \"_id\": \"6450daa299e83c171839b7a5\"\n            },\n            {\n                \"sender\": \"642bbcee54dcd68c01c9dccb\",\n                \"chatID\": \"6450e4e399e83c171839bad7\",\n                \"cus_id\": \"642bbcee54dcd68c01c9dccb64227c2cac613fcee5f0ac31\",\n                \"username\": \"heromaruf\",\n                \"email\": \"maruf@gmail.com\",\n                \"_id\": \"6450e4e399e83c171839bada\"\n            }\n        ],\n        \"updatedAt\": \"2023-05-07T14:35:02.173Z\",\n        \"notifications\": [],\n        \"token\": \"colao5kVZn9W-zDcI7GgQX:APA91bHmbE9DGsgRWjZuO6D_aaV08vcJUtqSUR8ytznWmvEWN8qi11tGqXdJ4sHkdJOdgbqXB9FK2yPCzUQk7KAMGKFIVpmDAaehOXtTT9oGUUJx2VmVxm0epAqcKCyZEeVS2Taz_oFw\"\n    }\n}"
+				},
+				{
+					"name": "success(unfollow)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"currentUserId\":\"64227c2cac613fcee5f0ac31\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user/64227c2cac613fcee5f0ac31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"64227c2cac613fcee5f0ac31"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"188pnnp4m71yw\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 14:35:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"FOllow\",\n    \"status\": 201,\n    \"message\": \"user Un-followed\",\n    \"userToFollow\": {\n        \"_id\": \"64227c2cac613fcee5f0ac31\",\n        \"name\": \"Farhan Mahtab\",\n        \"username\": \"ironblood\",\n        \"email\": \"mahi@gmail.com\",\n        \"password\": \"$2b$10$vzuU1Aa46HV6xBWWscKpOuhOqO1wAVxfty/YN5F.9LzT4czRvPvuC\",\n        \"profilePicture\": \"/Resource/pp.jpeg\",\n        \"coverPhoto\": \"/Resource/post_image1.jpeg\",\n        \"bio\": \"Patching\",\n        \"followers\": [\n            \"64225946691de128e8d3a6d8\",\n            \"6426792cb4407e69dc71d149\",\n            \"642bbcee54dcd68c01c9dccb\"\n        ],\n        \"following\": [\n            \"642bbcee54dcd68c01c9dccb\",\n            \"64268101b4407e69dc71d1f2\",\n            \"64226c35f1b98662c7301067\",\n            \"64227c2cac613fcee5f0ac31\"\n        ],\n        \"__v\": 99,\n        \"messages\": [\n            {\n                \"sender\": \"64226c35f1b98662c7301067\",\n                \"chatID\": \"6450daa299e83c171839b7a2\",\n                \"cus_id\": \"64227c2cac613fcee5f0ac3164226c35f1b98662c7301067\",\n                \"username\": \"mazharali22\",\n                \"email\": \"shawon@gmail.com\",\n                \"_id\": \"6450daa299e83c171839b7a5\"\n            },\n            {\n                \"sender\": \"642bbcee54dcd68c01c9dccb\",\n                \"chatID\": \"6450e4e399e83c171839bad7\",\n                \"cus_id\": \"642bbcee54dcd68c01c9dccb64227c2cac613fcee5f0ac31\",\n                \"username\": \"heromaruf\",\n                \"email\": \"maruf@gmail.com\",\n                \"_id\": \"6450e4e399e83c171839bada\"\n            }\n        ],\n        \"updatedAt\": \"2023-05-07T14:35:08.985Z\",\n        \"notifications\": [],\n        \"token\": \"colao5kVZn9W-zDcI7GgQX:APA91bHmbE9DGsgRWjZuO6D_aaV08vcJUtqSUR8ytznWmvEWN8qi11tGqXdJ4sHkdJOdgbqXB9FK2yPCzUQk7KAMGKFIVpmDAaehOXtTT9oGUUJx2VmVxm0epAqcKCyZEeVS2Taz_oFw\"\n    }\n}"
+				},
+				{
+					"name": "error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"currentUserId\":\"64227c2cac613fcee5f0ac31\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user/64227c2cac613fcee5f0ac3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"64227c2cac613fcee5f0ac3"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"4e58x7nojq4n\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "167"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 14:36:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"User\",\n    \"status\": 404,\n    \"message\": \"Error\",\n    \"error\": \"Cast to ObjectId failed for value \\\"64227c2cac613fcee5f0ac3\\\" (type string) at path \\\"_id\\\" for model \\\"User\\\"\"\n}"
+				}
+			]
 		},
 		{
-			"name": "get followers by userId",
+			"name": "Get followers by userId",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -416,10 +2186,72 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/user/follower?id=64226c35f1b98662c7301067",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"follower"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "64226c35f1b98662c7301067"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"o2adzv9ya9iu\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "678"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 14:39:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Followers\",\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"followers\": [\n        {\n            \"_id\": \"64226c35f1b98662c7301067\",\n            \"name\": \"Mazhar Ali\",\n            \"username\": \"mazharali22\",\n            \"profilePicture\": \"/Resource/user.jpeg\",\n            \"followers\": [\n                \"64225946691de128e8d3a6d8\",\n                \"6426792cb4407e69dc71d149\",\n                \"64226c35f1b98662c7301067\",\n                \"64227c2cac613fcee5f0ac31\"\n            ]\n        },\n        {\n            \"_id\": \"64227c2cac613fcee5f0ac31\",\n            \"name\": \"Farhan Mahtab\",\n            \"username\": \"ironblood\",\n            \"profilePicture\": \"/Resource/pp.jpeg\",\n            \"followers\": [\n                \"64225946691de128e8d3a6d8\",\n                \"6426792cb4407e69dc71d149\",\n                \"64227c2cac613fcee5f0ac31\",\n                \"642bbcee54dcd68c01c9dccb\",\n                \"64227c2cac613fcee5f0ac31\",\n                \"64227c2cac613fcee5f0ac31\",\n                \"64227c2cac613fcee5f0ac31\",\n                \"64227c2cac613fcee5f0ac31\",\n                \"64227c2cac613fcee5f0ac31\"\n            ]\n        }\n    ]\n}"
+				}
+			]
 		},
 		{
-			"name": "get Follwoing by userId",
+			"name": "Get Follwoing by userId",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -443,58 +2275,81 @@
 					]
 				}
 			},
-			"response": []
-		},
-		{
-			"name": "post reply to comment",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"mahi@gmail.com\",\n    \"commentId\": \"642e497d0f0b011ddef206ff\",\n    \"body\": \"test reply\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/user/following?id=64226c35f1b98662c7301067",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"following"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "64226c35f1b98662c7301067"
+								}
+							]
 						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/post/comment/reply",
-					"protocol": "http",
-					"host": [
-						"localhost"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"lljpb42tz7tz\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 14:42:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
 					],
-					"port": "3000",
-					"path": [
-						"api",
-						"post",
-						"comment",
-						"reply"
-					]
+					"cookie": [],
+					"body": "{\n    \"type\": \"Following\",\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"following\": [\n        {\n            \"_id\": \"642ce11e16b840aab116ec63\",\n            \"name\": \"Farhan Mahtab Mahi\",\n            \"username\": \"Farhan Mahtab Mahi\",\n            \"profilePicture\": \"https://avatars.githubusercontent.com/u/51365144?v=4\",\n            \"followers\": [\n                \"64226c35f1b98662c7301067\"\n            ],\n            \"following\": []\n        },\n        {\n            \"_id\": \"642bbcee54dcd68c01c9dccb\",\n            \"name\": \"maruf pulok\",\n            \"username\": \"heromaruf\",\n            \"profilePicture\": \"/Resource/marufPP.jpg\",\n            \"followers\": [\n                \"64227c2cac613fcee5f0ac31\",\n                \"64226c35f1b98662c7301067\"\n            ],\n            \"following\": [\n                \"64227c2cac613fcee5f0ac31\"\n            ]\n        },\n        {\n            \"_id\": \"64268101b4407e69dc71d1f2\",\n            \"name\": \"Mahi\",\n            \"username\": \"Mahi Mahi\",\n            \"profilePicture\": \"\",\n            \"followers\": [\n                \"6426792cb4407e69dc71d149\",\n                \"64226c35f1b98662c7301067\",\n                \"64227c2cac613fcee5f0ac31\"\n            ],\n            \"following\": []\n        },\n        {\n            \"_id\": \"64226c35f1b98662c7301067\",\n            \"name\": \"Mazhar Ali\",\n            \"username\": \"mazharali22\",\n            \"profilePicture\": \"/Resource/user.jpeg\",\n            \"followers\": [\n                \"64225946691de128e8d3a6d8\",\n                \"6426792cb4407e69dc71d149\",\n                \"64226c35f1b98662c7301067\",\n                \"64227c2cac613fcee5f0ac31\"\n            ],\n            \"following\": [\n                \"642ce11e16b840aab116ec63\",\n                \"642bbcee54dcd68c01c9dccb\",\n                \"64268101b4407e69dc71d1f2\",\n                \"64226c35f1b98662c7301067\"\n            ]\n        }\n    ]\n}"
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Get reply commentID",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "Get Replies",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"commentId\":\"642e60ab0f0b011ddef3c2db\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:3000/api/post/comment/reply?commentId=642e60ab0f0b011ddef3c2db",
+					"raw": "http://localhost:3000/api/post/comments/reply?commentId=6457b51dbf7ddc990a0a6ebc",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -503,144 +2358,146 @@
 					"path": [
 						"api",
 						"post",
-						"comment",
+						"comments",
 						"reply"
 					],
 					"query": [
 						{
 							"key": "commentId",
-							"value": "642e60ab0f0b011ddef3c2db"
+							"value": "6457b51dbf7ddc990a0a6ebc"
 						}
 					]
 				}
 			},
-			"response": []
-		},
-		{
-			"name": "create a post/tweet(new Schema)",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"mahi@gmail.com\",\r\n    \"body\": \"new Schema post 2\",\r\n    \"postImage\": \"/Resource/post_image3.jpeg\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/post/comments/reply?commentId=6457b51dbf7ddc990a0a6ebc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"comments",
+								"reply"
+							],
+							"query": [
+								{
+									"key": "commentId",
+									"value": "6457b51dbf7ddc990a0a6ebc"
+								}
+							]
 						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/post/posts",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"post",
-						"posts"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete a post(new Schema)",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"postId\":\"642d04f8aa0ca5c0e13e3595\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/post/posts",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"post",
-						"posts"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "edit post (new Schema)",
-			"request": {
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"body\":\"post Toast\",\n    \"PostImage\":\"/Resource/post_image5.jpeg\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/post/posts?postId=643381179c917bf6515f8777",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"post",
-						"posts"
-					],
-					"query": [
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
 						{
-							"key": "postId",
-							"value": "643381179c917bf6515f8777"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get comments from postId(new Schema)",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/post/comments?postId=6433d1de9c917bf6515f9ac3",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"post",
-						"comments"
-					],
-					"query": [
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
 						{
-							"key": "postId",
-							"value": "6433d1de9c917bf6515f9ac3"
+							"key": "ETag",
+							"value": "\"flaifv51jy8u\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "318"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 14:59:47 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
 						}
-					]
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Reply\",\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"comment\": {\n        \"_id\": \"6453824308a9fba1b4e06061\",\n        \"comments\": [\n            {\n                \"createdBy\": \"64227c2cac613fcee5f0ac31\",\n                \"body\": \"Post Comment\",\n                \"createdAt\": \"2023-05-07T14:26:37.031Z\",\n                \"updatedAt\": \"2023-05-07T14:26:37.031Z\",\n                \"react\": [],\n                \"NumberOfReact\": 0,\n                \"_id\": \"6457b51dbf7ddc990a0a6ebc\",\n                \"replies\": []\n            }\n        ]\n    }\n}"
+				},
+				{
+					"name": "Error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/post/comments/reply?commentId=6457b51dbf7ddc990a0a6eb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"comments",
+								"reply"
+							],
+							"query": [
+								{
+									"key": "commentId",
+									"value": "6457b51dbf7ddc990a0a6eb"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"br5s552dkg4v\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "175"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 15:04:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"Reply\",\n    \"status\": 400,\n    \"message\": \"Bad request\",\n    \"error\": \"Cast to ObjectId failed for value \\\"6457b51dbf7ddc990a0a6eb\\\" (type string) at path \\\"_id\\\" for model \\\"Posts\\\"\"\n}"
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "create a reply(new Schema)",
+			"name": "Create Reply",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -668,44 +2525,277 @@
 					]
 				}
 			},
-			"response": []
-		},
-		{
-			"name": "get replies by commentId",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/post/comments/reply?commentId=6434d572d8d959a0bcdef9fe",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"post",
-						"comments",
-						"reply"
-					],
-					"query": [
-						{
-							"key": "commentId",
-							"value": "6434d572d8d959a0bcdef9fe"
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mahi@gmail.com\",\n    \"postId\": \"6453824308a9fba1b4e06061\",\n    \"commentId\":\"6457b51dbf7ddc990a0a6ebc\",\n    \"body\": \"reply\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/comments/reply",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"comments",
+								"reply"
+							]
 						}
-					]
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"ia1p9khgkuq5\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "941"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 15:10:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"type\": \"Reply\",\n    \"status\": 201,\n    \"message\": \"Reply Created\",\n    \"post\": {\n        \"_id\": \"6453824308a9fba1b4e06061\",\n        \"createdBy\": \"6453780408a9fba1b4e05e8a\",\n        \"body\": \"post Toast\",\n        \"PostImage\": null,\n        \"react\": [],\n        \"NumberOfReact\": 0,\n        \"NumberOfRetweet\": 0,\n        \"createdAt\": \"2023-05-04T10:00:35.814Z\",\n        \"updatedAt\": \"2023-05-07T15:10:41.458Z\",\n        \"comments\": [\n            {\n                \"createdBy\": \"64226c35f1b98662c7301067\",\n                \"body\": \"toast\",\n                \"createdAt\": \"2023-05-04T18:01:07.080Z\",\n                \"updatedAt\": \"2023-05-04T18:01:07.080Z\",\n                \"react\": [],\n                \"NumberOfReact\": 0,\n                \"_id\": \"6453f2e38b9ac3c6ba483d85\",\n                \"replies\": []\n            },\n            {\n                \"createdBy\": \"64227c2cac613fcee5f0ac31\",\n                \"body\": \"Post Comment\",\n                \"createdAt\": \"2023-05-07T14:26:37.031Z\",\n                \"updatedAt\": \"2023-05-07T14:26:37.031Z\",\n                \"react\": [],\n                \"NumberOfReact\": 0,\n                \"_id\": \"6457b51dbf7ddc990a0a6ebc\",\n                \"replies\": [\n                    {\n                        \"createdBy\": \"64227c2cac613fcee5f0ac31\",\n                        \"body\": \"reply\",\n                        \"createdAt\": \"2023-05-07T15:10:41.448Z\",\n                        \"updatedAt\": \"2023-05-07T15:10:41.448Z\",\n                        \"_id\": \"6457bf71bf7ddc990a0a74d1\"\n                    }\n                ]\n            }\n        ],\n        \"retweets\": [],\n        \"__v\": 3\n    }\n}"
+				},
+				{
+					"name": "Error(uesr not found)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mah@gmail.com\",\n    \"postId\": \"6453824308a9fba1b4e06061\",\n    \"commentId\":\"6457b51dbf7ddc990a0a6ebc\",\n    \"body\": \"reply\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/comments/reply",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"comments",
+								"reply"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"qtymo14v4n1l\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 15:11:07 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"status\": 404,\n    \"message\": \"User not found\"\n}"
+				},
+				{
+					"name": "Error(post not found)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mahi@gmail.com\",\n    \"postId\": \"6453824308a9fba1b4e0606\",\n    \"commentId\":\"6457b51dbf7ddc990a0a6ebc\",\n    \"body\": \"reply\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/comments/reply",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"comments",
+								"reply"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"9sxt475l9y5b\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "191"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 15:11:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"type\": \"Reply\",\n    \"status\": 400,\n    \"message\": \"Bad Request\",\n    \"error\": \"Cast to ObjectId failed for value \\\"6453824308a9fba1b4e0606\\\" (type string) at path \\\"_id\\\" for model \\\"Posts\\\"\"\n}"
+				},
+				{
+					"name": "Error(comment not found)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mahi@gmail.com\",\n    \"postId\": \"6453824308a9fba1b4e06061\",\n    \"commentId\":\"6457b51dbf7ddc990a0a6eb\",\n    \"body\": \"reply\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/comments/reply",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"comments",
+								"reply"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"r5s4p9t6kb1o\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "60"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 15:12:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"status\": 404,\n    \"message\": \"Comment not found\"\n}"
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "post a retweet by postId",
+			"name": "Post  Retweet",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"maruf@gmail.com\",\n    \"postId\": \"6432dadc3b177333172a2914\",\n    \"postBody\": \"wryy tweet\"\n}",
+					"raw": "{\n    \"email\": \"maruf@gmail.com\",\n    \"postId\": \"6453824308a9fba1b4e06061\",\n    \"postBody\": \"Rwe tweet\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -726,7 +2816,204 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"maruf@gmail.com\",\n    \"postId\": \"6453824308a9fba1b4e06061\",\n    \"postBody\": \"Rwe tweet\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/retweet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"retweet"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"dbta3zfgtlu9\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 15:18:17 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"type\": \"Retweet\",\n    \"status\": 201,\n    \"message\": \"Retweet created successfully\",\n    \"data\": {\n        \"_id\": \"6453824308a9fba1b4e06061\",\n        \"createdBy\": \"6453780408a9fba1b4e05e8a\",\n        \"body\": \"post Toast\",\n        \"PostImage\": null,\n        \"react\": [],\n        \"NumberOfReact\": 0,\n        \"NumberOfRetweet\": 1,\n        \"createdAt\": \"2023-05-04T10:00:35.814Z\",\n        \"updatedAt\": \"2023-05-07T15:18:17.744Z\",\n        \"comments\": [\n            {\n                \"createdBy\": \"64226c35f1b98662c7301067\",\n                \"body\": \"toast\",\n                \"createdAt\": \"2023-05-04T18:01:07.080Z\",\n                \"updatedAt\": \"2023-05-04T18:01:07.080Z\",\n                \"react\": [],\n                \"NumberOfReact\": 0,\n                \"_id\": \"6453f2e38b9ac3c6ba483d85\",\n                \"replies\": []\n            },\n            {\n                \"createdBy\": \"64227c2cac613fcee5f0ac31\",\n                \"body\": \"Post Comment\",\n                \"createdAt\": \"2023-05-07T14:26:37.031Z\",\n                \"updatedAt\": \"2023-05-07T14:26:37.031Z\",\n                \"react\": [],\n                \"NumberOfReact\": 0,\n                \"_id\": \"6457b51dbf7ddc990a0a6ebc\",\n                \"replies\": [\n                    {\n                        \"createdBy\": \"64227c2cac613fcee5f0ac31\",\n                        \"body\": \"reply\",\n                        \"createdAt\": \"2023-05-07T15:10:41.448Z\",\n                        \"updatedAt\": \"2023-05-07T15:10:41.448Z\",\n                        \"_id\": \"6457bf71bf7ddc990a0a74d1\"\n                    }\n                ]\n            }\n        ],\n        \"retweets\": [\n            {\n                \"typeofTweet\": \"retweet\",\n                \"post\": \"6457c139bf7ddc990a0a761b\",\n                \"createdBy\": \"642bbcee54dcd68c01c9dccb\",\n                \"_id\": \"6457c139bf7ddc990a0a761d\"\n            }\n        ],\n        \"__v\": 4\n    }\n}"
+				},
+				{
+					"name": "Error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"maruf@gmail.com\",\n    \"postId\": \"6453824308a9fba1b4e0606\",\n    \"postBody\": \"Rwe tweet\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/retweet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"retweet"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"16jda27b18v4w\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "176"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 15:20:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"status\": 400,\n    \"message\": \"Bad request\",\n    \"error\": \"Cast to ObjectId failed for value \\\"6453824308a9fba1b4e0606\\\" (type string) at path \\\"_id\\\" for model \\\"Posts\\\"\"\n}"
+				},
+				{
+					"name": "Error(user not found)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"maru@gmail.com\",\n    \"postId\": \"6453824308a9fba1b4e06061\",\n    \"postBody\": \"Rwe tweet\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/post/retweet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"post",
+								"retweet"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"qtymo14v4n1l\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 15:20:49 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"status\": 404,\n    \"message\": \"User not found\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Search users in messages",
@@ -753,7 +3040,274 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/messages/searchUser?search=mahi",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"messages",
+								"searchUser"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "mahi"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"15n8m9s84llet\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "533"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 May 2023 15:24:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"type\": \"Search\",\n    \"status\": 200,\n    \"message\": \"OK\",\n    \"users\": [\n        {\n            \"_id\": \"64227c2cac613fcee5f0ac31\",\n            \"name\": \"Farhan Mahtab\",\n            \"username\": \"ironblood\",\n            \"email\": \"mahi@gmail.com\",\n            \"profilePicture\": \"/Resource/pp.jpeg\"\n        },\n        {\n            \"_id\": \"64268101b4407e69dc71d1f2\",\n            \"name\": \"Mahi\",\n            \"username\": \"Mahi Mahi\",\n            \"email\": \"Mahi@gmail.com\",\n            \"profilePicture\": \"\"\n        },\n        {\n            \"_id\": \"642ce11e16b840aab116ec63\",\n            \"name\": \"Farhan Mahtab Mahi\",\n            \"username\": \"Farhan Mahtab Mahi\",\n            \"email\": \"farhan.mahi1999@gmail.com\",\n            \"profilePicture\": \"https://avatars.githubusercontent.com/u/51365144?v=4\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete notification",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users/getNotification?id=64226c35f1b98662c7301067&sender=64227c2cac613fcee5f0ac31",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"getNotification"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "64226c35f1b98662c7301067"
+						},
+						{
+							"key": "sender",
+							"value": "64227c2cac613fcee5f0ac31"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/getNotification?id=64226c35f1b98662c7301067&sender=64227c2cac613fcee5f0ac31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"getNotification"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "64226c35f1b98662c7301067"
+								},
+								{
+									"key": "sender",
+									"value": "64227c2cac613fcee5f0ac31"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Set-Cookie",
+							"value": "next-auth.csrf-token=5f1b0759a988d0257e37965f9eea4e5c5c08eea560dc32f697e07d7246f2d58d%7Cc994e4bafa43d3bf5c4337168d8b32544e339ff4ccbb6308b40f292c415dd811; Path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "next-auth.callback-url=http%3A%2F%2Flocalhost%3A3000; Path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"8ofr0w8ndh18\""
+						},
+						{
+							"key": "Content-Length",
+							"value": "44"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 06:24:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"msg\": \"Notifications deleted successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get messages using senderId & receiverId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v2/messages?senderId=643cfecc5d86196c2b7b23df&receiverId=642e6248e538c6d0b0a11601",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v2",
+						"messages"
+					],
+					"query": [
+						{
+							"key": "senderId",
+							"value": "643cfecc5d86196c2b7b23df"
+						},
+						{
+							"key": "receiverId",
+							"value": "642e6248e538c6d0b0a11601"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/messages?senderId=642bbcee54dcd68c01c9dccb&receiverId=64227c2cac613fcee5f0ac31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"messages"
+							],
+							"query": [
+								{
+									"key": "senderId",
+									"value": "642bbcee54dcd68c01c9dccb"
+								},
+								{
+									"key": "receiverId",
+									"value": "64227c2cac613fcee5f0ac31"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "ETag",
+							"value": "\"s677hzp0w315c\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 May 2023 08:15:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"64534b1a08a9fba1b4e0483a\",\n    \"cus_id\": \"642bbcee54dcd68c01c9dccb64227c2cac613fcee5f0ac31\",\n    \"notification\": false,\n    \"sender\": \"642bbcee54dcd68c01c9dccb\",\n    \"receiver\": \"64227c2cac613fcee5f0ac31\",\n    \"messages\": [\n        {\n            \"sender\": \"642bbcee54dcd68c01c9dccb\",\n            \"receiver\": \"64227c2cac613fcee5f0ac31\",\n            \"senderUsername\": \"heromaruf\",\n            \"senderEmail\": \"maruf@gmail.com\",\n            \"receiverUsername\": \"ironblood\",\n            \"receiverEmail\": \"mahi@gmail.com\",\n            \"body\": \"hello\",\n            \"seen\": false,\n            \"_id\": \"64534b1a08a9fba1b4e0483b\",\n            \"createdAt\": \"2023-05-04T06:05:14.696Z\"\n        },\n        {\n            \"sender\": \"64227c2cac613fcee5f0ac31\",\n            \"receiver\": \"642bbcee54dcd68c01c9dccb\",\n            \"senderUsername\": \"ironblood\",\n            \"senderEmail\": \"mahi@gmail.com\",\n            \"receiverUsername\": \"heromaruf\",\n            \"receiverEmail\": \"maruf@gmail.com\",\n            \"body\": \"hi\",\n            \"seen\": false,\n            \"_id\": \"64534b2808a9fba1b4e04865\",\n            \"createdAt\": \"2023-05-04T06:05:28.318Z\"\n        },\n        {\n            \"sender\": \"64227c2cac613fcee5f0ac31\",\n            \"receiver\": \"642bbcee54dcd68c01c9dccb\",\n            \"senderUsername\": \"ironblood\",\n            \"senderEmail\": \"mahi@gmail.com\",\n            \"receiverUsername\": \"heromaruf\",\n            \"receiverEmail\": \"maruf@gmail.com\",\n            \"body\": \"hello\",\n            \"seen\": false,\n            \"_id\": \"6453558608a9fba1b4e04ffa\",\n            \"createdAt\": \"2023-05-04T06:49:42.460Z\"\n        },\n        {\n            \"sender\": \"642bbcee54dcd68c01c9dccb\",\n            \"receiver\": \"64227c2cac613fcee5f0ac31\",\n            \"senderUsername\": \"heromaruf\",\n            \"senderEmail\": \"maruf@gmail.com\",\n            \"receiverUsername\": \"ironblood\",\n            \"receiverEmail\": \"mahi@gmail.com\",\n            \"body\": \"test\",\n            \"seen\": false,\n            \"_id\": \"64535eac08a9fba1b4e05093\",\n            \"createdAt\": \"2023-05-04T07:28:44.957Z\"\n        }\n    ],\n    \"createdAt\": \"2023-05-04T06:05:14.697Z\",\n    \"updatedAt\": \"2023-05-04T07:28:44.959Z\",\n    \"__v\": 3\n}"
+				}
+			]
 		}
 	]
 }
