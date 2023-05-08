@@ -5,7 +5,6 @@ import bodyParser from "body-parser";
 
 const jsonParser = bodyParser.json();
 
-
 const postRetweet = async (req, res) => {
   try {
     const { postId, email, postBody } = req.body;
@@ -13,10 +12,14 @@ const postRetweet = async (req, res) => {
 
     const post = await Posts.findById(postId);
     if (!post) {
-      return res.status(404).json({ error: "Post not found" });
+      return res
+        .status(404)
+        .json({ success: false, status: 404, message: "Post not found" });
     }
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      return res
+        .status(404)
+        .json({ success: false, status: 404, message: "User not found" });
     }
 
     const retweetPost = new Posts({
@@ -32,17 +35,24 @@ const postRetweet = async (req, res) => {
       post: retweetPost._id,
       createdBy: user._id,
     });
-
-    // Update the retweet count in the original post
     post.NumberOfRetweet += 1;
 
     await post.save();
-    return res
-      .status(201)
-      .json({ message: "Retweet created successfully", data: post });
+    return res.status(201).json({
+      success: true,
+      type: "Retweet",
+      status: 201,
+      message: "Retweet created successfully",
+      data: post,
+    });
   } catch (error) {
     console.error(error);
-    res.status(400).json({ success: false, error: error.message });
+    res.status(400).json({
+      success: false,
+      status: 400,
+      message: "Bad request",
+      error: error.message,
+    });
   }
 };
 

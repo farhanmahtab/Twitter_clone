@@ -9,9 +9,20 @@ const getFollowoing = async (req, res) => {
       "following",
       "name username  profilePicture followers following"
     );
-    res.status(200).json({ following: user.following });
+    res.status(200).json({
+      type: "Following",
+      status: 200,
+      message: "OK",
+      following: user.following,
+    });
   } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
+    res.status(400).json({
+      success: false,
+      type: "Following",
+      status: 400,
+      message: "Error",
+      error: error.message,
+    });
   }
 };
 

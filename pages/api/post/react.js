@@ -9,9 +9,12 @@ export default async function handler(req, res) {
       const userId = req.body.userId;
       const post = await Posts.findById(postId);
       if (!post) {
-        return res
-          .status(404)
-          .json({ success: false, message: "Post not found" });
+        return res.status(404).json({
+          success: false,
+          type: "Reacts",
+          status: 404,
+          message: "Post not Found",
+        });
       }
       const liked = post.react.includes(userId);
       if (liked) {
@@ -19,11 +22,21 @@ export default async function handler(req, res) {
           (id) => id.toString() !== userId.toString()
         );
         await post.save();
-        return res.status(200).json({ success: true, message: "unliked" });
+        return res.status(200).json({
+          success: true,
+          type: "Reacts",
+          status: 201,
+          message: "Unliked",
+        });
       } else {
         post.react.push(userId);
         await post.save();
-        return res.status(200).json({ success: true, message: "liked" });
+        return res.status(200).json({
+          success: true,
+          type: "Reacts",
+          status: 201,
+          message: "Liked",
+        });
       }
     } catch (error) {
       res.status(400).json({ success: false, error: error.message });

@@ -15,18 +15,27 @@ const getReply = async (req, res) => {
       .exec();
 
     if (!comment) {
-      return res.status(404).json({ message: "Comment not found" });
+      return res
+        .status(404)
+        .json({ type: "Reply", status: 404, message: "COmment not found" });
     }
 
     const commentReplies = comment.comments[0].commentReplies;
 
     return res.status(200).json({
-      message: "Comment replies found!",
+      type: "Reply",
+      status: 200,
+      message: "OK",
       comment,
     });
   } catch (err) {
     console.log(err.message);
-    return res.status(500).json({ message: "Something went wrong", err });
+    return res.status(400).json({
+      type: "Reply",
+      status: 400,
+      message: "Bad request",
+      error: err.message,
+    });
   }
 };
 
@@ -36,20 +45,28 @@ const postReply = async (req, res) => {
   console.log(postId, " -- ", commentId);
   const user = await Users.findOne({ email });
   if (!user) {
-    return res.status(404).json({ success: false, message: "User not found" });
+    return res.status(404).json({
+      success: false,
+      status: 404,
+      message: "User not found",
+    });
   }
   try {
     const post = await Posts.findById(postId);
     console.log(post);
     if (!post) {
-      return res.status(404).json({ error: "Post not found" });
+      return res
+        .status(404)
+        .json({ success: false, status: 404, message: "Post not found" });
     }
     const comment = post.comments.find(
       (comment) => comment._id.toString() === commentId
     );
 
     if (!comment) {
-      return res.status(404).json({ error: "Comment not found" });
+      return res
+        .status(404)
+        .json({ success: false, status: 404, message: "Comment not found" });
     }
 
     const reply = {
@@ -58,13 +75,25 @@ const postReply = async (req, res) => {
       createdAt: new Date(),
       updatedAt: new Date(),
     };
-    console.log(reply);
+    //console.log(reply);
     comment.replies.push(reply);
     await post.save();
-    return res.status(200).json({ success: true, post });
+    return res.status(201).json({
+      success: true,
+      type: "Reply",
+      status: 201,
+      message: "Reply Created",
+      post,
+    });
   } catch (error) {
     console.error(error);
-    res.status(400).json({ success: false, error: error.message });
+    res.status(400).json({
+      success: false,
+      type: "Reply",
+      status: 400,
+      message: "Bad Request",
+      error: error.message,
+    });
   }
 };
 

@@ -79,14 +79,12 @@ const updateUserById = async (req, res) => {
       .status(200)
       .json({ type: "User", status: 200, message: "Updated", user });
   } catch (error) {
-    res
-      .status(400)
-      .json({
-        type: "User",
-        status: 404,
-        message: "User Not Found",
-        error: error.message,
-      });
+    res.status(400).json({
+      type: "User",
+      status: 404,
+      message: "User Not Found",
+      error: error.message,
+    });
   }
 };
 
@@ -100,17 +98,32 @@ const followUnfollowUser = async (req, res) => {
     if (user.following.includes(id)) {
       await user.following.pull(id);
       await userToFollow.followers.pull(currentUserId);
-      res.status(201).json({ message: "User Unfollowed", userToFollow });
+      res.status(201).json({
+        type: "FOllow",
+        status: 201,
+        message: "user Un-followed",
+        userToFollow,
+      });
     } else {
       await user.following.push(id);
       await userToFollow.followers.push(currentUserId);
-      res.status(201).json({ message: "User followed", userToFollow });
+      res.status(201).json({
+        type: "FOllow",
+        status: 201,
+        message: "user followed",
+        userToFollow,
+      });
     }
     await user.save();
     await userToFollow.save();
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ message: "Something went wrong", err });
+    return res.status(400).json({
+      type: "User",
+      status: 404,
+      message: "Error",
+      error: err.message,
+    });
   }
 };
 
