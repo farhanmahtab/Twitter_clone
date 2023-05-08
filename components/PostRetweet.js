@@ -101,10 +101,7 @@ const RetweetPost = ({ post, posts, setPosts }) => {
     }
   };
 
-  //handle retweet
-  const handleRetweet = async () => {
-    console.log(post._id);
-  };
+  
   //console.log(post.comments);
 
   return (

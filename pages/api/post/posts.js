@@ -141,7 +141,7 @@ const updatePostById = async (req, res) => {
         runValidators: true,
       }).populate({
         path: "createdBy",
-        select: "name username email profilePicture",
+        select: "name username email profilePicture createdAt",
       });
       //console.log(post);
       if (!post) {

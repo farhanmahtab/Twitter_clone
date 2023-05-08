@@ -9,6 +9,7 @@ import {
 } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { TweetActions, TweetDispatch } from "@/actionFiles/posts";
 
 function PostBox({ setPosts, allPost }) {
   //console.log(allPost);
@@ -30,19 +31,31 @@ function PostBox({ setPosts, allPost }) {
     selectedImages.forEach((image) => {
       formData.append("PostImage", image);
     });
-    try {
-      const response = await fetch("/api/post/posts", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await response.json();
-      console.log(data);
-      setPosts([data.data, ...allPost]);
-      setSelectedImages([]);
-      setInput("");
-    } catch (error) {
-      console.error(error);
-    }
+    TweetDispatch(
+      {
+        type: TweetActions.postTweet,
+        payload: {
+          formData,
+          setPosts,
+          allPost,
+        },
+      },
+      setSelectedImages([]),
+      setInput("")
+    );
+    //   try {
+    //     const response = await fetch("/api/post/posts", {
+    //       method: "POST",
+    //       body: formData,
+    //     });
+    //     const data = await response.json();
+    //     console.log(data);
+    //     setPosts([data.data, ...allPost]);
+    //     setSelectedImages([]);
+    //     setInput("");
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
   };
   const handleRemoveImage = () => {
     setSelectedImages([]);

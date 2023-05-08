@@ -5,15 +5,15 @@ import Post from "./Post";
 import PostBox from "./PostBox";
 import RetweetPost from "./PostRetweet";
 
-export default function Feed({ post }) {
+export default function Feed({ posts,setPosts }) {
   const { data: session } = useSession();
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const loaderRef = useRef(null);
 
   useEffect(() => {
-    setPosts(post);
+    setPosts(posts);
   }, []);
   useEffect(() => {
     const fetchPosts = async () => {
@@ -23,7 +23,7 @@ export default function Feed({ post }) {
           `http://localhost:3000/api/post/posts?page=${page}`
         );
         const data = await res.json();
-        console.log(data.posts);
+        //console.log(data.posts);
         setPosts((prevPosts) => [...prevPosts, ...data.posts]);
       } catch (err) {
         console.log(err);
@@ -32,7 +32,7 @@ export default function Feed({ post }) {
       }
     };
     fetchPosts();
-    console.log("useEffect");
+    //console.log("useEffect");
   }, [page]);
 
   const observer = useRef(
@@ -67,11 +67,11 @@ export default function Feed({ post }) {
       </div>
       {session && <PostBox setPosts={setPosts} allPost={posts} />}
 
-      {posts.map((post) => {
-        if (post.typeofTweet === "retweet") {
+      {posts.map((post, index) => {
+        if (post?.typeofTweet === "retweet") {
           return (
             <RetweetPost
-              key={post._id}
+              key={`${post?._id}-${index}`}
               post={post}
               setPosts={setPosts}
               posts={posts}
@@ -80,7 +80,7 @@ export default function Feed({ post }) {
         } else {
           return (
             <Post
-              key={post._id}
+              key={`${post?._id}-${index}`}
               post={post}
               setPosts={setPosts}
               posts={posts}

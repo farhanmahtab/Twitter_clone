@@ -1,35 +1,47 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Styles from "./editPost.module.css";
+import { TweetActions, TweetDispatch } from "@/actionFiles/posts";
 
-const EditPost = ({ post ,posts,setPosts }) => {
+const EditPost = ({ posts, setPosts }) => {
   //console.log(post);
   const router = useRouter();
   const id = router.query.postId;
   const [formData, setFormData] = useState({
-    body: post?.body,
-    PostImage: post?.PostImage,
+    body: posts?.body,
+    PostImage: posts?.PostImage,
   });
   const handleSubmit = async (e) => {
     // console.log(user._id);
     e.preventDefault();
-    try {
-      const res = await fetch(`/api/post/posts?postId=${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      
-      // setPosts([data.data, ...post]);
-      // console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
+    TweetDispatch({
+      type: TweetActions.patchTweet,
+      payload: {
+        id,
+        formData,
+        posts,
+        setPosts,
+      },
+    });
+    // try {
+    //   const res = await fetch(`/api/post/posts?postId=${id}`, {
+    //     method: "PATCH",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(formData),
+    //   });
+    //   const data = await res.json();
+
+    //   setPosts([data.data, ...posts]);
+    //   // console.log(data);
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
   const handleChange = (e) => {
+    console.log(formData)
+    formData.createdAt = 0;
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,

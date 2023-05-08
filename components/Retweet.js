@@ -6,8 +6,11 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Styles from "../styles/comment.module.css";
 import styles from "../styles/modal.module.css";
+import { TweetActions, TweetDispatch } from "@/actionFiles/posts";
 
-const Retweet = () => {
+const Retweet = (post, setPost) => {
+  console.log("Retweet")
+  console.log(post.post)
   const router = useRouter();
   const pathCur = router.asPath;
   const { postId } = router.query;
@@ -15,26 +18,40 @@ const Retweet = () => {
   const { data: session } = useSession();
   const [tweet, setTweet] = useState("");
   const image = session?.user.image || session?.user.picture;
+  const userEmail = session?.user.email;
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const response = await fetch("api/post/retweet", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: session?.user.email,
-          postId: postId,
-          postBody: tweet,
-        }),
-      });
-      const data = await response.json();
-      console.log(data);
-      setTweet("");
-    } catch (error) {
-      console.error(error);
-    }
+
+    TweetDispatch({
+      type: TweetActions.postRetweet,
+      payload: {
+        post,
+        setPost,
+        setTweet,
+        userEmail,
+        postId,
+        tweet,
+      },
+    });
+   
+    // try {
+    //   const response = await fetch("api/post/retweet", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       email: session?.user.email,
+    //       postId: postId,
+    //       postBody: tweet,
+    //     }),
+    //   });
+    //   const data = await response.json();
+    //   console.log(data);
+    //   setTweet("");
+    // } catch (error) {
+    //   console.error(error);
+    // }
     router.push(`/`);
   };
   return (

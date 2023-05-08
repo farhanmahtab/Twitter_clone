@@ -19,9 +19,9 @@ export default function Home({ newsResults, comments, usersResults, posts }) {
   const [post, setPost] = useState([]);
 
   useEffect(() => {
-    setPost(posts);
+    setPost(posts.posts);
   }, []);
-  //console.log(posts.posts);
+  //console.log(post);
   return (
     <>
       <Head>
@@ -40,12 +40,12 @@ export default function Home({ newsResults, comments, usersResults, posts }) {
       )}
       {router.query.modal == "editPost" && (
         <Modal>
-          <EditPost />
+          <EditPost posts={post} setPosts={setPost}/>
         </Modal>
       )}
       {router.query.modal == "reply" && (
         <Modal>
-          <Reply post={post} setPost={setPost} />
+          <Reply post={posts} setPost={setPost} />
         </Modal>
       )}
       {router.query.modal == "comment" && (
@@ -55,7 +55,7 @@ export default function Home({ newsResults, comments, usersResults, posts }) {
       )}
       {router.query.modal == "retweet" && (
         <Modal>
-          <Retweet />
+          <Retweet post={posts.posts} setPost={setPost}/>
         </Modal>
       )}
 
@@ -63,7 +63,7 @@ export default function Home({ newsResults, comments, usersResults, posts }) {
         {/* sidebar */}
         <Sidebar />
         {/* feed */}
-        <Feed post={posts.posts} />
+        <Feed posts={post} setPosts={setPost} />
         {/* widget */}
         <Widget
           newsResults={newsResults?.articles}

@@ -13,9 +13,8 @@ import styles from "../styles/Post.module.css";
 import { useSession } from "next-auth/react";
 import { formatDistanceToNow } from "date-fns";
 import { useRouter } from "next/router";
-import Modal from "./Modal";
-import Comment from "./Comment";
 import PostComment from "./PostComment";
+import { TweetActions, TweetDispatch } from "@/actionFiles/posts";
 
 function Post({ post, posts, setPosts }) {
   const { data: session } = useSession();
@@ -42,28 +41,36 @@ function Post({ post, posts, setPosts }) {
   //console.log(comment);
   const handleDelete = async () => {
     const postId = post._id;
-    try {
-      const response = await fetch(`/api/post/posts`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ postId }),
-      });
+    TweetDispatch({
+      type: TweetActions.deleteTweet,
+      payload: {
+        postId,
+        posts,
+        setPosts,
+      },
+    });
+    // try {
+    //   const response = await fetch(`/api/post/posts`, {
+    //     method: "DELETE",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ postId }),
+    //   });
 
-      if (response.ok) {
-        console.log(post._id, " is Deleted");
+    //   if (response.ok) {
+    //     console.log(post._id, " is Deleted");
 
-        const newPosts = posts.filter(
-          (postIterable) => postIterable._id !== post._id
-        );
-        setPosts(newPosts);
-      } else {
-        console.error(`Failed to delete post with ID ${post._id}`);
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    //     const newPosts = posts.filter(
+    //       (postIterable) => postIterable._id !== post._id
+    //     );
+    //     setPosts(newPosts);
+    //   } else {
+    //     console.error(`Failed to delete post with ID ${post._id}`);
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    // }
     router.replace("/");
   };
 
