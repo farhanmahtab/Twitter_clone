@@ -55,29 +55,17 @@ function Post({ post, posts, setPosts }) {
   const handleReact = async () => {
     const postId = post._id;
     const userId = session.user.id;
-    try {
-      const response = await fetch(`/api/post/react?postId=${postId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userId }),
-      });
-      const { success, message } = await response.json();
-
-      if (success) {
-        console.log(message);
-      } else {
-        console.error(message);
-      }
-      message === "liked"
-        ? (setReactNumber(reactNumber + 1), setIsLiked(true))
-        : (setReactNumber(reactNumber - 1), setIsLiked(false));
-    } catch (error) {
-      console.error(error.message);
-    }
+    TweetDispatch({
+      type: TweetActions.postLike,
+      payload: {
+        postId,
+        userId,
+        reactNumber,
+        setReactNumber,
+        setIsLiked,
+      },
+    });
   };
-  //console.log(post.comments);
 
   return (
     <div className={styles.postMain}>
@@ -97,7 +85,7 @@ function Post({ post, posts, setPosts }) {
             </h4>
             <span>{post?.createdBy?.username}</span>
             <div className={styles.dot}></div>
-            <span>{formatTime}</span>
+            <span>{formatTime} ago</span>
           </div>
           {session && session?.user.id === post?.createdBy._id && (
             <PencilAltIcon
@@ -162,7 +150,7 @@ function Post({ post, posts, setPosts }) {
                 onClick={() => handleReact()}
               />
             )}
-            <h4>{reactNumber}</h4>
+            <h4>{Math.max(reactNumber, 0)}</h4>
           </div>
 
           {session && session?.user.id === post?.createdBy._id && (
@@ -191,7 +179,7 @@ function Post({ post, posts, setPosts }) {
           </div>
           <div className={styles.iconDiv}>
             <ChartSquareBarIcon className={styles.icon} />
-            <h4>200</h4>
+            <h4>20</h4>
           </div>
         </div>
         {/* Comment */}

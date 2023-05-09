@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import Avatar from "@/components/common/avatar/avatar";
 import { RecentMessageContext } from "@/providers/RecentMessageProvider";
 import { useRouter } from "next/router";
-import { fetchUserFromSearch } from "@/actionFiles/FetchActions";
+import { fetchUserFromSearch, fetchUsers } from "@/actionFiles/FetchActions";
 // import { fetchUserFromSearch } from "@/actionFiles/FetchActions";
 
 export default function MessageList({ setselectedID, messages }) {
@@ -14,25 +14,26 @@ export default function MessageList({ setselectedID, messages }) {
   const session = useSession();
   const [recentMessage, setRecentMessage] = useContext(RecentMessageContext);
   const router = useRouter();
-  async function getUsers(number = 10000) {
-    try {
-      const res = await fetch("/api/users?number=" + number, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const result = await res.json();
-      res.ok && setUsers(result.users);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const userId = session?.data?.user?.id
+  // async function getUsers(number = 10000) {
+  //   try {
+  //     const res = await fetch("/api/users?number=" + number, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //     const result = await res.json();
+  //     res.ok && setUsers(result.users);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   useEffect(() => {
-    getUsers();
+    //getUsers();
+    fetchUsers(userId,setUsers)
     return () => {};
   }, [messages]);
-  console.log(users);
   const onSubmit = (e, str) => {
     e.preventDefault();
     fetchUserFromSearch(str, setUsers, search);

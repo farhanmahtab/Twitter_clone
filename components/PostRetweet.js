@@ -15,6 +15,8 @@ import { formatDistanceToNow } from "date-fns";
 import { useRouter } from "next/router";
 import PostComment from "./PostComment";
 import RetweetBox from "./RetweetBox";
+import { TweetActions, TweetDispatch } from "@/actionFiles/posts";
+import { fecthPostByPostId, fetchComment } from "@/actionFiles/FetchActions";
 
 const RetweetPost = ({ post, posts, setPosts }) => {
   const { data: session } = useSession();
@@ -28,49 +30,24 @@ const RetweetPost = ({ post, posts, setPosts }) => {
 
   const [comment, setComment] = useState([]);
   const formatTime = formatDistanceToNow(new Date(post?.createdAt));
+  const postId = post.originalTweetId;
 
-  const fetchtweet = async () => {
-    const res = await fetch(`/api/post/${post.originalTweetId}`);
-    const data = await res.json();
-    setTweet(data.post);
-  };
-  //console.log(tweet);
-  const fetchComment = async () => {
-    const res = await fetch(`/api/post/comments?postId=${post._id}`);
-    const data = await res.json();
-    //console.log(data.comments);
-    setComment(data.comments);
-  };
   useEffect(() => {
-    fetchComment();
-    fetchtweet();
+    fetchComment(post?._id, setComment);
+    fecthPostByPostId(postId, setTweet);
   }, []);
 
   //console.log(comment);
   const handleDelete = async () => {
-    const postId = post._id;
-    try {
-      const response = await fetch(`/api/post/posts`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ postId }),
-      });
-
-      if (response.ok) {
-        console.log(post._id, " is Deleted");
-
-        const newPosts = posts.filter(
-          (postIterable) => postIterable._id !== post._id
-        );
-        setPosts(newPosts);
-      } else {
-        console.error(`Failed to delete post with ID ${post._id}`);
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    const postId = post?._id;
+    TweetDispatch({
+      type: TweetActions.deleteTweet,
+      payload: {
+        postId,
+        posts,
+        setPosts,
+      },
+    });
     router.replace("/");
   };
 
@@ -78,31 +55,17 @@ const RetweetPost = ({ post, posts, setPosts }) => {
   const handleReact = async () => {
     const postId = post._id;
     const userId = session.user.id;
-    try {
-      const response = await fetch(`/api/post/react?postId=${postId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userId }),
-      });
-      const { success, message } = await response.json();
-
-      if (success) {
-        console.log(message);
-      } else {
-        console.error(message);
-      }
-      message === "liked"
-        ? (setReactNumber(reactNumber + 1), setIsLiked(true))
-        : (setReactNumber(reactNumber - 1), setIsLiked(false));
-    } catch (error) {
-      console.error(error.message);
-    }
+    TweetDispatch({
+      type: TweetActions.postLike,
+      payload: {
+        postId,
+        userId,
+        reactNumber,
+        setReactNumber,
+        setIsLiked,
+      },
+    });
   };
-
-  
-  //console.log(post.comments);
 
   return (
     <div className={styles.postMain}>
@@ -188,7 +151,7 @@ const RetweetPost = ({ post, posts, setPosts }) => {
                 onClick={() => handleReact()}
               />
             )}
-            <h4>{reactNumber}</h4>
+            <h4>{Math.max(reactNumber, 0)}</h4>
           </div>
 
           {session && session?.user.id === post?.createdBy._id && (
@@ -217,7 +180,7 @@ const RetweetPost = ({ post, posts, setPosts }) => {
           </div>
           <div className={styles.iconDiv}>
             <ChartSquareBarIcon className={styles.icon} />
-            <h4>200</h4>
+            <h4>201</h4>
           </div>
         </div>
         {/* Comment */}

@@ -33,25 +33,6 @@ const Retweet = (post, setPost) => {
         tweet,
       },
     });
-   
-    // try {
-    //   const response = await fetch("api/post/retweet", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       email: session?.user.email,
-    //       postId: postId,
-    //       postBody: tweet,
-    //     }),
-    //   });
-    //   const data = await response.json();
-    //   console.log(data);
-    //   setTweet("");
-    // } catch (error) {
-    //   console.error(error);
-    // }
     router.push(`/`);
   };
   return (

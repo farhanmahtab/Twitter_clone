@@ -20,6 +20,9 @@ export const TweetReducer = (state, action) => {
     case TweetActions.postRetweet:
       postRetweet(action.payload);
       break;
+    case TweetActions.postLike:
+      postLike(action.payload);
+      break;
     default:
       return state;
   }
@@ -111,6 +114,36 @@ const postRetweet = async ({
     console.log(data);
     setPost([data.data, ...post.post]);
     setTweet("");
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const postLike = async ({
+  postId,
+  userId,
+  reactNumber,
+  setReactNumber,
+  setIsLiked,
+}) => {
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ userId }),
+  };
+  try {
+    const response = await fetch(
+      `/api/post/react?postId=${postId}`,
+      requestOptions
+    );
+    const { success, message } = await response.json();
+    console.log({ message });
+    console.log(reactNumber);
+    message === "Liked"
+      ? (setReactNumber((state) => state + 1), setIsLiked(true))
+      : (setReactNumber((state) => state - 1), setIsLiked(false));
   } catch (error) {
     console.error(error);
   }

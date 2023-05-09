@@ -7,10 +7,15 @@ import { useRouter } from "next/router";
 
 const RetweetBox = ({ post }) => {
   const router = useRouter();
-  //   const formatTime = formatDistanceToNow(new Date(post?.createdAt));
-  //console.log(formatTime);
 
   const { data: session } = useSession();
+  console.log(post);
+  let formatTime;
+  if (post?.createdAt) {
+    formatTime = formatDistanceToNow(new Date(post?.createdAt));
+  } else {
+    formatTime = formatDistanceToNow(new Date());
+  }
   return (
     <div className={styles.retweetMain}>
       <div className={styles.retweetDiv}>
@@ -28,7 +33,7 @@ const RetweetBox = ({ post }) => {
             </h4>
             <span>{post?.createdBy.username}</span>
             <div className={styles.dot}></div>
-            {/* <span>{formatTime}</span> */}
+            <span>{formatTime} ago</span>
           </div>
 
           {/* dot icon */}

@@ -30,38 +30,14 @@ const profile = ({ newsResults, usersResults }) => {
   const router = useRouter();
   const pathCur = router.asPath;
   const userId = router.query.id;
-  //console.log(post.length);
-  // const fetchFollowers = async () => {
-  //   const res = await fetch(`/api/user/follower?id=${userId}`);
-  //   const data = await res.json();
-  //   setFollowers(data.followers);
-  // };
-  // const fetchFollowing = async () => {
-  //   const res = await fetch(`/api/user/following?id=${userId}`);
-  //   const data = await res.json();
-  //   setFollowing(data.following);
-  // };
-  //console.log(following);
-  // const fetchPost = async () => {
-  //   const res = await fetch(`/api/post/userPost?id=${userId}`);
-  //   const data = await res.json();
-  //   setPost(data.posts);
-  // };
-  //console.log(post);
-  // const fetchUser = async () => {
-  //   const res = await fetch(`/api/user/${userId}`);
-  //   const data = await res.json();
-  //   setUser(data.user);
-  // };
 
   useEffect(() => {
     fetchUserById(userId, setUser);
     fetchPostByUserID(userId, setPost);
     fetchFollowing(userId, setFollowing);
     fetchFollowers(userId, setFollowers);
-  }, []);
+  }, [router.query]);
 
-  //console.log(user);
   return (
     <div>
       {router.query.modal == "edit" && (
