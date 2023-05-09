@@ -15,6 +15,7 @@ import { formatDistanceToNow } from "date-fns";
 import { useRouter } from "next/router";
 import PostComment from "./PostComment";
 import { TweetActions, TweetDispatch } from "@/actionFiles/posts";
+import { fetchComment } from "@/actionFiles/FetchActions";
 
 function Post({ post, posts, setPosts }) {
   const { data: session } = useSession();
@@ -26,21 +27,19 @@ function Post({ post, posts, setPosts }) {
   );
 
   const [comment, setComment] = useState([]);
-  const formatTime = formatDistanceToNow(new Date(post?.createdAt));
-  //console.log(post.typeofTweet);
-  const fetchComment = async () => {
-    const res = await fetch(`/api/post/comments?postId=${post._id}`);
-    const data = await res.json();
-    //console.log(data.comments);
-    setComment(data.comments);
-  };
+  let formatTime;
+  if (post?.createdAt) {
+    formatTime = formatDistanceToNow(new Date(post?.createdAt));
+  } else {
+    formatTime = formatDistanceToNow(new Date());
+  }
   useEffect(() => {
-    fetchComment();
+    fetchComment(post?._id, setComment);
   }, []);
 
   //console.log(comment);
   const handleDelete = async () => {
-    const postId = post._id;
+    const postId = post?._id;
     TweetDispatch({
       type: TweetActions.deleteTweet,
       payload: {
@@ -49,28 +48,6 @@ function Post({ post, posts, setPosts }) {
         setPosts,
       },
     });
-    // try {
-    //   const response = await fetch(`/api/post/posts`, {
-    //     method: "DELETE",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ postId }),
-    //   });
-
-    //   if (response.ok) {
-    //     console.log(post._id, " is Deleted");
-
-    //     const newPosts = posts.filter(
-    //       (postIterable) => postIterable._id !== post._id
-    //     );
-    //     setPosts(newPosts);
-    //   } else {
-    //     console.error(`Failed to delete post with ID ${post._id}`);
-    //   }
-    // } catch (error) {
-    //   console.error(error);
-    // }
     router.replace("/");
   };
 
@@ -105,7 +82,7 @@ function Post({ post, posts, setPosts }) {
   return (
     <div className={styles.postMain}>
       <Image
-        src={post.createdBy.profilePicture}
+        src={post?.createdBy?.profilePicture}
         width="50"
         height="50"
         className={styles.profileImage}
@@ -115,10 +92,10 @@ function Post({ post, posts, setPosts }) {
         {/* Username and Handle */}
         <div className={styles.rightBar}>
           <div className={styles.nameBar}>
-            <h4 onClick={() => router.push(`/profile/${post.createdBy._id}`)}>
-              {post.createdBy.name}
+            <h4 onClick={() => router.push(`/profile/${post?.createdBy?._id}`)}>
+              {post?.createdBy?.name}
             </h4>
-            <span>{post.createdBy.username}</span>
+            <span>{post?.createdBy?.username}</span>
             <div className={styles.dot}></div>
             <span>{formatTime}</span>
           </div>
@@ -131,10 +108,10 @@ function Post({ post, posts, setPosts }) {
                     pathname: pathCur,
                     query: {
                       modal: `editPost`,
-                      postId: post._id,
+                      postId: post?._id,
                     },
                   },
-                  console.log(post._id)
+                  console.log(post?._id)
                 )
               }
             />
@@ -142,10 +119,10 @@ function Post({ post, posts, setPosts }) {
           {/* dot icon */}
         </div>
         <div className={styles.textBody}>
-          <p>{post.body}</p>
+          <p>{post?.body}</p>
         </div>
 
-        {post.PostImage && (
+        {post?.PostImage && (
           <Image
             src={`/images/${post.PostImage}`}
             width={400}
@@ -165,12 +142,12 @@ function Post({ post, posts, setPosts }) {
                   pathname: pathCur,
                   query: {
                     modal: `comment`,
-                    postId: post._id,
+                    postId: post?._id,
                   },
                 })
               }
             />
-            <h4>{post.comments.length}</h4>
+            <h4>{post?.comments.length}</h4>
           </div>
 
           <div className={styles.iconDiv}>
@@ -210,7 +187,7 @@ function Post({ post, posts, setPosts }) {
                 })
               }
             />
-            <h4>{post.NumberOfRetweet}</h4>
+            <h4>{post?.NumberOfRetweet}</h4>
           </div>
           <div className={styles.iconDiv}>
             <ChartSquareBarIcon className={styles.icon} />
@@ -218,12 +195,12 @@ function Post({ post, posts, setPosts }) {
           </div>
         </div>
         {/* Comment */}
-        {comment.map((comment) => {
+        {comment?.map((comment) => {
           return (
             <PostComment
-              key={comment._id}
+              key={comment?._id}
               comment={comment}
-              postId={post._id}
+              postId={post?._id}
             />
           );
         })}

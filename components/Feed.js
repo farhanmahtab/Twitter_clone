@@ -4,10 +4,10 @@ import styles from "../styles/Feed.module.css";
 import Post from "./Post";
 import PostBox from "./PostBox";
 import RetweetPost from "./PostRetweet";
+import { fetchPosts } from "@/actionFiles/FetchActions";
 
-export default function Feed({ posts,setPosts }) {
+export default function Feed({ posts, setPosts }) {
   const { data: session } = useSession();
-  // const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const loaderRef = useRef(null);
@@ -16,23 +16,7 @@ export default function Feed({ posts,setPosts }) {
     setPosts(posts);
   }, []);
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        setLoading(true);
-        const res = await fetch(
-          `http://localhost:3000/api/post/posts?page=${page}`
-        );
-        const data = await res.json();
-        //console.log(data.posts);
-        setPosts((prevPosts) => [...prevPosts, ...data.posts]);
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPosts();
-    //console.log("useEffect");
+    fetchPosts(page, setPosts, setLoading);
   }, [page]);
 
   const observer = useRef(
@@ -58,12 +42,10 @@ export default function Feed({ posts,setPosts }) {
       }
     };
   }, [loaderRef]);
-  //console.log(post);
   return (
     <div className={styles.main}>
       <div className={styles.homeBar}>
         <h2>Home</h2>
-        {/* <CogIcon className={styles.homeBarIcon} /> */}
       </div>
       {session && <PostBox setPosts={setPosts} allPost={posts} />}
 

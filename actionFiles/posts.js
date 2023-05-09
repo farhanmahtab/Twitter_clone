@@ -1,12 +1,9 @@
 export const TweetActions = {
   postTweet: "POST_TWEET",
-  postRetweet: "POST_RETWEET",
-  postComment: "POST_COMMENT",
-  postLike: "POST_LIKE",
-  deleteTweet: "DELETE_TWEET",
-  deleteComment: "DELETE_COMMENT",
   patchTweet: "PATCH_TWEET",
-  patchComment: "PATCH_COMMENT",
+  deleteTweet: "DELETE_TWEET",
+  postRetweet: "POST_RETWEET",
+  postLike: "POST_LIKE",
 };
 
 export const TweetReducer = (state, action) => {
@@ -23,7 +20,6 @@ export const TweetReducer = (state, action) => {
     case TweetActions.postRetweet:
       postRetweet(action.payload);
       break;
-
     default:
       return state;
   }
@@ -49,7 +45,7 @@ const postTweet = async ({ formData, setPosts, allPost }) => {
     console.log(error);
   }
 };
-const patchTweet = async ({ id,formData,posts, setPosts }) => {
+const patchTweet = async ({ id, formData, posts, setPosts }) => {
   const requestOptions = {
     method: "PATCH",
     headers: {
@@ -60,7 +56,7 @@ const patchTweet = async ({ id,formData,posts, setPosts }) => {
   try {
     const res = await fetch(`/api/post/posts?postId=${id}`, requestOptions);
     const data = await res.json();
-    console.log(data)
+    console.log(data);
     setPosts([data.data, ...posts]);
   } catch (error) {
     console.error(error);

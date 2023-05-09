@@ -8,6 +8,12 @@ import { ArrowLeftIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import Edit from "./EditProfile";
 import Modal from "@/components/Modal";
+import {
+  fetchUserById,
+  fetchPostByUserID,
+  fetchFollowing,
+  fetchFollowers,
+} from "@/actionFiles/FetchActions";
 
 import connectMongo from "@/Utils/db";
 import Posts from "../../models/Post";
@@ -24,35 +30,35 @@ const profile = ({ newsResults, usersResults }) => {
   const router = useRouter();
   const pathCur = router.asPath;
   const userId = router.query.id;
-  console.log(post.length);
-  const fetchFollowers = async () => {
-    const res = await fetch(`/api/user/follower?id=${userId}`);
-    const data = await res.json();
-    setFollowers(data.followers);
-  };
-  const fetchFollowing = async () => {
-    const res = await fetch(`/api/user/following?id=${userId}`);
-    const data = await res.json();
-    setFollowing(data.following);
-  };
+  //console.log(post.length);
+  // const fetchFollowers = async () => {
+  //   const res = await fetch(`/api/user/follower?id=${userId}`);
+  //   const data = await res.json();
+  //   setFollowers(data.followers);
+  // };
+  // const fetchFollowing = async () => {
+  //   const res = await fetch(`/api/user/following?id=${userId}`);
+  //   const data = await res.json();
+  //   setFollowing(data.following);
+  // };
   //console.log(following);
-  const fetchPost = async () => {
-    const res = await fetch(`/api/post/userPost?id=${userId}`);
-    const data = await res.json();
-    setPost(data.posts);
-  };
+  // const fetchPost = async () => {
+  //   const res = await fetch(`/api/post/userPost?id=${userId}`);
+  //   const data = await res.json();
+  //   setPost(data.posts);
+  // };
   //console.log(post);
-  const fetchUser = async () => {
-    const res = await fetch(`/api/user/${userId}`);
-    const data = await res.json();
-    setUser(data.user);
-  };
+  // const fetchUser = async () => {
+  //   const res = await fetch(`/api/user/${userId}`);
+  //   const data = await res.json();
+  //   setUser(data.user);
+  // };
 
   useEffect(() => {
-    fetchUser();
-    fetchPost();
-    fetchFollowers();
-    fetchFollowing();
+    fetchUserById(userId, setUser);
+    fetchPostByUserID(userId, setPost);
+    fetchFollowing(userId, setFollowing);
+    fetchFollowers(userId, setFollowers);
   }, []);
 
   //console.log(user);

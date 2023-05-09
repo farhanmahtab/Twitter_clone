@@ -5,6 +5,8 @@ import { useSession } from "next-auth/react";
 import Avatar from "@/components/common/avatar/avatar";
 import { RecentMessageContext } from "@/providers/RecentMessageProvider";
 import { useRouter } from "next/router";
+import { fetchUserFromSearch } from "@/actionFiles/FetchActions";
+// import { fetchUserFromSearch } from "@/actionFiles/FetchActions";
 
 export default function MessageList({ setselectedID, messages }) {
   const [search, setSearch] = useState("");
@@ -30,31 +32,13 @@ export default function MessageList({ setselectedID, messages }) {
     getUsers();
     return () => {};
   }, [messages]);
+  console.log(users);
   const onSubmit = (e, str) => {
     e.preventDefault();
-    const requestOptions = {
-      method: "GET",
-      redirect: "follow",
-    };
-    console.log(str);
-    async function fetchUser() {
-      try {
-        const response = await fetch(
-          "/api/messages/searchUser?search=" + (str == "" ? str : search),
-          requestOptions
-        );
-        const result = await response.json();
-
-        if (response.ok) {
-          setUsers(result);
-        }
-      } catch (error) {}
-    }
-    fetchUser();
+    fetchUserFromSearch(str, setUsers, search);
   };
   const onChange = (event) => {
     setSearch(event.target.value);
-
     if (event.target.value == "") {
       onSubmit(event, "");
     }

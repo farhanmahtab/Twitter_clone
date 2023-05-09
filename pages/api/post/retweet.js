@@ -25,6 +25,7 @@ const postRetweet = async (req, res) => {
     const retweetPost = new Posts({
       createdBy: user._id,
       body: postBody,
+      // createdAt: Date.now(),
       typeofTweet: "retweet",
       originalTweetId: postId,
     });

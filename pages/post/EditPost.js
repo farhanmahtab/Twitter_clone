@@ -14,6 +14,7 @@ const EditPost = ({ posts, setPosts }) => {
   const handleSubmit = async (e) => {
     // console.log(user._id);
     e.preventDefault();
+
     TweetDispatch({
       type: TweetActions.patchTweet,
       payload: {
@@ -23,29 +24,23 @@ const EditPost = ({ posts, setPosts }) => {
         setPosts,
       },
     });
-    // try {
-    //   const res = await fetch(`/api/post/posts?postId=${id}`, {
-    //     method: "PATCH",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(formData),
-    //   });
-    //   const data = await res.json();
-
-    //   setPosts([data.data, ...posts]);
-    //   // console.log(data);
-    // } catch (error) {
-    //   console.error(error);
-    // }
   };
   const handleChange = (e) => {
-    console.log(formData)
-    formData.createdAt = 0;
-    setFormData({
+    // const now = Date.now();
+    // formdata.createdAt: now;
+    // console.log(formData);
+    // setFormData({
+    //   ...formData,
+    //   [e.target.name]: e.target.value,
+    // });
+    const now = new Date().toISOString();
+    const updatedFormData = {
       ...formData,
+      createdAt: now,
       [e.target.name]: e.target.value,
-    });
+    };
+    console.log(updatedFormData);
+    setFormData(updatedFormData);
   };
   return (
     <div>
@@ -79,3 +74,19 @@ const EditPost = ({ posts, setPosts }) => {
 };
 
 export default EditPost;
+
+// try {
+//   const res = await fetch(`/api/post/posts?postId=${id}`, {
+//     method: "PATCH",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(formData),
+//   });
+//   const data = await res.json();
+
+//   setPosts([data.data, ...posts]);
+//   // console.log(data);
+// } catch (error) {
+//   console.error(error);
+// }

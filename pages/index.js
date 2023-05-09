@@ -50,7 +50,7 @@ export default function Home({ newsResults, comments, usersResults, posts }) {
       )}
       {router.query.modal == "comment" && (
         <Modal>
-          <Comment />
+          <Comment posts={post} setPosts={setPost}/>
         </Modal>
       )}
       {router.query.modal == "retweet" && (

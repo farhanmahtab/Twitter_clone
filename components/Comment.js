@@ -6,34 +6,50 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Styles from "../styles/comment.module.css";
 import styles from "../styles/modal.module.css";
+import { CommentActions, CommentDispatch } from "@/actionFiles/comments";
 
-const Comment = () => {
+const Comment = ({ posts, setPosts }) => {
   const router = useRouter();
-  const { postId } = router.query;
+  const  {postId}  = router.query;
   //console.log(postId)
   const { data: session } = useSession();
   const [comment, setComment] = useState("");
   const image = session?.user.image || session?.user.picture;
+  const email = session?.user.email;
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const response = await fetch("/api/post/comments", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: session?.user.email,
-          postId: postId,
-          body: comment,
-        }),
-      });
-      const data = await response.json();
-      console.log(data);
-      setComment("");
-    } catch (error) {
-      console.error(error);
-    }
+    
+    CommentDispatch({
+      type: CommentActions.postComment,
+      payload: {
+        email,
+        postId,
+        comment,
+        setComment,
+        posts,
+        setPosts,
+      },
+    });
+
+    // try {
+    //   const response = await fetch("/api/post/comments", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       email: email,
+    //       postId: postId,
+    //       body: comment,
+    //     }),
+    //   });
+    //   const data = await response.json();
+    //   console.log(data);
+    //   setComment("");
+    //   setPosts([data.data, ...posts]);
+    // } catch (error) {
+    //   console.error(error);
+    // }
     router.push(`/`);
   };
 
