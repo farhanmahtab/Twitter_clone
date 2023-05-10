@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Style from "./editProfile.module.css";
 import { useRouter } from "next/router";
+import { UserActions, UserDispatch } from "@/actionFiles/user";
 
-const Edit = ({ user }) => {
+const Edit = ({ user, setUser }) => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     name: user?.name,
@@ -13,23 +14,20 @@ const Edit = ({ user }) => {
     profilePicture: user?.profilePicture,
     coverPhoto: user?.coverPhoto,
   });
-
+  //console.log(user)
   const handleSubmit = async (e) => {
     // console.log(user._id);
+    const userId = user._id;
     e.preventDefault();
-    try {
-      const res = await fetch(`/api/user/${user._id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      //console.log(data.message);
-    } catch (error) {
-      console.error(error);
-    }
+
+    UserDispatch({
+      type: UserActions.patchUser,
+      payload: {
+        userId,
+        formData,
+        setUser,
+      },
+    });
   };
 
   const handleChange = (e) => {

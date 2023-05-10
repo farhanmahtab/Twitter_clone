@@ -77,7 +77,6 @@ function Post({ post, posts, setPosts }) {
         alt="user image"
       />
       <div className={styles.RightDiv}>
-        {/* Username and Handle */}
         <div className={styles.rightBar}>
           <div className={styles.nameBar}>
             <h4 onClick={() => router.push(`/profile/${post?.createdBy?._id}`)}>

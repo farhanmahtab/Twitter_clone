@@ -10,10 +10,8 @@ import {
 } from "@heroicons/react/outline";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import Reply from "./CommentReply";
 import CommentReply from "./CommentReply";
 import { useSession } from "next-auth/react";
-import ReplyComponent from "./ReplyComponent";
 
 export default function PostComment({ comment, postId }) {
   const { data: session } = useSession();
@@ -25,7 +23,6 @@ export default function PostComment({ comment, postId }) {
     console.log(comment._id);
   };
   const replies = comment.replies;
-   //console.log(replies);
   return (
     <div>
       <div className={styles.commentMain}>
@@ -56,22 +53,23 @@ export default function PostComment({ comment, postId }) {
                         modal: "reply",
                         commentId: comment._id,
                         postId: postId,
-                      }
+                      },
                     })
                   }
                 />
+                <span>{replies.length}</span>
               </div>
             )}
 
             {}
-            {session && session?.user.id === comment?.createdBy?._id && (
+            {/* {session && session?.user.id === comment?.createdBy?._id && (
               <div className={styles.iconDiv}>
                 <TrashIcon
                   className={styles.icon}
                   onClick={() => handleDelete()}
                 />
               </div>
-            )}
+            )} */}
 
             <div className={styles.iconDiv}>
               <HeartIcon className={styles.icon} />
@@ -81,14 +79,12 @@ export default function PostComment({ comment, postId }) {
             </div>
             <div className={styles.iconDiv}>
               <ChartSquareBarIcon className={styles.icon} />
+              <span>10</span>
             </div>
           </div>
         </div>
       </div>
-      <CommentReply reply={replies}/>
-      {/* {replies.map((rep) => (
-        <ReplyComponent key={rep._id} reply={rep} postId={postId} />
-      ))} */}
+      <CommentReply reply={replies} />
     </div>
   );
 }

@@ -12,11 +12,9 @@ import { useRouter } from "next/router";
 import { TweetActions, TweetDispatch } from "@/actionFiles/posts";
 
 function PostBox({ setPosts, allPost }) {
-  //console.log(allPost);
   const router = useRouter();
   const filePickerRef = useRef(null);
   const { data: session } = useSession();
-  //console.log(session?.user);
   const image = session?.user.image || session?.user.picture;
 
   const [input, setInput] = useState("");
@@ -43,19 +41,6 @@ function PostBox({ setPosts, allPost }) {
       setSelectedImages([]),
       setInput("")
     );
-    //   try {
-    //     const response = await fetch("/api/post/posts", {
-    //       method: "POST",
-    //       body: formData,
-    //     });
-    //     const data = await response.json();
-    //     console.log(data);
-    //     setPosts([data.data, ...allPost]);
-    //     setSelectedImages([]);
-    //     setInput("");
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
   };
   const handleRemoveImage = () => {
     setSelectedImages([]);

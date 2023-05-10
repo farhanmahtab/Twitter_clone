@@ -11,7 +11,6 @@ import { CommentActions, CommentDispatch } from "@/actionFiles/comments";
 const Comment = ({ posts, setPosts }) => {
   const router = useRouter();
   const  {postId}  = router.query;
-  //console.log(postId)
   const { data: session } = useSession();
   const [comment, setComment] = useState("");
   const image = session?.user.image || session?.user.picture;
@@ -30,26 +29,6 @@ const Comment = ({ posts, setPosts }) => {
         setPosts,
       },
     });
-
-    // try {
-    //   const response = await fetch("/api/post/comments", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       email: email,
-    //       postId: postId,
-    //       body: comment,
-    //     }),
-    //   });
-    //   const data = await response.json();
-    //   console.log(data);
-    //   setComment("");
-    //   setPosts([data.data, ...posts]);
-    // } catch (error) {
-    //   console.error(error);
-    // }
     router.push(`/`);
   };
 

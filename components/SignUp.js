@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import styles from "../styles/modal.module.css";
 import { signIn } from "next-auth/react";
+import { UserActions, UserDispatch } from "@/actionFiles/user";
 
 function SignUp() {
   const router = useRouter();
@@ -20,19 +21,24 @@ function SignUp() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(userData);
-    try {
-      const response = await fetch("/api/user", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
-      const data = await response.json();
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
+
+    UserDispatch({
+      type: UserActions.postUser,
+      payload: { userData },
+    });
+    // try {
+    //   const response = await fetch("/api/user", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(userData),
+    //   });
+    //   const data = await response.json();
+    //   console.log(data);
+    // } catch (err) {
+    //   console.log(err);
+    // }
     await signIn("credentials", {
       email: userData.email,
       password: userData.password,
@@ -41,7 +47,6 @@ function SignUp() {
     });
   };
   const handleInputChange = (event) => {
-    // console.log(event.target.value)
     userData[event.target.name] = event.target.value;
     setUserData(() => ({
       ...userData,

@@ -114,6 +114,7 @@
   border-radius: 50%;
 }
 .followNameBox {
+  cursor: pointer;
   padding: 0;
 }
 .followNameBox h4 {

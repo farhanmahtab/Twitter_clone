@@ -118,7 +118,14 @@ function Sidebar() {
               )}
             </div>
           </div>
-          <ChevronRightIcon className={styles.icon} onClick={() => signOut()} />
+          <ChevronRightIcon
+            className={styles.icon}
+            onClick={() => {
+              signOut();
+              console.log("replace");
+              router.push("/");
+            }}
+          />
         </div>
       )}
     </div>

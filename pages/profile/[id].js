@@ -19,6 +19,7 @@ import connectMongo from "@/Utils/db";
 import Posts from "../../models/Post";
 import Post from "@/components/Post";
 import Follow from "@/components/Follower";
+import RetweetPost from "@/components/PostRetweet";
 
 const profile = ({ newsResults, usersResults }) => {
   const { data: session } = useSession();
@@ -42,7 +43,7 @@ const profile = ({ newsResults, usersResults }) => {
     <div>
       {router.query.modal == "edit" && (
         <Modal>
-          <Edit user={user} />
+          <Edit user={user} setUser={setUser} />
         </Modal>
       )}
       <main className={Style.profileMain}>
@@ -124,9 +125,26 @@ const profile = ({ newsResults, usersResults }) => {
               Following
             </div>
           </div>
+
           {selectedOption === "tweets" &&
-            post.map((post) => {
-              return <Post key={post._id} post={post} />;
+            post.map((post, index) => {
+              if (post?.typeofTweet === "retweet") {
+                return (
+                  <RetweetPost
+                    key={`${post?._id}-${index}`}
+                    post={post}
+                    setPosts={setPost}
+                  />
+                );
+              } else {
+                return (
+                  <Post
+                    key={`${post?._id}-${index}`}
+                    post={post}
+                    setPost={setPost}
+                  />
+                );
+              }
             })}
           {selectedOption === "followers" &&
             followers.map((follow) => {
