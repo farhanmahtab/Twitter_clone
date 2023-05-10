@@ -21,11 +21,10 @@ export default function Messages({ receiver, email }) {
 
   const senderId = session.data?.user.id;
   const receiverId = receiver?._id;
-
   const deleteNotificationState = async () => {
     setRecentMessages((state) => {
       const newState = { ...state };
-      newState.latestMessages = state.latestMessages.filter(
+      state.latestMessages = state.latestMessages.filter(
         (el) => el.sender !== receiver._id
       );
       if (newState.latestMessages.length == 0) {

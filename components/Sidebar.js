@@ -50,7 +50,7 @@ function Sidebar() {
           newRecentMsg.messages = [...state.messages];
         }
         console.log(newRecentMsg);
-        return newRecentMsg;
+        return { ...state, ...newRecentMsg };
       });
       setNotification((state) => [msg, ...state]);
     });

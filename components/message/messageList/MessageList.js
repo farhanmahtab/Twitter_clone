@@ -16,9 +16,12 @@ export default function MessageList({ setselectedID, messages }) {
   const userId = session?.data?.user?.id;
   useEffect(() => {
     //getUsers();
-    fetchUsers(userId, setUsers);
+    if (!messages) {
+      fetchUsers(userId, setUsers);
+    }
     return () => {};
   }, [messages]);
+
   const onSubmit = (e, str) => {
     e.preventDefault();
     fetchUserFromSearch(str, setUsers, search);
@@ -86,7 +89,10 @@ export default function MessageList({ setselectedID, messages }) {
                 <div
                   key={user._id}
                   className={`${style.convo} ${
-                    recentMessage.latestMessage?.sender === user._id &&
+                    // recentMessage.latestMessage?.sender === user._id
+                    recentMessage.latestMessages?.some(
+                      (el) => el.sender == user._id
+                    ) &&
                     recentMessage.showNotification &&
                     style["noti-bg"]
                   } ${
