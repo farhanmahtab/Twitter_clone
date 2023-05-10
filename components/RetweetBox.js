@@ -9,7 +9,7 @@ const RetweetBox = ({ post }) => {
   const router = useRouter();
 
   const { data: session } = useSession();
-  console.log(post);
+  //console.log(post);
   let formatTime;
   if (post?.createdAt) {
     formatTime = formatDistanceToNow(new Date(post?.createdAt));

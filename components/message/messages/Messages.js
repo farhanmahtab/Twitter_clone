@@ -12,13 +12,16 @@ import { format } from "date-fns";
 import MessagePortion from "./MessagePortion";
 import MessageInput from "./MessageInput";
 import Image from "next/image";
+import { getMessages } from "@/actionFiles/message";
 
 export default function Messages({ receiver, email }) {
   const [profile, setProfile] = useState(receiver);
-  const [messages, setMessages] = useState();
   const [recentmessages, setRecentMessages] = useContext(RecentMessageContext);
   const session = useSession();
-  //console.log(recentmessages);
+
+  const senderId = session.data?.user.id;
+  const receiverId = receiver?._id;
+
   const deleteNotificationState = async () => {
     setRecentMessages((state) => {
       const newState = { ...state };
@@ -28,7 +31,6 @@ export default function Messages({ receiver, email }) {
       if (newState.latestMessages.length == 0) {
         newState.showNotification = false;
       }
-
       return newState;
     });
   };
@@ -45,29 +47,7 @@ export default function Messages({ receiver, email }) {
       method: "GET",
       redirect: "follow",
     };
-
-    async function getMessages() {
-      try {
-        const response = await fetch(
-          `/api/messages?senderId=${session.data?.user.id}&receiverId=${receiver?._id}`,
-          requestOptions
-        );
-        const result = await response.json();
-
-        if (result) {
-          setRecentMessages((state) => {
-            return { ...state, messages: result.messages };
-          });
-        } else {
-          setRecentMessages((state) => {
-            return { ...state, messages: [] };
-          });
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
+    getMessages(senderId, receiverId, setRecentMessages);
     if (session.data && receiver) {
       console.log(receiver);
       getMessages();
@@ -76,44 +56,6 @@ export default function Messages({ receiver, email }) {
 
     return () => {};
   }, [session.data, setRecentMessages, receiver]);
-
-  const handleSendMsg = async (e) => {
-    e.preventDefault();
-
-    setMessages((state) => "");
-
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify({
-      senderEmail: session.data.user.email,
-      receiverEmail: profile.email,
-      body: messages,
-    });
-
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-
-    async function sendRequest() {
-      try {
-        var response = await fetch("/api/messages", requestOptions);
-        var result = await response.json();
-        //
-
-        setRecentMessages((state) => {
-          return { ...state, messages: result.messages };
-        });
-      } catch (error) {
-        setMessages(error.message);
-      }
-    }
-
-    await sendRequest();
-  };
 
   return (
     <section className={style.messages}>
@@ -129,7 +71,9 @@ export default function Messages({ receiver, email }) {
                   width="45"
                   alt="user-image"
                 ></Image>
-                {profile && <h3 className={styleList.topName}>{profile.username} </h3>}
+                {profile && (
+                  <h3 className={styleList.topName}>{profile.username} </h3>
+                )}
               </div>
             </div>
             {recentmessages.messages && <MessagePortion profile={profile} />}

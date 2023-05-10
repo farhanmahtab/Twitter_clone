@@ -1,12 +1,5 @@
 import React, { useState } from "react";
 import styles from "../styles/Post.module.css";
-import {
-  ChartSquareBarIcon,
-  ChatIcon,
-  HeartIcon,
-  ShareIcon,
-  TrashIcon,
-} from "@heroicons/react/outline";
 import Image from "next/image";
 import { formatDistanceToNow } from "date-fns";
 

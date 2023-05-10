@@ -6,7 +6,6 @@ import Avatar from "@/components/common/avatar/avatar";
 import { RecentMessageContext } from "@/providers/RecentMessageProvider";
 import { useRouter } from "next/router";
 import { fetchUserFromSearch, fetchUsers } from "@/actionFiles/FetchActions";
-// import { fetchUserFromSearch } from "@/actionFiles/FetchActions";
 
 export default function MessageList({ setselectedID, messages }) {
   const [search, setSearch] = useState("");
@@ -14,24 +13,10 @@ export default function MessageList({ setselectedID, messages }) {
   const session = useSession();
   const [recentMessage, setRecentMessage] = useContext(RecentMessageContext);
   const router = useRouter();
-  const userId = session?.data?.user?.id
-  // async function getUsers(number = 10000) {
-  //   try {
-  //     const res = await fetch("/api/users?number=" + number, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     const result = await res.json();
-  //     res.ok && setUsers(result.users);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+  const userId = session?.data?.user?.id;
   useEffect(() => {
     //getUsers();
-    fetchUsers(userId,setUsers)
+    fetchUsers(userId, setUsers);
     return () => {};
   }, [messages]);
   const onSubmit = (e, str) => {

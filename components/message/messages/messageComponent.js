@@ -26,7 +26,6 @@ export default function MessageComponent({ message, sender, showAvatar }) {
   return (
     <>
       <div className={style.msgComponentWrapper}>
-        {/* {!isMy && showAvatar && <Avatar width="20px" image={sender.profilePicture} />} */}
         {!showAvatar && <div style={{ width: "22px", color: "gray" }}></div>}
         <div className={style.msgComponentDiv}>
           <div

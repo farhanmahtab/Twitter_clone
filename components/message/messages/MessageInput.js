@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import style from "./Message.module.css";
 import { useSession } from "next-auth/react";
 import { RecentMessageContext } from "@/providers/RecentMessageProvider";
+import { MessageDispatch, MessageActions } from "@/actionFiles/message";
 
 export default function MessageInput({ profile }) {
   const [messages, setMessages] = useState();
@@ -10,43 +11,19 @@ export default function MessageInput({ profile }) {
 
   const handleSendMsg = async (e) => {
     e.preventDefault();
-
+    const senderEmail = session.data.user.email;
+    const receiverEmail = profile.email;
     setMessages((state) => "");
-
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify({
-      senderEmail: session.data.user.email,
-      receiverEmail: profile.email,
-      body: messages,
+    MessageDispatch({
+      type: MessageActions.postMessage,
+      payload: {
+        senderEmail,
+        receiverEmail,
+        messages,
+        setMessages,
+        setRecentMessages,
+      },
     });
-
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
-
-    async function sendRequest() {
-      try {
-        var response = await fetch(
-          "http://localhost:3000/api/messages",
-          requestOptions
-        );
-        var result = await response.json();
-        //
-
-        setRecentMessages((state) => {
-          return { ...state, messages: [...state.messages, result] };
-        });
-      } catch (error) {
-        setMessages(error.message);
-      }
-    }
-
-    await sendRequest();
   };
   return (
     <div className={style.input}>

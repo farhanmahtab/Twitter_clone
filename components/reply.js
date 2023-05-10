@@ -5,9 +5,10 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Styles from "../styles/comment.module.css";
 import styles from "../styles/modal.module.css";
+import { CommentActions, CommentDispatch } from "@/actionFiles/comments";
 
 //reply modal
-const Reply = () => {
+const Reply = ({ post, setPost }) => {
   const router = useRouter();
   const commentId = router.query.commentId;
   const postId = router.query.postId;
@@ -15,28 +16,22 @@ const Reply = () => {
   const { data: session } = useSession();
   const [comment, setComment] = useState("");
   const image = session?.user.image || session?.user.picture;
+  const email = session?.user.email;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const response = await fetch("/api/post/comments/reply", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: session?.user.email,
-          postId: postId,
-          commentId: commentId,
-          body: comment,
-        }),
-      });
-      const data = await response.json();
-      console.log(data);
-      setComment("");
-    } catch (error) {
-      console.error(error);
-    }
+    CommentDispatch({
+      type: CommentActions.CommentReply,
+      payload: {
+        email,
+        postId,
+        commentId,
+        comment,
+        setComment,
+        post,
+        setPost,
+      },
+    });
     router.push(`/`);
   };
 
