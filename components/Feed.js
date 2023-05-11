@@ -9,7 +9,7 @@ import { fetchPosts } from "@/actionFiles/FetchActions";
 export default function Feed({ posts, setPosts }) {
   const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(2);
   const loaderRef = useRef(null);
 
   useEffect(() => {
@@ -18,7 +18,6 @@ export default function Feed({ posts, setPosts }) {
   useEffect(() => {
     fetchPosts(page, setPosts, setLoading);
   }, [page]);
-  console.log(posts);
   const observer = useRef(
     typeof IntersectionObserver !== "undefined" &&
       new IntersectionObserver(

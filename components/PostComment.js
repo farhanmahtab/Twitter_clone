@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 import styles from "../styles/Post.module.css";
 import {
@@ -7,22 +7,25 @@ import {
   HeartIcon,
   ShareIcon,
 } from "@heroicons/react/outline";
-import { FaRegComment } from "react-icons/fa";
+import { FaRegComment, FaReply } from "react-icons/fa";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import CommentReply from "./CommentReply";
 import { useSession } from "next-auth/react";
+import ReplyComponent from "./ReplyComponent";
 
 export default function PostComment({ comment, postId }) {
   const { data: session } = useSession();
   const router = useRouter();
   const pathCur = router.asPath;
   const formatTime = formatDistanceToNow(new Date(comment.createdAt));
-
+  const [replies, setReplies] = useState(comment.replies);
   const handleDelete = async () => {
     console.log(comment._id);
   };
-  const replies = comment.replies;
+  useEffect(() => {
+    setReplies(comment.replies);
+  }, [comment.replies]);
   return (
     <div>
       <div className={styles.commentMain}>
@@ -45,7 +48,7 @@ export default function PostComment({ comment, postId }) {
           <div className={styles.iconsBottom}>
             {session && (
               <div className={styles.iconDiv}>
-                <ChatIcon
+                <FaReply
                   className={styles.icon}
                   onClick={() =>
                     router.push({
@@ -84,7 +87,10 @@ export default function PostComment({ comment, postId }) {
           </div>
         </div>
       </div>
-      <CommentReply reply={replies} />
+      {/* <CommentReply reply={replies} /> */}
+      {replies?.map((rep) => (
+        <ReplyComponent key={rep._id} reply={rep} />
+      ))}
     </div>
   );
 }

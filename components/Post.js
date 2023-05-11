@@ -27,15 +27,16 @@ function Post({ post, posts, setPosts }) {
   );
 
   const [comment, setComment] = useState([]);
+  useEffect(() => {
+    fetchComment(post?._id, setComment);
+  }, [comment]);
   let formatTime;
   if (post?.createdAt) {
     formatTime = formatDistanceToNow(new Date(post?.createdAt));
   } else {
     formatTime = formatDistanceToNow(new Date());
   }
-  useEffect(() => {
-    fetchComment(post?._id, setComment);
-  }, [comment]);
+
   //console.log(post);
   const handleDelete = async () => {
     const postId = post?._id;
