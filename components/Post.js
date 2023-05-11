@@ -7,7 +7,7 @@ import {
   PencilAltIcon,
 } from "@heroicons/react/outline";
 import { HeartIcon as HeartIconFilled } from "@heroicons/react/solid";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "../styles/Post.module.css";
 import { useSession } from "next-auth/react";
@@ -35,9 +35,8 @@ function Post({ post, posts, setPosts }) {
   }
   useEffect(() => {
     fetchComment(post?._id, setComment);
-  }, []);
-
-  //console.log(comment);
+  }, [comment]);
+  //console.log(post);
   const handleDelete = async () => {
     const postId = post?._id;
     TweetDispatch({
@@ -174,6 +173,7 @@ function Post({ post, posts, setPosts }) {
                 })
               }
             />
+
             <h4>{post?.NumberOfRetweet}</h4>
           </div>
           <div className={styles.iconDiv}>

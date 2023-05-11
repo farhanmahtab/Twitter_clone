@@ -4,36 +4,37 @@ import {
   InboxIcon,
   HomeIcon,
   BellIcon,
-  BookmarkAltIcon,
   HashtagIcon,
   UserIcon,
   DotsCircleHorizontalIcon,
   ChevronRightIcon,
 } from "@heroicons/react/outline";
+import { RiLogoutBoxRLine } from "react-icons/ri";
+
 import SideBarMenuItems from "./SideBarMenuItems";
 import styles from "../styles/Sidebar.module.css";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import { getMessaging, onMessage } from "firebase/messaging";
 import { RecentMessageContext } from "@/providers/RecentMessageProvider";
+import { fetchUserById } from "@/actionFiles/FetchActions";
 
 function Sidebar() {
   const router = useRouter();
   const { data: session } = useSession();
+  const [user, setUser] = useState();
   const [recentMessage, setRecentMessage] = useContext(RecentMessageContext);
   const [notification, setNotification] = useState([]);
-
-  const image = session?.user.image || session?.user.picture;
+  const image = user?.profilePicture;
   const userID = session?.user.id;
   //console.log(userID);
-
+  useEffect(() => {
+    fetchUserById(userID, setUser);
+  });
   useEffect(() => {
     const messaging = getMessaging();
     onMessage(messaging, (payload) => {
       const msg = JSON.parse(payload.data.message);
-      console.log(router.query.receiverId);
-      console.log(msg.receiver);
-      console.log(msg.sender);
       const newRecentMsg = {
         showNotification: true,
         latestMessage: msg,
@@ -60,7 +61,7 @@ function Sidebar() {
   return (
     <div className={styles.main}>
       {/* logo */}
-      <div className={styles.logo}>
+      <div className={styles.logo} onClick={() => router.push("/")}>
         <Image
           width="30"
           height="30"
@@ -85,9 +86,6 @@ function Sidebar() {
               <SideBarMenuItems text="Messages" Icon={InboxIcon} />
             </div>
           </div>
-
-          {/* <SideBarMenuItems text="Bookmarks" Icon={BookmarkAltIcon} /> */}
-          {/* <SideBarMenuItems text="Lists" Icon={ClipboardCheckIcon} /> */}
           <div onClick={() => router.push(`/profile/${userID}`)}>
             <SideBarMenuItems text="Profile" Icon={UserIcon} />
           </div>
@@ -110,22 +108,28 @@ function Sidebar() {
               alt="user-image"
             ></Image>
             <div className={styles.profileUsn}>
-              {!session ? <h4>User</h4> : <h4>{session.user.name}</h4>}
-              {!session.user.username ? (
-                <p>@username</p>
-              ) : (
-                <p>@{session.user.username}</p>
-              )}
+              {!session ? <h4>User</h4> : <h4>{user?.name}</h4>}
+              {!session ? <p>@username</p> : <p>@{user?.username}</p>}
             </div>
           </div>
-          <ChevronRightIcon
-            className={styles.icon}
-            onClick={() => {
-              signOut();
-              console.log("replace");
-              router.push("/");
-            }}
-          />
+          <div className={styles.logout}>
+            {/* <ChevronRightIcon
+              className={styles.icon}
+              onClick={() => {
+                signOut({
+                  callbackUrl: `${window.location.origin}`,
+                });
+              }}
+            /> */}
+            <RiLogoutBoxRLine
+              className={styles.icon}
+              onClick={() => {
+                signOut({
+                  callbackUrl: `${window.location.origin}`,
+                });
+              }}
+            />
+          </div>
         </div>
       )}
     </div>

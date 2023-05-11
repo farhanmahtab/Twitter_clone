@@ -6,8 +6,8 @@ import {
   ChatIcon,
   HeartIcon,
   ShareIcon,
-  TrashIcon,
 } from "@heroicons/react/outline";
+import { FaRegComment } from "react-icons/fa";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import CommentReply from "./CommentReply";
@@ -37,7 +37,8 @@ export default function PostComment({ comment, postId }) {
           <div className={styles.nameBar}>
             <h4>{comment.createdBy.name}</h4>
             <span>{comment.createdBy.username}</span>
-            <div className={styles.dot}></div>
+            {/* <div className={styles.dot}></div> */}
+            <FaRegComment className={styles.miniIcon} />
             <span>commented : {formatTime}</span>
           </div>
           <p>{comment.body}</p>
@@ -61,7 +62,6 @@ export default function PostComment({ comment, postId }) {
               </div>
             )}
 
-            {}
             {/* {session && session?.user.id === comment?.createdBy?._id && (
               <div className={styles.iconDiv}>
                 <TrashIcon

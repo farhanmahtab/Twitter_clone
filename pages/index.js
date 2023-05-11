@@ -20,7 +20,7 @@ export default function Home({ newsResults, comments, usersResults, posts }) {
 
   useEffect(() => {
     setPost(posts.posts);
-  }, []);
+  }, [posts]);
   //console.log(post);
   return (
     <>
@@ -40,7 +40,7 @@ export default function Home({ newsResults, comments, usersResults, posts }) {
       )}
       {router.query.modal == "editPost" && (
         <Modal>
-          <EditPost posts={post} setPosts={setPost}/>
+          <EditPost posts={post} setPosts={setPost} />
         </Modal>
       )}
       {router.query.modal == "reply" && (
@@ -50,12 +50,12 @@ export default function Home({ newsResults, comments, usersResults, posts }) {
       )}
       {router.query.modal == "comment" && (
         <Modal>
-          <Comment posts={post} setPosts={setPost}/>
+          <Comment posts={post} setPosts={setPost} />
         </Modal>
       )}
       {router.query.modal == "retweet" && (
         <Modal>
-          <Retweet post={posts.posts} setPost={setPost}/>
+          <Retweet post={posts.posts} setPost={setPost} />
         </Modal>
       )}
 
@@ -93,7 +93,7 @@ export async function getServerSideProps({ context }) {
   try {
     const res = await fetch(
       `http://localhost:3000/api/post`
-      //`http://localhost:3000/api/post/posts?=page${page}`
+      // `http://localhost:3000/api/post/posts?=page${page}`
     );
     posts = await res.json();
   } catch (e) {

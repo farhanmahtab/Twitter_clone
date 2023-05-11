@@ -18,7 +18,7 @@ export default function Feed({ posts, setPosts }) {
   useEffect(() => {
     fetchPosts(page, setPosts, setLoading);
   }, [page]);
-
+  console.log(posts);
   const observer = useRef(
     typeof IntersectionObserver !== "undefined" &&
       new IntersectionObserver(

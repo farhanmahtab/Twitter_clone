@@ -26,13 +26,6 @@ const EditPost = ({ posts, setPosts }) => {
     });
   };
   const handleChange = (e) => {
-    // const now = Date.now();
-    // formdata.createdAt: now;
-    // console.log(formData);
-    // setFormData({
-    //   ...formData,
-    //   [e.target.name]: e.target.value,
-    // });
     const now = new Date().toISOString();
     const updatedFormData = {
       ...formData,

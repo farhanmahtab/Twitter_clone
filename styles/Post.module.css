@@ -11,7 +11,7 @@
   height: auto;
   overflow: hidden;
   border-left: 1px solid gainsboro;
-  border-bottom: 1px solid gainsboro; 
+  border-bottom: 1px solid gainsboro;
 }
 .replyMain {
   margin-right: 0;
@@ -20,7 +20,7 @@
   height: auto;
   overflow: hidden;
   border-left: 1px solid gainsboro;
-  border-bottom: 1px solid gainsboro; 
+  border-bottom: 1px solid gainsboro;
 }
 .postMain p {
   padding: 10px 2px;
@@ -57,7 +57,7 @@
   background-color: #c1d7e0;
   border-radius: 50%;
 }
-.iconbarLeft{
+.iconbarLeft {
   display: flex;
   flex-direction: row;
 }
@@ -102,14 +102,22 @@
   display: flex;
   align-items: center;
 }
-.retweetMain{
+.retweetMain {
   border: 1px solid gainsboro;
   border-radius: 1rem;
 }
-.retweetBody{
+.retweetBody {
   margin-left: 20px;
   margin-bottom: 20px;
 }
 .retweetDiv {
   display: flex;
+}
+.retweetIcon {
+  color: gray;
+  font-size: 1.25rem;
+}
+.miniIcon{
+  color: gray;
+  font-size: 1rem;
 }

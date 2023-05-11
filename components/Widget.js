@@ -18,7 +18,7 @@ const Widget = ({ newsResults, users }) => {
       ) : (
         <>
           <div className={styles.widgetMain}>
-            <div className={styles.searchBarDiv}>
+            {/* <div className={styles.searchBarDiv}>
               <div className={styles.searchBar}>
                 <SearchIcon className={styles.icon} />
                 <input
@@ -27,7 +27,7 @@ const Widget = ({ newsResults, users }) => {
                   placeholder="Search Twitter"
                 ></input>
               </div>
-            </div>
+            </div> */}
             <div className={styles.news}>
               <h4>Whats Happening</h4>
               {newsResults?.slice(0, articleNum).map((article) => (

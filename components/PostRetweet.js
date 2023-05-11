@@ -6,6 +6,7 @@ import {
   TrashIcon,
   PencilAltIcon,
 } from "@heroicons/react/outline";
+import { FaRetweet } from "react-icons/fa";
 import { HeartIcon as HeartIconFilled } from "@heroicons/react/solid";
 import React, { use, useEffect, useState } from "react";
 import Image from "next/image";
@@ -84,9 +85,10 @@ const RetweetPost = ({ post, posts, setPosts }) => {
               {post.createdBy.name}
             </h4>
             <span>{post.createdBy.username}</span>
+            <FaRetweet className={styles.retweetIcon}/>
             <span>retweeted</span>
             <div className={styles.dot}></div>
-            <span>{formatTime}</span>
+            <span>{formatTime} ago</span>
           </div>
           {session && session?.user.id === post?.createdBy._id && (
             <PencilAltIcon

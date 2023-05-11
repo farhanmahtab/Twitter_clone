@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "../styles/Post.module.css";
+import { FaReply } from "react-icons/fa";
 import Image from "next/image";
 import { formatDistanceToNow } from "date-fns";
 
@@ -19,12 +20,11 @@ const ReplyComponent = ({ reply }) => {
         <div className={styles.nameBar}>
           <h4>{reply.createdBy?.name}</h4>
           <span>{reply.createdBy?.username}</span>
-          <div className={styles.dot}></div>
+          <FaReply className={styles.miniIcon} />
           <span>replied : {formatTime}</span>
         </div>
         <p>{reply.body}</p>
-        <div className={styles.iconsBottom}>
-        </div>
+        <div className={styles.iconsBottom}></div>
       </div>
     </div>
   );
