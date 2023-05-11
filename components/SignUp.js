@@ -22,10 +22,13 @@ function SignUp() {
     event.preventDefault();
     console.log(userData);
 
-    UserDispatch({
-      type: UserActions.postUser,
-      payload: { userData },
-    });
+    UserDispatch(
+      {
+        type: UserActions.postUser,
+        payload: { userData },
+      },
+     
+    );
     // try {
     //   const response = await fetch("/api/user", {
     //     method: "POST",
@@ -39,12 +42,12 @@ function SignUp() {
     // } catch (err) {
     //   console.log(err);
     // }
-    await signIn("credentials", {
-      email: userData.email,
-      password: userData.password,
-      redirect: true,
-      callbackUrl: `${window.location.origin}/`,
-    });
+    // await signIn("credentials", {
+    //   email: userData.email,
+    //   password: userData.password,
+    //   redirect: true,
+    //   callbackUrl: `${window.location.origin}/`,
+    // });
   };
   const handleInputChange = (event) => {
     userData[event.target.name] = event.target.value;

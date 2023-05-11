@@ -1,3 +1,5 @@
+import { signIn } from "next-auth/react";
+
 export const UserActions = {
   postUser: "POST_USER",
   patchUser: "PATCH_USER",
@@ -28,7 +30,6 @@ export const UserDispatch = (action) => {
   UserReducer(null, action);
 };
 
-
 const postUser = async ({ userData }) => {
   const requestOptions = {
     method: "POST",
@@ -44,6 +45,12 @@ const postUser = async ({ userData }) => {
   } catch (error) {
     console.log(error);
   }
+  await signIn("credentials", {
+    email: userData.email,
+    password: userData.password,
+    redirect: true,
+    callbackUrl: `${window.location.origin}/`,
+  });
 };
 
 const patchUser = async ({ userId, formData, setUser }) => {

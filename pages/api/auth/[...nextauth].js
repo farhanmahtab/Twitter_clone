@@ -7,13 +7,11 @@ import bcrypt from "bcrypt";
 
 export const authOptions = (reqM) => {
   return {
-    // Configure one or more authentication providers
     providers: [
       GithubProvider({
         clientId: process.env.GITHUB_ID,
         clientSecret: process.env.GITHUB_SECRET,
       }),
-      // ...add more providers here
       CredentialsProvider({
         id: "credentials",
         name: "Credentials",
