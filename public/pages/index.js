@@ -2,7 +2,7 @@ import Feed from "@/components/Feed";
 import Sidebar from "@/components/Sidebar";
 import Widget from "@/components/Widget";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import styles from "@/styles/Home.module.css";
 
 export default function Home({newsResults}) {
   return (

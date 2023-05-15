@@ -8,6 +8,8 @@ const nextConfig = {
       "images.pexels.com",
       "www.pexels.com",
       "media.istockphoto.com",
+      "www.thestreet.com",
+      "www.joblo.com"
     ],
   },
 };
