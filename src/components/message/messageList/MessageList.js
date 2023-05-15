@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import style from "./MessageList.module.css";
-import styles from "@/modalComponents/signInDiv/ModalSignInDiv.module.css";
+// import styles from "../../modalComponents/signInDiv/ModalSignInDiv";
+import styles from "../../modalComponents/signInDiv/ModalSignInDiv.module.css";
 import { useSession } from "next-auth/react";
 import Avatar from "@/components/common/avatar/avatar";
 import { RecentMessageContext } from "@/providers/RecentMessageProvider";

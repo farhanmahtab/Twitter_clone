@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import style from "./Message.module.css";
-import styleList from "@/messageList/MessageList.module.css";
+import styleList from "../messageList/MessageList.module.css";
 import Loader from "@/components/common/loader/Loader";
 import { useSession } from "next-auth/react";
 import { RecentMessageContext } from "@/providers/RecentMessageProvider";

@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { getMessaging, onMessage } from "firebase/messaging";
 import connectMongo from "@/Utils/db";
 import User from "@/models/User";
-import { authOptions } from "@/api/auth/[...nextauth]";
+import { authOptions } from "../api/auth/[...nextauth]";
 import { getServerSession } from "next-auth";
 import Sidebar from "@/components/Sidebar";
 

@@ -1,11 +1,10 @@
 import User from "@/models/User";
 import { getServerSession } from "next-auth";
-// import { authOptions } from "@/auth/[...nextauth]";
 import * as admin from "firebase-admin";
-import service from "@/messages/service.json";
+import service from "../messages/service";
 import { NOTIFICATION_TYPE_SEEN } from "@/helper/constStrings";
 import get_cus_id from "@/helper/helperFunc/get_cus_id";
-import { authOptions } from "@/auth/[...nextauth]";
+import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(req, res) {
   if (req.method == "GET") {

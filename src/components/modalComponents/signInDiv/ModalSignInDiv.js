@@ -2,12 +2,8 @@ import { signIn } from "next-auth/react";
 import React, { useContext, useEffect, useState } from "react";
 
 import styles from "./ModalSignInDiv.module.css";
-import { ModalContext } from "@/providers/ModalProvider";
-
-import Button from "@/components/common/button/button";
 import TwitterLogo from "@/components/common/svg/TwitterLogo";
 import Or from "@/components/common/Or";
-import { objectValueSetter } from "@/helper/helperFunc/objectValueSetter";
 import Loader from "@/components/common/loader/Loader";
 import { useRouter } from "next/router";
 import { MODAL_QUERY_SIGNUP } from "@/helper/constStrings";

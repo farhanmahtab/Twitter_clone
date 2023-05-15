@@ -10,9 +10,9 @@ import { useRouter } from "next/router";
 import EditPost from "./post/EditPost";
 import Reply from "@/components/reply";
 import { useEffect, useRef, useState } from "react";
-import { set } from "mongoose";
 import Comment from "@/components/Comment";
 import Retweet from "@/components/Retweet";
+import image from "../../public/Twitter-logo.ico"
 
 export default function Home({ newsResults, comments, usersResults, posts }) {
   let router = useRouter();
@@ -26,7 +26,11 @@ export default function Home({ newsResults, comments, usersResults, posts }) {
     <>
       <Head>
         <title>twitter</title>
-        <link rel="icon" href="/Twitter-logo.ico" type="image/icon type"></link>
+        <link
+          rel="icon"
+          href="/Twitter-logo.ico"
+          type="image/icon type"
+        ></link>
       </Head>
       {router.query.modal == "signup" && (
         <Modal>
